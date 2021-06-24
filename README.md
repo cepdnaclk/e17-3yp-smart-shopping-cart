@@ -18,22 +18,22 @@ These projects will be automatically added into [https://projects.ce.pdn.ac.lk](
 
 ```
 {
-  "title": "This is the title of the project",
+  "title": "Smart Shopping Cart",
   "team": [
     {
-      "name": "Team Member Name 1",
-      "email": "email@eng.pdn.ac.lk",
-      "eNumber": "E/yy/xxx"
+      "name": "Kavinaya Y",
+      "email": "e17159@eng.pdn.ac.lk",
+      "eNumber": "E/17/159"
     },
     {
-      "name": "Team Member Name 2",
-      "email": "email@eng.pdn.ac.lk",
-      "eNumber": "E/yy/xxx"
+      "name": "Piriyaraj S",
+      "email": "e17256@eng.pdn.ac.lk",
+      "eNumber": "E/17/256"
     },
     {
-      "name": "Team Member Name 3",
-      "email": "email@eng.pdn.ac.lk",
-      "eNumber": "E/yy/xxx"
+      "name": "Rilwan M M M",
+      "email": "e17292@eng.pdn.ac.lk",
+      "eNumber": "E/17/292"
     }
   ],
   "supervisors": [
