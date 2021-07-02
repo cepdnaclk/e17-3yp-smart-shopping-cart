@@ -13,8 +13,10 @@
             "email": "e17256@eng.pdn.ac.lk",
             "eNumber": "E/17/256",
             "github_profile":"https://github.com/piriyaraj",
+
             "linkedin_profile":"https://www.linkedin.com/in/piriyaraj",
             "website": "https://spiriyaraj.blogspot.com"
+
         },
         {
             "name": "Rilwan M.M.M",
@@ -27,16 +29,20 @@
     ],
     "supervisors": [
         {
+
             "name": "Dr. Isuru Nawinne",
             "email": "isurunawinne@eng.pdn.ac.lk",
             "linkedin_profile":"https://lk.linkedin.com/in/isuru-nawinne-73302833",
             "website": "#",
             "researchgate_profile":"https://www.researchgate.net/profile/Isuru-Nawinne"
+
         },
         {
             "name": "Dr. Mahanama Wickramasinghe",
             "email": "mahanamaw@eng.pdn.ac.lk",
+
             "linkedin_profile":"https://www.linkedin.com/in/mahanama",
+
             "website": "#",
             "researchgate_profile":"#"
         }

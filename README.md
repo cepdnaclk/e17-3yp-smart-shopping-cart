@@ -38,12 +38,12 @@ These projects will be automatically added into [https://projects.ce.pdn.ac.lk](
   ],
   "supervisors": [
     {
-      "name": "Dr. Supervisor 1",
-      "email": "email@eng.pdn.ac.lk"
+      "name": "Dr. Isuru Nawinne",
+      "email": "isurun@eng.pdn.ac.lk"
     },
     {
-      "name": "Supervisor 2",
-      "email": "email@eng.pdn.ac.lk"
+      "name": "Dr. Mahanama Wickramasinghe",
+      "email": "mahanamaw@eng.pdn.ac.lk"
     }
   ],
   "tags": ["Web", "Embedded Systems"]
