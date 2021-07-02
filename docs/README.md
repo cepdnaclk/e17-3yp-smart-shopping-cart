@@ -18,6 +18,11 @@ title: Project Template
 -  E/17/256, Piriyaraj S, [e17256@eng.pdn.ac.lk](e17256@eng.pdn.ac.lk)
 -  E/17/292, Rilwan M.M.M, [e17292@eng.pdn.ac.lk](e17292@eng.pdn.ac.lk)
 
+## Supervisors
+1. Dr. Isuru Nawinne [[Website](http://www.ce.pdn.ac.lk/academic-staff/isuru-nawinne/), [Email](mailto:isurun@eng.pdn.ac.lk)]
+2. Dr. Mahanama Wickramasinghe [[Website](http://www.ce.pdn.ac.lk/2021/05/02/dr-mahanama-wickramasinghe/), [Email](mailto:mahanamaw@eng.pdn.ac.lk)]
+
+
 <!-- Image (photo/drawing of the final hardware) should be here -->
 
 <!-- This is a sample image, to show how to add images to your page. To learn more options, please refer [this](https://projects.ce.pdn.ac.lk/docs/faq/how-to-add-an-image/) -->
