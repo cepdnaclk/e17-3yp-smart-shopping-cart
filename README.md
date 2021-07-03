@@ -12,7 +12,7 @@ title: Project Template
 # SMART SHOPPING CART
 
 ---
-![model](/doc/images/model.jpg)
+![model](model.jpg)
 ## Team
 -  E/17/159, Kavinaya Y, [e17159@eng.pdn.ac.lk](e17159@eng.pdn.ac.lk)
 -  E/17/256, Piriyaraj S, [e17256@eng.pdn.ac.lk](e17256@eng.pdn.ac.lk)
