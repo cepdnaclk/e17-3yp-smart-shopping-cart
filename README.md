@@ -1,15 +1,15 @@
----
+<!-- ---
 layout: home
 permalink: index.html
 
 # Please update this with your repository name and project title
 repository-name: eYY-3yp-project-template
 title: Project Template
----
+--- -->
 
 [comment]: # "This is the standard layout for the project, but you can clean this and use your own template"
 
-# Project Title
+# SMART SHOPPING CART
 
 ---
 
@@ -23,13 +23,15 @@ title: Project Template
 2. Dr. Mahanama Wickramasinghe [[Website](http://www.ce.pdn.ac.lk/2021/05/02/dr-mahanama-wickramasinghe/), [Email](mailto:mahanamaw@eng.pdn.ac.lk)]
 
 
+## LINKS
+- Doc Page [[Website](https://cepdnaclk.github.io/e17-3yp-smart-shopping-cart/)
 <!-- Image (photo/drawing of the final hardware) should be here -->
 
 <!-- This is a sample image, to show how to add images to your page. To learn more options, please refer [this](https://projects.ce.pdn.ac.lk/docs/faq/how-to-add-an-image/) -->
 
 <!-- ![Sample Image](./images/sample.png) -->
 
-#### Table of Contents
+<!-- #### Table of Contents
 1. [Introduction](#introduction)
 2. [Solution Architecture](#solution-architecture )
 3. [Hardware & Software Designs](#hardware-and-software-designs)
@@ -75,4 +77,4 @@ What was achieved, future developments, commercialization plans
 - [University of Peradeniya](https://eng.pdn.ac.lk/)
 
 [//]: # (Please refer this to learn more about Markdown syntax)
-[//]: # (https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
+[//]: # (https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) --> -->
