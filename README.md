@@ -24,7 +24,7 @@ title: Project Template
 
 
 ## LINKS
-- Doc Page [[Website](https://cepdnaclk.github.io/e17-3yp-smart-shopping-cart/)
+- [Project Page](https://cepdnaclk.github.io/e17-3yp-smart-shopping-cart/)
 <!-- Image (photo/drawing of the final hardware) should be here -->
 
 <!-- This is a sample image, to show how to add images to your page. To learn more options, please refer [this](https://projects.ce.pdn.ac.lk/docs/faq/how-to-add-an-image/) -->
