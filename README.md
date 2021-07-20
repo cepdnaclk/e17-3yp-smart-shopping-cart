@@ -31,12 +31,12 @@ Many people like shopping but the main problem is the time take for the billing.
 In this case, we like to introduce a device that can do all billing work so that there is no need to wait for billing. they can buy things and pay themselves.
 
 ## Problems
--Long waiting queues
--Safety and health during a pandemic
--Lot of labour for scanning and billing process
--Increased budget
--Forget to buy products
--Waste time on searching products
--Difficult to display offers
+-  Long waiting queues
+-  Safety and health during a pandemic
+-  Lot of labour for scanning and billing process
+-  Increased budget
+-  Forget to buy products
+-  Waste time on searching products
+-  Difficult to display offers
 
 
