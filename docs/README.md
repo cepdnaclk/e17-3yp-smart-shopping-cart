@@ -59,7 +59,7 @@ Testing done on hardware and software, detailed + summarized results
 
 All items and costs
 
-![budget](docs/images/budget.jpg)
+![budget](docs/images/budget.png)
 ## Conclusion
 
 What was achieved, future developments, commercialization plans
