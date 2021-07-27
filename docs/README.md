@@ -1,6 +1,6 @@
 ---
-# layout: home
-# permalink: index.html
+layout: home
+permalink: index.html
 
 # Please update this with your repository name and project title
 repository-name: e17-3yp-SMART-SHOPPING-CART
