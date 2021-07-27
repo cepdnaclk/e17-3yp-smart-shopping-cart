@@ -1,5 +1,5 @@
 ---
-layout: home
+# layout: home
 # permalink: index.html
 
 # Please update this with your repository name and project title
