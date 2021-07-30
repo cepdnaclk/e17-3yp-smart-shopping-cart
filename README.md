@@ -30,4 +30,20 @@ title: Project Template
 Many people like shopping but the main problem is the time take for the billing. We like to solve this problem.
 In this case, we like to introduce a device that can do all billing work so that there is no need to wait for billing. they can buy things and pay themselves.
 
+## Problems
+-  Long waiting queues
+-  Safety and health during a pandemic
+-  Lot of labour for scanning and billing process
+-  Increased budget
+-  Forget to buy products
+-  Waste time on searching products
+-  Difficult to display offers
 
+## Soution 
+-  Customer can purchase the product by just scanning the barcodes printed on the products before adding it to cart.
+-  Mobile app keeps adding the items in list and the total amount is updated accordingly
+-  Customers can scan and remove any item
+-  LCD will show the improved bill at each instance
+-  Billing will be done automatically
+-  Customers can do the bill payment through their preferred payment method.
+-  Customers will be able to view their digital receipts via app.
