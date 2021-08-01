@@ -1,10 +1,10 @@
 ---
-layout: home
-permalink: index.html
+# layout: home
+# permalink: index.html
 
 # Please update this with your repository name and project title
-repository-name: eYY-3yp-project-template
-title: Project Template
+repository-name: e17-3yp-SMART-SHOPPING-CART
+title: SMART SHOPPING CART
 ---
 
 [comment]: # "This is the standard layout for the project, but you can clean this and use your own template"
@@ -40,7 +40,27 @@ title: Project Template
 
 ## Introduction
 
-Description of the real world problem and solution, impact
+Smart shopping cart can be described as a system that can simplify a shopping process in big stores or shopping centers by using 
+a computerized shopping cart. it's aimed at enhancing the customer shopping experience by minimizing shopping time.
+
+Main features of our our system :-
+
+- Smart shopping cart will make the shopping experience more efficient for both customers and super market employees.
+- Every product in the supermarket will have an barcode on it.
+- Each cart will have an bar code reader.
+- Our smart carts require customers to download the app to their personal smartphone.
+- There will be a Centralized server system.
+- LCD will show the improved bill at each instance the shopper increase or reduce commodity from the cart.
+- Mobile app keeps adding the items in list and the total amount is updated accordingly.
+- Automatic bill generating facility.
+- Customers can do the bill payment through mobile application.
+- Customers will be able to view their digital receipts via app.
+- No human staff is needed for Billing purpose.
+- Getting product information easy and and additional time not required.
+- Alarm beeping functunality to prevent theft (for use in the case of non-payment for items in the cart)
+- Customers can make their shopping lists before going to store using their mobile app and it will be reminding customers about missing items in their shopping list while they shop.
+- Does not need any special training.
+- It will increase the supermarket sales.
 
 
 ## Solution Architecture
@@ -59,10 +79,7 @@ Testing done on hardware and software, detailed + summarized results
 
 All items and costs
 
-| Item          | Quantity  | Unit Cost  | Total  |
-| ------------- |:---------:|:----------:|-------:|
-| Sample item   | 5         | 10 LKR     | 50 LKR |
-
+![budget](images/budget.png)
 ## Conclusion
 
 What was achieved, future developments, commercialization plans
