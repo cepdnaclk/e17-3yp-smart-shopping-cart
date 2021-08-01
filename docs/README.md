@@ -1,10 +1,10 @@
 ---
-layout: home
-permalink: index.html
+# layout: home
+# permalink: index.html
 
 # Please update this with your repository name and project title
-repository-name: eYY-3yp-project-template
-title: Project Template
+repository-name: e17-3yp-SMART-SHOPPING-CART
+title: SMART SHOPPING CART
 ---
 
 [comment]: # "This is the standard layout for the project, but you can clean this and use your own template"
