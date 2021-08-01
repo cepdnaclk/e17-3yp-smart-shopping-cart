@@ -637,6 +637,34 @@ section {
 /*--------------------------------------------------------------
 # Why Us
 --------------------------------------------------------------*/
+
+
+/*--------------Kavi*/
+.why-us .mylist ul {
+  list-style: none;
+  padding: 0;
+}
+
+.why-us .mylist ul li {
+  padding-left: 28px;
+  position: relative;
+}
+
+.why-us .mylist ul li + li {
+  margin-top: 10px;
+}
+
+.why-us .mylist ul i {
+  position: absolute;
+  left: 0;
+  top: 2px;
+  font-size: 20px;
+  color: #47b2e4;
+  line-height: 1;
+}
+/*------------------*/
+
+
 .why-us .content {
   padding: 60px 100px 0 100px;
 }
