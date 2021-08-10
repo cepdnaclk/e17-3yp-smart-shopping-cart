@@ -1,5 +1,5 @@
 import React from 'react'
-
+import {Link} from 'react-router-dom'
 export default function Navigation() {
     return (
         <div>
@@ -9,68 +9,68 @@ export default function Navigation() {
             {/* sidebar menu start*/}
             <ul className="sidebar-menu">
                 <li className="active">
-                <a className href="index.html">
+                <Link to='/'>
                     <i className="icon_house_alt" />
                     <span>Dashboard</span>
-                </a>
+                </Link>
                 </li>
                 <li className="sub-menu">
-                <a href="javascript:;" className>
+                <Link to="javascript:;">
                     <i className="icon_document_alt" />
                     <span>Forms</span>
                     <span className="menu-arrow arrow_carrot-right" />
-                </a>
+                </Link>
                 <ul className="sub">
-                    <li><a className href="form_component.html">Form Elements</a></li>
-                    <li><a className href="form_validation.html">Form Validation</a></li>
+                    <li><Link className to="form_component">Form Elements</Link></li>
+                    <li><Link className to="form_validation">Form Validation</Link></li>
                 </ul>
                 </li>
                 <li className="sub-menu">
-                <a href="javascript:;" className>
+                <Link className>
                     <i className="icon_desktop" />
                     <span>UI Fitures</span>
                     <span className="menu-arrow arrow_carrot-right" />
-                </a>
+                </Link>
                 <ul className="sub">
-                    <li><a className href="general.html">Elements</a></li>
-                    <li><a className href="buttons.html">Buttons</a></li>
-                    <li><a className href="grids.html">Grids</a></li>
+                    <li><Link className to="buttons">Buttons</Link></li>
+                    <li><Link className to="general">Elements</Link></li>
+                    <li><Link className to="grids">Grids</Link></li>
                 </ul>
                 </li>
                 <li>
-                <a className href="widgets.html">
+                <Link className to="widgets">
                     <i className="icon_genius" />
                     <span>Widgets</span>
-                </a>
+                </Link>
                 </li>
                 <li>
-                <a className href="chart-chartjs.html">
+                <Link className to="chart">
                     <i className="icon_piechart" />
                     <span>Charts</span>
-                </a>
+                </Link>
                 </li>
                 <li className="sub-menu">
-                <a href="javascript:;" className>
+                <Link className>
                     <i className="icon_table" />
                     <span>Tables</span>
                     <span className="menu-arrow arrow_carrot-right" />
-                </a>
+                </Link>
                 <ul className="sub">
-                    <li><a className href="basic_table.html">Basic Table</a></li>
+                    <li><Link className to="basic_table">Basic Table</Link></li>
                 </ul>
                 </li>
                 <li className="sub-menu">
-                <a href="javascript:;" className>
+                <Link className>
                     <i className="icon_documents_alt" />
                     <span>Pages</span>
                     <span className="menu-arrow arrow_carrot-right" />
-                </a>
+                </Link>
                 <ul className="sub">
-                    <li><a className href="profile.html">Profile</a></li>
-                    <li><a className href="login.html"><span>Login Page</span></a></li>
-                    <li><a className href="contact.html"><span>Contact Page</span></a></li>
-                    <li><a className href="blank.html">Blank Page</a></li>
-                    <li><a className href="404.html">404 Error</a></li>
+                    <li><Link to='/profile'>Profile</Link></li>
+                    <li><Link to='/login'><span>Login Page</span></Link></li>
+                    <li><Link to='/contact'><span>Contact Page</span></Link></li>
+                    <li><Link to='/blank'>Blank Page</Link></li>
+                    <li><Link to='/page404'>404 Error</Link></li>
                 </ul>
                 </li>
             </ul>

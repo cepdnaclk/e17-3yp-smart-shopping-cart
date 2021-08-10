@@ -3,7 +3,7 @@ import React from 'react'
 export default function login() {
     return (
         <section id="main-content">
-            <form className="login-form" action="index.html">
+            <form className="login-form" action="/">
                 <div className="login-wrap">
                     <p className="login-img"><i className="icon_lock_alt" /></p>
                     <div className="input-group">
