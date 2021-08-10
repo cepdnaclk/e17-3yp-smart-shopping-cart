@@ -15,7 +15,7 @@ export default function Navigation() {
                 </Link>
                 </li>
                 <li className="sub-menu">
-                <Link to="javascript:;">
+                <Link >
                     <i className="icon_document_alt" />
                     <span>Forms</span>
                     <span className="menu-arrow arrow_carrot-right" />
