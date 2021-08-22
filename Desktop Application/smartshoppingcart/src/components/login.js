@@ -16,7 +16,7 @@ export default function login() {
                     </div>
                     <label className="checkbox">
                     <input type="checkbox" defaultValue="remember-me" /> Remember me
-                    <span className="pull-right"> <a href="#"> Forgot Password?</a></span>
+                    <span className="pull-right"> <a href="/"> Forgot Password?</a></span>
                     </label>
                     <button className="btn btn-primary btn-lg btn-block" type="submit">Login</button>
                     <button className="btn btn-info btn-lg btn-block" type="submit">Signup</button>

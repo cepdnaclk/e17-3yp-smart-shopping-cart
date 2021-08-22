@@ -68,6 +68,7 @@ export default function Navigation() {
                 <ul className="sub">
                     <li><Link to='/profile'>Profile</Link></li>
                     <li><Link to='/login'><span>Login Page</span></Link></li>
+                    <li><Link to='/Signup'><span>Signup Page</span></Link></li>
                     <li><Link to='/contact'><span>Contact Page</span></Link></li>
                     <li><Link to='/blank'>Blank Page</Link></li>
                     <li><Link to='/page404'>404 Error</Link></li>
