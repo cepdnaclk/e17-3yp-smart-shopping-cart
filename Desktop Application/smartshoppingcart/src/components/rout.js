@@ -13,6 +13,7 @@ import Grids from './Grids';
 import Widgets from './Widgets';
 import Chart from './Chart';
 import Basic_table from './Basic_table';
+import Signup from './Signup';
 export default function Rout() {
     return (
         <Switch>
@@ -29,6 +30,8 @@ export default function Rout() {
             <Route path="/widgets" component={Widgets}></Route>
             <Route path="/chart" component={Chart}></Route>
             <Route path="/basic_table" component={Basic_table}></Route>
+            <Route path="/signup" component={Signup}></Route>
+            <Route path="/userRegistation" path="./Button"></Route>
         </Switch>
     )
 }
