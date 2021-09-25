@@ -12,30 +12,31 @@ from selenium.webdriver.common.keys import Keys
 import timeit
 import traceback
 
-
 pageUrl = "http://localhost:3000/signup"
-firstName="fName1"
-LastName="lName1"
-email="test@gmail.com"
-address="jaffna"
-phoneNo="0778895057"
-password="1234567890"
+firstName = "fName1"
+LastName = "lName1"
+email = "test@gmail.com"
+address = "jaffna"
+phoneNo = "0778895057"
+password = "1234567890"
 
-def signup():    # function for Signup
-    options = webdriver.ChromeOptions()  
+
+def signup():  # function for Signup
+
+    options = webdriver.ChromeOptions()
     options.add_experimental_option("detach", True)  # help to prevent close automatically
 
     driver = webdriver.Chrome(
-        options=options, executable_path='chromedriver.exe')   # give chrome driver path
-    driver.get(pageUrl)                           # open over desktop url
+        options=options, executable_path='chromedriver.exe')  # give chrome driver path
+    driver.get(pageUrl)  # open over desktop url
     driver.maximize_window()
 
-    fNameInput=driver.find_element_by_xpath("//*[@id='main-content']/form/div/div[1]/input")
+    fNameInput = driver.find_element_by_xpath("//*[@id='main-content']/form/div/div[1]/input")
     lNameInput = driver.find_element_by_xpath("//*[@id='main-content']/form/div/div[2]/input")
     emailInput = driver.find_element_by_xpath("//*[@id='main-content']/form/div/div[3]/input")
-    addressInput=driver.find_element_by_xpath("//*[@id='main-content']/form/div/div[4]/input")
-    phoneInput=driver.find_element_by_xpath("//*[@id='main-content']/form/div/div[5]/input")
-    passwordInput=driver.find_element_by_xpath("//*[@id='main-content']/form/div/div[6]/input")
+    addressInput = driver.find_element_by_xpath("//*[@id='main-content']/form/div/div[4]/input")
+    phoneInput = driver.find_element_by_xpath("//*[@id='main-content']/form/div/div[5]/input")
+    passwordInput = driver.find_element_by_xpath("//*[@id='main-content']/form/div/div[6]/input")
     # repasswordInput=driver.find_element_by_xpath("//*[@id='main-content']/form/div/div[7]/input")
     # agreeInput = driver.find_element_by_xpath("//*[@id='main-content']/form/div/label/input")
     submitButton = driver.find_element_by_xpath("//*[@id='main-content']/form/div/button")
@@ -58,6 +59,6 @@ def signup():    # function for Signup
 
     submitButton.click()
 
-if __name__=="__main__":
-        signup()
 
+if __name__ == "__main__":
+    signup()
