@@ -42,6 +42,5 @@ const signUpTemplate = new mongoose.Schema({
 
 })
 
- 
 
 module.exports = mongoose.model('mytable',signUpTemplate)       //databse name: mytable
