@@ -1,317 +1,253 @@
-import React, { useState } from "react";
-import { View, Text, StyleSheet, TextInput } from "react-native";
+import React,{Component} from 'react';
+import { Alert, Animated, Dimensions, StyleSheet, View, Text, Image, TouchableOpacity, Button, TextInput, Platform, TouchableWithoutFeedback, ScrollView, useState} from 'react-native';
+import authService from '../services/auth-service';
+//var validator = require('react-native-validator-form');
 
-import { LinearGradient } from "expo-linear-gradient";
-import {
-  Ionicons,
-  FontAwesome,
-  MaterialIcons,
-  Feather,
-} from "@expo/vector-icons";
-import { colors } from "../assets/colors";
-import { TouchableOpacity } from "react-native-gesture-handler";
-//func for SignIn screen
-const SignUpScreen = (props) => {
-  const [data, setData] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
-    check_textInputChange: false,
-    secureTextEntry: true,
-    secureConfirmPassword: true,
-    // isValidUser: true,
-    // isValidPassword: true,
-  });
+const primary = '#1b1b33'
 
-  //func for inputchange
-  const textInputChange = (val) => {
-    if (val.trim().length >= 4) {
-      setData({
-        ...data,
-        email: val,
-        check_textInputChange: true,
-        // isValidUser: true,
-      });
-    } else {
-      setData({
-        ...data,
-        firstName: val,
-        lastName: val,
-        email: val,
-        check_textInputChange: false,
-        // isValidUser: false,
-      });
+class SignUpScreen extends Component{
+
+    constructor(props){
+        super();
+        this.state= {
+            successful: false,
+            name:'',
+            email : '',
+            password : '',
+            loading : false,
+            message : '',
+            isValidEmail: true,
+            isValidPassword: true,
+            isValidName : true
+        }
+        
     }
-  };
+   
+    
 
-  //func for password change
-  const handlePasswordChange = (val) => {
-    if (val.trim().length >= 8) {
-      setData({
-        ...data,
-        password: val,
-        // isValidPassword: true,
-      });
-    } else {
-      setData({
-        ...data,
-        password: val,
-        // isValidPassword: false,
-      });
+    textInputNameChange =(val)=>{
+        if(val.trim().length>5){
+            this.setState({name :val})
+            //this.setState({isValidName : true})   //if 
+            
+        }
+        else{
+            this.setState({name :val})
+            //this.setState({isValidName : false})    //if
+            
+        }
+        
     }
-  };
 
-  //func for confirm password change
-  const handleConfirmPasswordChange = (val) => {
-    if (val.trim().length >= 8) {
-      setData({
-        ...data,
-        confirmPassword: val,
-        // isValidPassword: true,
-      });
-    } else {
-      setData({
-        ...data,
-        confirmPassword: val,
-        // isValidPassword: false,
-      });
+    textInputPasswordChange =(val)=>{
+        if(val.trim().length>5){
+            this.setState({password :val})
+            //this.setState({isValidPassword : true}) //if
+        }
+        else{
+            this.setState({password :val})
+            //this.setState({isValidPassword : false})    //if
+        }
     }
-  };
 
-  //func for hide password or not using eye icon
-  const updateSecureTextEntry = () => {
-    setData({
-      ...data,
-      secureTextEntry: !data.secureTextEntry,
-    });
-  };
+    textInputEmailChange =(val)=>{
+       // if(validator.isEmail(val)){
+            this.setState({email :val}),
+            this.setState({isValidEmail : true})
+      /*  }
+        else{
+            this.setState({email :val}),
+            this.setState({isValidEmail : false})
+        }*/
+    }
+    handleValidUser = (val) =>{
+        if(val.trim().length>5)
+         this.setState({isValidName : true})
+        else
+         this.setState({isValidName : false})
 
-  //func for confirm password
-  const updateSecureConfirmPassword = () => {
-    setData({
-      ...data,
-      secureConfirmPassword: !data.secureConfirmPassword,
-    });
-  };
+    }
 
-  return (
-    <View style={styles.screen}>
-      <View style={styles.header}>
-        <Text style={styles.textHeader}>Register Now!</Text>
-      </View>
-      <View style={styles.footer}>
-        {/* FirstName */}
+    handleValidPassword = (val) =>{
+        if(val.trim().length>5)
+         this.setState({isValidPassword : true})
+        else
+         this.setState({isValidPassword : false})
 
-        <Text style={[styles.textFooter, { marginTop: -20 }]}>First Name</Text>
-        <View style={styles.action}>
-          <TextInput
-            placeholder="First Name"
-            placeholderTextColor="#666666"
-            style={[styles.textInput, { marginLeft: -9 }]}
-            autoCapitalize="none"
-            onChangeText={(val) => textInputChange(val)}
-          />
-        </View>
-        {/* LastName */}
+    }
 
-        <Text style={[styles.textFooter, { marginTop: 10 }]}>Last Name</Text>
-        <View style={styles.action}>
-          <TextInput
-            placeholder="Last Name"
-            placeholderTextColor="#666666"
-            style={[styles.textInput, { marginLeft: -9 }]}
-            autoCapitalize="none"
-            onChangeText={(val) => textInputChange(val)}
-          />
-        </View>
+    render(){
+    
 
-        <Text style={[styles.textFooter, { marginTop: 10 }]}>E-mail</Text>
-        <View style={styles.action}>
-          <FontAwesome name="user-o" color="#05375a" size={20} />
-          <TextInput
-            placeholder="Your E-mail"
-            placeholderTextColor="#666666"
-            style={styles.textInput}
-            autoCapitalize="none"
-            onChangeText={(val) => textInputChange(val)}
-          />
+    return (
 
-          {/* for check circle icon */}
-          {data.check_textInputChange ? (
-            <Feather name="check-circle" color="blue" size={20} />
-          ) : null}
-        </View>
+      <View style={styles.container}>
 
-        {/* Password */}
+<View style={styles.header}>
+    <Text style={styles.text_header}>Welcome!</Text>
+</View>
+        <View style={styles.footer}>
+             <View style= {{justifyContent:'center', alignContent:'center', width:Dimensions.get('window').width}}>
+                    <Text style={[styles.text_footer , {marginTop:25, paddingHorizontal:20}]}>Name</Text>
+                        <View style={[styles.action_up,{ paddingHorizontal:20}]}>
+                        <TextInput placeholder='Your Name'
+                                    style={styles.textInput}
+                                    autoCapitalize='none'
+                                    onChangeText ={(val)=> this.textInputNameChange(val)} 
+                                    onEndEditing={(e)=>{this.handleValidUser(e.nativeEvent.text)}}>
 
-        <Text style={{ ...styles.textFooter, marginTop: 10 }}>Password</Text>
-        <View style={styles.action}>
-          <Feather name="lock" color="#05375a" size={20} />
-          <TextInput
-            placeholder="Your Password"
-            placeholderTextColor="#666666"
-            secureTextEntry={data.secureTextEntry ? true : false}
-            style={styles.textInput}
-            autoCapitalize="none"
-            onChangeText={(val) => handlePasswordChange(val)}
-          />
-          {/* for eye icon */}
-          <TouchableOpacity onPress={updateSecureTextEntry}>
-            {data.secureTextEntry ? (
-              <Feather name="eye-off" color="blue" size={20} />
-            ) : (
-              <Feather name="eye" color="blue" size={20} />
-            )}
-          </TouchableOpacity>
-        </View>
+                        </TextInput>
+                        </View>
+                        {this.state.isValidName ? null :
+                        <Text style={styles.errMsg}>Name must be 6 characters long.</Text>}
 
-        {/* for Confirm password */}
-        {/* Password */}
+                        
+                        <Text style={[styles.text_footer , {marginTop:35, paddingHorizontal:20}]}>Email</Text>
+                        <View style={[styles.action_up,{ paddingHorizontal:20}]}>
+                            <TextInput placeholder='Your Email'
+                                    style={styles.textInput}
+                                    autoCapitalize='none'
+                                    onChangeText ={(val)=> this.textInputEmailChange(val)}>
 
-        <Text style={{ ...styles.textFooter, marginTop: 10 }}>
-          Confirm Password
-        </Text>
-        <View style={styles.action}>
-          <Feather name="lock" color="#05375a" size={20} />
-          <TextInput
-            placeholder="Confirm Password"
-            placeholderTextColor="#666666"
-            secureTextEntry={data.secureConfirmPassword ? true : false}
-            style={styles.textInput}
-            autoCapitalize="none"
-            onChangeText={(val) => handleConfirmPasswordChange(val)}
-          />
-          {/* for eye icon */}
-          <TouchableOpacity onPress={updateSecureConfirmPassword}>
-            {data.secureConfirmPassword ? (
-              <Feather name="eye-off" color="blue" size={20} />
-            ) : (
-              <Feather name="eye" color="blue" size={20} />
-            )}
-          </TouchableOpacity>
-        </View>
-        {/* SignUp button */}
+                            </TextInput>
+                           
+                        </View>
+                        {this.state.isValidEmail ? null :
+                        <Text style={styles.errMsg}>Not a valid Email address</Text>}
 
-        <TouchableOpacity>
-          <LinearGradient
-            colors={[colors.primaryColor, "#0016d2"]}
-            style={styles.signIn}
-          >
-            <Text
-              style={[
-                styles.textSign,
-                {
-                  color: colors.secondaryColor,
-                },
-              ]}
-            >
-              Sign Up
-            </Text>
-          </LinearGradient>
-        </TouchableOpacity>
+                        <Text style={[styles.text_footer, {marginTop:35, paddingHorizontal:20}]}>Password</Text>
+                        <View style={[styles.action, {paddingHorizontal:20}]}>
+                            <TextInput placeholder='Your Password'
+                                secureTextEntry={true}
+                                style={styles.textInput}
+                                autoCapitalize='none'
+                                onChangeText = {(val)=> this.textInputPasswordChange(val)}
+                                onEndEditing={(e)=>this.handleValidPassword(e.nativeEvent.text)}>
+                            </TextInput>
+                    
+                        </View>
+                        {this.state.isValidPassword ? null :
+                        <Text style={styles.errMsg}>Password must be 6 characters long.</Text>}
+                     
+                        <View style={[{marginTop:30, paddingHorizontal:20}]}>
+                            <Button color={primary} title="Sign Up" onPress={this._signup}/>
+                          
+                        </View>
+                        </View>
+                        </View>
+                        </View>
+                    
+    );
+}//render
 
-        {/* SignIn button */}
 
-        <TouchableOpacity
-          style={[
-            styles.signIn,
-            {
-              borderColor: colors.primaryColor,
-              borderWidth: 2,
-              marginTop: 10,
-            },
-          ]}
-          onPress={() => props.navigation.navigate("SignInScreen")}
-        >
-          <Text
-            style={[
-              styles.textSign,
-              {
-                color: colors.primaryColor,
-              },
-            ]}
-          >
-            Sign In
-          </Text>
-        </TouchableOpacity>
-      </View>
-    </View>
-  );
-};
+_signup = async(props) =>{
+    if( this.state.email.length ==0 || this.state.password.length ==0 || this.state.name.length ==0)
+        Alert.alert('Wrong Input!', 'Fields cannot be empty',[{text:'Okay'}]); 
+
+    else{
+    await authService.register(this.state.name, this.state.email, this.state.password).then(res=>{
+    //console.log(res);
+    
+    if(res.data.user) {     //error
+        alert('User successfully created');
+    }
+    else{
+        alert(res.data);
+        
+        //alert(res.headers);
+      }
+    }).catch(error=>{console.log(error.message)});
+
+      
+    }//else
+}
+}//class
 
 export default SignUpScreen;
 
-//for style
-const styles = StyleSheet.create({
-  screen: {
-    flex: 1,
-    backgroundColor: colors.primaryColor,
-  },
-  header: {
-    flex: 1,
-    justifyContent: "center",
-    paddingHorizontal: 20,
-  },
-  footer: {
-    flex: 7,
-    backgroundColor: colors.secondaryColor,
-    borderTopLeftRadius: 30,
-    borderTopRightRadius: 30,
-    paddingHorizontal: 20,
-    paddingVertical: 30,
-  },
-  textHeader: {
-    color: colors.secondaryColor,
-    textAlignVertical: "center",
-    fontWeight: "bold",
-    fontSize: 30,
-  },
-  textFooter: {
-    color: "#05375a",
-    fontSize: 18,
-  },
+const {height} = Dimensions.get("screen");
+const height_logo = height*0.28;
 
-  action: {
-    flexDirection: "row",
-    marginTop: 10,
-    borderBottomWidth: 1,
-    borderBottomColor: "black",
-    paddingBottom: 5,
-  },
-  actionError: {
-    flexDirection: "row",
-    marginTop: 10,
-    borderBottomWidth: 1,
-    borderBottomColor: "#FF0000",
-    paddingBottom: 5,
-  },
-  textInput: {
-    flex: 1,
-    marginTop: Platform.OS === "ios" ? 0 : -2,
-    paddingLeft: 20,
-    color: "#05375a",
-    fontSize: 15,
-  },
-  errorMsg: {
-    color: "#FF0000",
-    fontSize: 14,
-  },
-  button: {
-    alignItems: "center",
-    marginTop: 50,
-  },
-  signIn: {
-    width: "100%",
-    height: 50,
-    justifyContent: "center",
-    alignItems: "center",
-    borderRadius: 10,
-    marginTop: 10,
-  },
-  textSign: {
-    fontSize: 18,
-    fontWeight: "bold",
-  },
-});
+const styles = StyleSheet.create({
+    container:{
+        backgroundColor:primary,//'#008080',//#1b1b33',//#009387',
+        flex :1
+    },
+    header:{
+        flex:1,
+        justifyContent:'flex-end',
+        paddingHorizontal:20,
+        paddingBottom: 50
+    },
+    footer:{
+        flex:3,
+        backgroundColor:"#fff",
+        
+       
+    },
+    text_header:{
+        color:'#fff',
+        fontWeight: 'bold',
+        fontSize: 30
+    },
+    text_footer:{
+        color:'#05375a',
+        fontSize: 18
+    },
+    action:{
+        flexDirection:'row',
+        marginTop: 10,
+        borderBottomWidth: 1,
+        borderBottomColor: '#f2f2f2',
+        paddingBottom: 5
+    },
+    TextInput:{
+        flex: 1,
+        paddingLeft: 10,
+        color: '#05375a'
+    },
+    button:{
+        alignItems:'center',
+        marginTop: 90,
+        width:'100%'
+    },
+    signin:{
+        width:'100%',
+        height:50,
+        justifyContent:"center",
+        alignItems:'center',
+        borderRadius:10,
+      
+    },
+    action_up:{
+        flexDirection:'row',
+        marginTop: 10,
+        borderBottomWidth: 1,
+        borderBottomColor: '#f2f2f2',
+        paddingBottom: 5
+    },
+    TextInput:{
+        flex: 1,
+        paddingLeft: 10,
+        color: '#05375a'
+    },
+    button:{
+        alignItems:'center',
+        marginTop: 90,
+        width:'100%'
+    },
+    signin:{
+        width:'100%',
+        height:50,
+        justifyContent:"center",
+        alignItems:'center',
+        borderRadius:10,
+      
+    },
+    errMsg:{
+        paddingHorizontal:20,
+        color :'#FF0000',
+        fontSize:14
+    }
+})
