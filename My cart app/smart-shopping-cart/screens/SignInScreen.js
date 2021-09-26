@@ -225,7 +225,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 10,
-    marginTop: 15,
+    marginTop: 35,
   },
   textSign: {
     fontSize: 18,

@@ -7,6 +7,8 @@ import {
   ImageBackground,
 } from "react-native";
 
+//for colors
+import { colors } from "../assets/colors";
 //package for icons
 import { Ionicons, FontAwesome, MaterialIcons } from "@expo/vector-icons";
 
@@ -89,7 +91,7 @@ const FinalAddedListScreen = (props) => {
 
   return (
     //To display Total amount
-    <View style={{ flex: 1, backgroundColor: "#f0f8ff" }}>
+    <View style={{ flex: 1, backgroundColor: colors.secondaryColor }}>
       <View style={styles.billStyle}>
         <Text style={styles.billText}>
           Total Amount to be paid is Rs. {FinalTotalAmount.toFixed(2)}
@@ -124,13 +126,13 @@ const styles = StyleSheet.create({
   billStyle: {
     height: 50,
     margin: 20,
-    backgroundColor: "#4169e1",
+    backgroundColor: colors.primaryColor,
     borderRadius: 10,
   },
   billText: {
     fontFamily: "open-sans-bold",
     fontSize: 18,
-    color: "#f0f8ff",
+    color: colors.secondaryColor,
     paddingVertical: 5,
     paddingHorizontal: 10,
     marginVertical: 5,
@@ -139,14 +141,14 @@ const styles = StyleSheet.create({
   listTitle: {
     fontFamily: "open-sans-bold",
     fontSize: 18,
-    color: "#4169e1",
+    color: colors.primaryColor,
     paddingHorizontal: 25,
   },
   gridItems: {
     height: 150,
     width: 180,
     margin: 10,
-    backgroundColor: "#4169e1",
+    backgroundColor: colors.primaryColor,
     borderRadius: 10,
     overflow: "hidden",
   },
@@ -158,7 +160,7 @@ const styles = StyleSheet.create({
   itemDetails: {
     fontFamily: "open-sans-bold",
     fontSize: 14,
-    color: "#f0f8ff",
+    color: colors.secondaryColor,
     paddingHorizontal: 5,
     textAlign: "left",
   },
@@ -166,7 +168,7 @@ const styles = StyleSheet.create({
   title: {
     fontFamily: "open-sans-bold",
     fontSize: 14,
-    color: "#f0f8ff",
+    color: colors.secondaryColor,
     backgroundColor: "rgba(0,0,0,0.5)",
     paddingVertical: 5,
     paddingHorizontal: 10,
