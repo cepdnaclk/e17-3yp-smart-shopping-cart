@@ -7,6 +7,9 @@ import {
   ImageBackground,
 } from "react-native";
 
+//for colors
+import { colors } from "../assets/colors";
+
 import { useSelector, useDispatch } from "react-redux";
 //importing actions
 import * as ToBuyListActions from "../store/actions/ListReducers";
@@ -47,7 +50,7 @@ const ToBuyListScreen = (props) => {
               style={{
                 marginLeft: 180,
               }}
-              color="#f0f8ff"
+              color={colors.secondaryColor}
               onPress={() => {
                 dispatch(ToBuyListActions.addToBuyList(itemData.item)); //calling func used in actions
               }} //hav to add items to final To-Buy List
@@ -64,7 +67,7 @@ const ToBuyListScreen = (props) => {
         data={listOfItemDetails}
         renderItem={RenderItem} //hav to add items to final To-Buy List
         numColumns={1}
-        style={{ backgroundColor: "#f0f8ff" }}
+        style={{ backgroundColor: colors.secondaryColor }}
       ></FlatList>
     </View>
   );
@@ -78,7 +81,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     height: 150,
     margin: 10,
-    backgroundColor: "#4169e1",
+    backgroundColor: colors.primaryColor,
     borderRadius: 10,
     overflow: "hidden",
     alignContent: "space-between",
@@ -93,7 +96,7 @@ const styles = StyleSheet.create({
   itemDetails: {
     fontFamily: "open-sans-bold",
     fontSize: 14,
-    color: "#f0f8ff",
+    color: colors.secondaryColor,
 
     paddingVertical: 5,
     paddingHorizontal: 10,
@@ -103,7 +106,7 @@ const styles = StyleSheet.create({
   title: {
     fontFamily: "open-sans-bold",
     fontSize: 14,
-    color: "#f0f8ff",
+    color: colors.secondaryColor,
     backgroundColor: "rgba(0,0,0,0.5)",
     paddingVertical: 5,
     paddingHorizontal: 10,

@@ -1,6 +1,9 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 
+//for colors
+import { colors } from "../assets/colors";
+
 //func for RecentActivity screen
 const RecentActivityScreen = (props) => {
   return (
@@ -18,6 +21,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#f0f8ff",
+    backgroundColor: colors.secondaryColor,
   },
 });
