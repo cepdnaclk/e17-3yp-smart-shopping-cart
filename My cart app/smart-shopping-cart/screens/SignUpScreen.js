@@ -13,6 +13,8 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 //func for SignIn screen
 const SignUpScreen = (props) => {
   const [data, setData] = useState({
+    firstName: "",
+    lastName: "",
     email: "",
     password: "",
     confirmPassword: "",
@@ -28,14 +30,16 @@ const SignUpScreen = (props) => {
     if (val.trim().length >= 4) {
       setData({
         ...data,
-        username: val,
+        email: val,
         check_textInputChange: true,
         // isValidUser: true,
       });
     } else {
       setData({
         ...data,
-        username: val,
+        firstName: val,
+        lastName: val,
+        email: val,
         check_textInputChange: false,
         // isValidUser: false,
       });
@@ -98,7 +102,32 @@ const SignUpScreen = (props) => {
         <Text style={styles.textHeader}>Register Now!</Text>
       </View>
       <View style={styles.footer}>
-        <Text style={styles.textFooter}>E-mail</Text>
+        {/* FirstName */}
+
+        <Text style={[styles.textFooter, { marginTop: -20 }]}>First Name</Text>
+        <View style={styles.action}>
+          <TextInput
+            placeholder="First Name"
+            placeholderTextColor="#666666"
+            style={[styles.textInput, { marginLeft: -9 }]}
+            autoCapitalize="none"
+            onChangeText={(val) => textInputChange(val)}
+          />
+        </View>
+        {/* LastName */}
+
+        <Text style={[styles.textFooter, { marginTop: 10 }]}>Last Name</Text>
+        <View style={styles.action}>
+          <TextInput
+            placeholder="Last Name"
+            placeholderTextColor="#666666"
+            style={[styles.textInput, { marginLeft: -9 }]}
+            autoCapitalize="none"
+            onChangeText={(val) => textInputChange(val)}
+          />
+        </View>
+
+        <Text style={[styles.textFooter, { marginTop: 10 }]}>E-mail</Text>
         <View style={styles.action}>
           <FontAwesome name="user-o" color="#05375a" size={20} />
           <TextInput
@@ -183,7 +212,7 @@ const SignUpScreen = (props) => {
           </LinearGradient>
         </TouchableOpacity>
 
-        {/* SignUp button */}
+        {/* SignIn button */}
 
         <TouchableOpacity
           style={[
@@ -191,7 +220,7 @@ const SignUpScreen = (props) => {
             {
               borderColor: colors.primaryColor,
               borderWidth: 2,
-              marginTop: 15,
+              marginTop: 10,
             },
           ]}
           onPress={() => props.navigation.navigate("SignInScreen")}
@@ -222,12 +251,11 @@ const styles = StyleSheet.create({
   },
   header: {
     flex: 1,
-    justifyContent: "flex-end",
+    justifyContent: "center",
     paddingHorizontal: 20,
-    paddingBottom: 50,
   },
   footer: {
-    flex: 5,
+    flex: 7,
     backgroundColor: colors.secondaryColor,
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
@@ -236,6 +264,7 @@ const styles = StyleSheet.create({
   },
   textHeader: {
     color: colors.secondaryColor,
+    textAlignVertical: "center",
     fontWeight: "bold",
     fontSize: 30,
   },
@@ -243,6 +272,7 @@ const styles = StyleSheet.create({
     color: "#05375a",
     fontSize: 18,
   },
+
   action: {
     flexDirection: "row",
     marginTop: 10,
@@ -259,7 +289,7 @@ const styles = StyleSheet.create({
   },
   textInput: {
     flex: 1,
-    marginTop: Platform.OS === "ios" ? 0 : 0,
+    marginTop: Platform.OS === "ios" ? 0 : -2,
     paddingLeft: 20,
     color: "#05375a",
     fontSize: 15,
@@ -278,7 +308,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 10,
-    marginTop: 35,
+    marginTop: 10,
   },
   textSign: {
     fontSize: 18,
