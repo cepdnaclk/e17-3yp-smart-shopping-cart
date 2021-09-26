@@ -149,8 +149,10 @@ _signup = async(props) =>{
     await authService.register(this.state.name, this.state.email, this.state.password).then(res=>{
     //console.log(res);
     
-    if(res.data.user) {     //error
-        alert('User successfully created');
+   // if(res.data.user) {     //error
+    if(res.data.email) {     //error
+
+        alert('Please confirm your email to login');
     }
     else{
         alert(res.data);
