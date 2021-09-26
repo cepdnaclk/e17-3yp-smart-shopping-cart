@@ -97,9 +97,13 @@ _login = async(props) =>{
             if(res.message)     //INVALID LOGIN
             Alert.alert('Invalid User!', 'Email or Password is incorrect.',[{text:'Okay'}]); 
 
+            else if(res.email)
+            Alert.alert('Please confirm your email to login.','',[{text:'Okay'}]); 
+            
+
             else{   //LOGGED IN
 
-            alert('Logged In');
+            //alert('Logged In');
             //props.navigation.navigate('mainScreen');
 
             this.props.navigation.navigate("HomeScreen");

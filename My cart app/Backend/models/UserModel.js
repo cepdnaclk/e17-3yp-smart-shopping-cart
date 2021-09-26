@@ -19,6 +19,10 @@ const userSchema = mongoose.Schema({
         required : true,
         min : 6,
         max : 1024
+    },
+    verified : {
+        type : Boolean,
+        defaultValue : false
     }
 
 })
