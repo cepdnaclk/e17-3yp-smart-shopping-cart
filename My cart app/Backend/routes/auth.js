@@ -1,7 +1,6 @@
 const express = require('express');
-const router = express.Router(); 
-  
-const nodemailer = require( 'nodemailer');  //TO SEND MAIL
+const router = express.Router();
+
 
 const userModel = require('../models/UserModel');   //COLLECTION NAME
 
@@ -12,13 +11,16 @@ const bcrypt = require('bcryptjs');     //ENCRYPT
 const jwt = require('jsonwebtoken');
 
 const { models } = require('mongoose');
+const { func } = require('@hapi/joi');
+
+const {sendMail} = require('./mailVerification');
 
 
 
+//REGISTER ENDPOINT
 
-
-//REGISTER
 router.post('/register',async(req, res)=>{
+
     //VALIDATE USER
     const result = regValidation(req.body);
     if(result) return res.send(result.details[0].message).status(400); //bad req
@@ -35,10 +37,10 @@ router.post('/register',async(req, res)=>{
     //CREATE NEW USER
     const newUser = new userModel({
         name : req.body.name,
-        email : req.body.email,
+        email : req.body.email, 
         password : hashedPassword,
         verified:false
-    });     
+    });      
     try{ console.log('function signin auth'); 
         const saveuser = await newUser.save();  //SAVE USER
 
@@ -46,7 +48,8 @@ router.post('/register',async(req, res)=>{
         const emailtoken = jwt.sign({id: saveuser._id}, process.env.EMAIL_SECRET, {expiresIn:'1d'});
 
         //SEND MAIL
-        sendMail(req.body.email, emailtoken);
+        sendMail( req.body.email, emailtoken).then((result)=>console.log('mail sent ....', result))
+        .catch((error) => console.log(error.message));
 
         //console .log('herrrrrrre mail');
         //res.send({user:saveuser._id});     //WITHOUT SENDING WHOLE (PASSWORD SENSITIVE) 'USER: .....'
@@ -61,9 +64,13 @@ router.post('/register',async(req, res)=>{
 });
 
  
-//LOGIN
+//LOGIN ENDPOINT
+
+
 router.post('/login', async(req, res)=>{
+
     console.log('hi login back');
+
     //VALIDATE USER 
     const result = logValidation(req.body);
     //console.log(result);
@@ -87,7 +94,11 @@ router.post('/login', async(req, res)=>{
     
 });
  
-//EMAIL VERFICATION
+
+
+//EMAIL VERFICATION ENDPOINT
+
+
 router.get('/verification/:token', async(req, res)=>{
     try { 
         //VERIFY TOKEN
@@ -104,36 +115,11 @@ router.get('/verification/:token', async(req, res)=>{
         //console.log(error);
     }
 })
-  
-const sendMail = async(email, emailToken)=>{
 
-    const transporter = nodemailer.createTransport({
-        service: 'Gmail',
-        auth:{
-            user : process.env.GMAIL_USER,
-            pass : process.env.GMAIL_PASS
-        },
-    });
 
-     const url=`http://192.168.109.32:3000/user/verification/${emailToken}`;
 
-    var mailOptions={
-    from:process.env.GMAIL_USER,
-    to:email,
-    subject: 'Confirmation Email',
-    html:`Hello, <br> Please Click on the link to verify yor email.<br>
-        <a href="${url}">Click here to verify</a><body>` 
-};
-transporter.sendMail(mailOptions, function(error, response){
-    if (error) {
-        console.log(error);
-    } else {
-        console.log('message sent to', email)
-    }
-}); 
+   
 
-}
  
 module.exports = router;
-
 
