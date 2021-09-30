@@ -89,7 +89,7 @@ router.post('/login', async(req, res)=>{
     if(!user.verified) return res.send({email: 'Please confirm your email to login'}).status(400);
  
     //CREATE AND ASSIGN A TOKEN
-    const token = jwt.sign({_id: user._id}, process.env.token_secret, {expiresIn:86400});  //expires in 24 hrs
+    const token = jwt.sign({_id: user._id}, process.env.token_secret, {expiresIn:86400});//60});  //expires in 24 hrs
     res.header('auth_token', token).send(token).status(200); 
     
 });
