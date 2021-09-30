@@ -1,17 +1,18 @@
-const express = require('express'); 
-const app = express(); 
- 
-const mongoose = require('mongoose'); 
- 
-const bodyParser = require('body-parser');      //to read json format data
+const express = require('express');
+const app = express();
 
-require('dotenv/config'); 
+const mongoose = require('mongoose');
 
+const bodyParser = require('body-parser');      //to read jason format data
 
+require('dotenv/config');
+
+  
 const authroute = require('./routes/auth');
 const userroute = require('./routes/user');
+const routeProfile = require('./routes/profile');
 
-
+ 
 /*
 mongoose.connect( process.env.db_connection,
     {useNewUrlParser:true},()=>  
@@ -36,17 +37,18 @@ db.once("open",function() {
 //MIDDLEWARE
 app.use(bodyParser.json());     //every time there is app call this function will execute
 //this should come before route middlewares 
-
+ 
 
 //ROUTE MIDDLEWARES
 app.use('/user/all', userroute);        //  USER
 app.use('/user', authroute);            //  AUTH
-
-
+app.use('/profile', routeProfile);       //profile
+  
 
 //  HOME
 app.get('/', (req,res)=>{
     res.send('hellloooo home');
+    console.log('home');
 });
 
 
@@ -54,5 +56,5 @@ app.get('/', (req,res)=>{
  
 //LISTEN
 const port = process.env.PORT || 3000; 
-app.listen(3000, ()=>console.log('listening '));
+app.listen(3000, ()=>console.log(`listening on ${port}`));
 

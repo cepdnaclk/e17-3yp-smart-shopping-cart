@@ -1,9 +1,10 @@
-import React from "react";
-import { Text } from "react-native";
+import React, {Component, useContext} from "react";
+import { ActivityIndicator, Text, StyleSheet, View, Alert } from "react-native";
+import { AsyncStorage } from "react-native";
 
 //stack navigation (npm install react-navigation-stack)
 import { createStackNavigator } from "react-navigation-stack";
-import { createAppContainer } from "react-navigation";
+import { createAppContainer, createSwitchNavigator } from "react-navigation";
 
 //package for bottom tab navigation
 import { createBottomTabNavigator } from "react-navigation-tabs";
@@ -11,8 +12,11 @@ import { createBottomTabNavigator } from "react-navigation-tabs";
 //package for drawer navigation
 import { createDrawerNavigator } from "react-navigation-drawer";
 
+
 //package for icons
 import { Ionicons, FontAwesome, MaterialIcons } from "@expo/vector-icons";
+
+import userService from '../services/user-service';
 
 //importing required modules for navigation
 import HomeScreen from "../screens/HomeScreen";
@@ -24,6 +28,10 @@ import FinalAddedListScreen from "../screens/FinalAddedList";
 import SplashScreen from "../screens/SplashScreen";
 import SignInScreen from "../screens/SignInScreen";
 import SignUpScreen from "../screens/SignUpScreen";
+import LogOutScreen from "../screens/LogOutScreen";
+ 
+import { NavigationContainer } from "@react-navigation/native";
+import { StatusBar } from "expo-status-bar";
 
 //func for stack navigation
 const CartNavigator = createStackNavigator(
@@ -138,6 +146,46 @@ const AddedListTabNavigator = createBottomTabNavigator(
   }
 );
 
+
+const LogOutNavigator = createBottomTabNavigator(
+  //arg1
+  {
+    LastScreen: {
+      screen: LogOutScreen, //adding stack navigation here
+      navigationOptions: {
+        tabBarLabel: "Recent Screen", //give name vissible
+        tabBarIcon: (tabInfo) => (
+          <MaterialIcons
+            name="add-to-home-screen"
+            size={24}
+            color={tabInfo.tintColor}
+          />
+        ),
+      },
+    },
+    AddedList: {
+      screen: AddedListStackNavigator,
+      navigationOptions: {
+        headerTitle: "Added To-Buy List",
+        tabBarLabel: "Added List", //give name vissible
+        tabBarIcon: (tabInfo) => (
+          <FontAwesome name="list" size={24} color={tabInfo.tintColor} />
+        ),
+      },
+    },
+  },
+  //arg2 fro default options
+  {
+    tabBarOptions: {
+      activeTintColor: "#4169e1",
+      style: {
+        backgroundColor: "#f0f8ff",
+        height: 50,
+      },
+    },
+  }
+);
+
 //func for splash and signup
 const SignUpNavigator = createStackNavigator({
   SplashScreen: {
@@ -153,7 +201,7 @@ const SignUpNavigator = createStackNavigator({
 
 //func for menu drawer navigation
 const MenuNavigator = createDrawerNavigator(
-  {
+  { 
     HomeScreen: {
       screen: AddedListTabNavigator,
       navigationOptions: {
@@ -166,9 +214,13 @@ const MenuNavigator = createDrawerNavigator(
         drawerLabel: "Added To-Buy List",
       },
     },
-    Registration: {
-      screen: SignUpNavigator,
+    LogOut :{
+      screen : LogOutNavigator    
     },
+    Registration :{
+      screen : SignUpNavigator
+    }
+    
   },
   {
     //arg2
@@ -180,5 +232,107 @@ const MenuNavigator = createDrawerNavigator(
   }
 );
 
-export default createAppContainer(MenuNavigator);
+//console.log(AsyncStorage.isLoggedIn);
+
+class AuthLoadingScreen extends Component{  //loading screen until check for asyncstorage
+  constructor(props){
+    super(props);
+    this._loadingData();
+  }
+  render(){
+    return(
+      <View style={StyleSheet.container}>
+        <ActivityIndicator/>
+        <StatusBar barStyle = 'default'/>
+      </View>
+    );
+  }
+
+  _loadingData = async()=>{
+    
+    const isLoggedIn = await AsyncStorage.getItem('user');    //get isloggedinv val
+    if (isLoggedIn){    //IF USER LOGGED IN THEN WE HAVE TO CHECK VERIFY JWT
+
+      console.log('Need to verify jwt');
+
+      await userService.getJwtVerification().then(res=>{
+        //console.log(res.data);
+        if(res.data.success){
+
+          console.log('1111');
+          this.props.navigation.navigate('App'); //navigate
+        }
+
+        else if(res.data.expired){
+
+          console.log('2222');
+          Alert.alert('Session expired try sign in!','',[{text:'Okay'}]);
+          this.props.navigation.navigate('Auth');
+        }
+
+        else{console.log('3333');
+          
+          this.props.navigation.navigate('Auth');
+          alert('Unauthorized access!');
+        }
+
+        }).catch(error=>{console.log(error.message);
+
+          console.log('4444');
+          this.props.navigation.navigate('Auth');
+          alert(error.message);
+
+        });
+    }
+
+    else{     //IF NOT LOGGED IN DIRECTLY TO AUTH
+      console.log('Start')
+      this.props.navigation.navigate('Auth');
+    }
+
+   
+  }
+
+}
+
+export default createAppContainer(createSwitchNavigator(    //creates container
+  {
+  AuthLoading :AuthLoadingScreen,
+  App : MenuNavigator,
+  Auth : SignUpNavigator
+
+},
+{
+  initialRouteName : 'AuthLoading'
+}));
+
+
+const styles = StyleSheet.create({
+  container:{
+    flex : 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#1e90ff'
+  },
+  
+});
+
+
+
+/*
+ 
+const login = () => {
+  const {isLoggedIn} = useLogin();
+  return (<CredentialContext>
+    {({storedCredentials})=>(
+      <NavigationContainer>
+        {storedCredentials ? <MenuNavigator/> : <SignUpNavigator/>}
+      </NavigationContainer>
+    )}
+  </CredentialContext>);
+};
+*/
 //coverts to react component to render in app.js
+//export default login;
+
+//const login = AsyncStorage.isLoggedIn ? MenuNavigator : SignUpNavigator;
