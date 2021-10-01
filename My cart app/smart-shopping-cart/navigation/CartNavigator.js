@@ -28,10 +28,14 @@ import FinalAddedListScreen from "../screens/FinalAddedList";
 import SplashScreen from "../screens/SplashScreen";
 import SignInScreen from "../screens/SignInScreen";
 import SignUpScreen from "../screens/SignUpScreen";
+
 import LogOutScreen from "../screens/LogOutScreen";
  
 import { NavigationContainer } from "@react-navigation/native";
 import { StatusBar } from "expo-status-bar";
+
+import PaymentScreen from "../screens/PaymentScreen";
+
 
 //func for stack navigation
 const CartNavigator = createStackNavigator(
@@ -61,6 +65,13 @@ const CartNavigator = createStackNavigator(
       screen: RecentActivityScreen,
       navigationOptions: {
         headerTitle: "Recent Activity",
+      },
+    },
+    // payment
+    Payment: {
+      screen: PaymentScreen,
+      navigationOptions: {
+        headerTitle: "Payment",
       },
     },
     //Super Market Screen
@@ -105,6 +116,7 @@ const AddedListStackNavigator = createStackNavigator(
     },
   }
 );
+
 
 //func for bottom tab navigation
 const AddedListTabNavigator = createBottomTabNavigator(

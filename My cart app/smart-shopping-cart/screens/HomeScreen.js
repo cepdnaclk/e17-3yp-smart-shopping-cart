@@ -33,6 +33,10 @@ const HomeScreen = (props) => {
         goTo={() => props.navigation.navigate({ routeName: "NearSuperMarket" })}
         title="Find Near Super Market"
       />
+      <MenuItem
+        goTo={() => props.navigation.navigate({ routeName: "Payment" })}
+        title="Payment"
+      />
     </View>
   );
 };

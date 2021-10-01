@@ -116,6 +116,35 @@ router.get('/verification/:token', async(req, res)=>{
     }
 })
 
+  
+const sendMail = async(email, emailToken)=>{
+
+    const transporter = nodemailer.createTransport({
+        service: 'Gmail',
+        auth:{
+            user : process.env.GMAIL_USER,
+            pass : process.env.GMAIL_PASS
+        },
+    });
+
+     const url=`http://192.168.8.126:3000/user/verification/${emailToken}`;
+
+    var mailOptions={
+    from:process.env.GMAIL_USER,
+    to:email,
+    subject: 'Confirmation Email',
+    html:`Hello, <br> Please Click on the link to verify yor email.<br>
+        <a href="${url}">Click here to verify</a><body>` 
+};
+transporter.sendMail(mailOptions, function(error, response){
+    if (error) {
+        console.log(error);
+    } else {
+        console.log('message sent to', email)
+    }
+}); 
+
+
 
 
    
