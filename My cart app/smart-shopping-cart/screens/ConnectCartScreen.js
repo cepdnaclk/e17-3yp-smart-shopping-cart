@@ -1,39 +1,4 @@
-// import React from "react";
-// import { View, Text, StyleSheet } from "react-native";
 
-// //func for ConnectCart screen
-// const ConnectCartScreen = (props) => {
-//   return (
-//     <View style={styles.screen}>
-//       <Text>ConnectCart Screen</Text>
-//     </View>
-//   );
-// };
-
-// export default ConnectCartScreen;
-
-// //for style
-// const styles = StyleSheet.create({
-//   screen: {
-//     flex: 1,
-//     justifyContent: "center",
-//     alignItems: "center",
-//     backgroundColor: "#f0f8ff",
-//   },
-// });
-// /* eslint-disable prettier/prettier */
-// // 'use strict';
-
-// import React, { Component, useState } from 'react';
-
-// import {
-//   AppRegistry,
-//   StyleSheet,
-//   Text,
-//   TouchableOpacity,
-//   Linking,
-//   Alert,
-// } from 'react-native';
 import React, { useState, useEffect } from 'react';
 import { Text, View, StyleSheet, Button } from 'react-native';
 import { BarCodeScanner } from 'expo-barcode-scanner';

@@ -3,7 +3,7 @@ import authHeader from "./auth-header";
 import { AsyncStorage } from "react-native";
 
 
-const API_URL = 'http://192.168.109.32:3000/';
+const API_URL = 'http://192.168.8.126:3000/';
 
 class UserService{
 
