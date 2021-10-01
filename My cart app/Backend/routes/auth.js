@@ -115,7 +115,7 @@ const sendMail = async(email, emailToken)=>{
         },
     });
 
-     const url=`http://192.168.109.32:3000/user/verification/${emailToken}`;
+     const url=`http://192.168.8.126:3000/user/verification/${emailToken}`;
 
     var mailOptions={
     from:process.env.GMAIL_USER,

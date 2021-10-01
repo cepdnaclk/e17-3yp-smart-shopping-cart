@@ -10,6 +10,7 @@ require('dotenv/config');
 
 const authroute = require('./routes/auth');
 const userroute = require('./routes/user');
+const payment = require('./routes/payment');
 
 
 /*
@@ -41,7 +42,7 @@ app.use(bodyParser.json());     //every time there is app call this function wil
 //ROUTE MIDDLEWARES
 app.use('/user/all', userroute);        //  USER
 app.use('/user', authroute);            //  AUTH
-
+app.use(payment);
 
 
 //  HOME
