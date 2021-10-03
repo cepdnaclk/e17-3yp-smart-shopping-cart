@@ -23,7 +23,6 @@ class UserService{
             return response;
             });
         
-       
     }
 
     getItems(){
