@@ -15,6 +15,7 @@ const routeProfile = require('./routes/profile');
 
 const payment = require('./routes/payment');
 
+const cartConnection = require('./routes/CartConnection');
 
  
 /*
@@ -52,7 +53,7 @@ app.use('/profile', routeProfile);       //profile
 
 app.use(payment);     // Payment api
 
-
+app.use(cartConnection);                 // cart connection
 
 //  HOME
 app.get('/', (req,res)=>{
