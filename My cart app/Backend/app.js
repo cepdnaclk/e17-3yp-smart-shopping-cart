@@ -10,7 +10,12 @@ require('dotenv/config');
   
 const authroute = require('./routes/auth');
 const userroute = require('./routes/user');
+
 const routeProfile = require('./routes/profile');
+
+const payment = require('./routes/payment');
+
+const cartConnection = require('./routes/CartConnection');
 
  
 /*
@@ -42,8 +47,13 @@ app.use(bodyParser.json());     //every time there is app call this function wil
 //ROUTE MIDDLEWARES
 app.use('/user/all', userroute);        //  USER
 app.use('/user', authroute);            //  AUTH
+
 app.use('/profile', routeProfile);       //profile
   
+
+app.use(payment);     // Payment api
+
+app.use(cartConnection);                 // cart connection
 
 //  HOME
 app.get('/', (req,res)=>{
