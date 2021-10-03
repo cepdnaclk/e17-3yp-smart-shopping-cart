@@ -63,7 +63,7 @@ HomeScreen.navigationOptions = (navData) => {
         size={34}
         color={colors.secondaryColor}
         style={{ margin: 20 }}
-        onPress={() => console.log("user")} //go to user page
+        onPress={() => {navData.navigation.navigate({ routeName: "Profile" })}} //go to user page
       />
     ),
   };
@@ -75,5 +75,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: colors.secondaryColor,
+  },
+  menus:{
+    backgroundColor:'#fff',
   },
 });

@@ -1,8 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const UserModel = require('../models/UserModel');
- 
- 
+
 const verifyToken = require('./verifyToken');
 
 router.get('/', verifyToken, async(req, res)=>{  
@@ -12,7 +11,6 @@ router.get('/', verifyToken, async(req, res)=>{
 });
 
 router.get('/verification', verifyToken, async(req, res)=>{  
-
     return res.send({success:true}); 
 });
 

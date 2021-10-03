@@ -28,9 +28,10 @@ import FinalAddedListScreen from "../screens/FinalAddedList";
 import SplashScreen from "../screens/SplashScreen";
 import SignInScreen from "../screens/SignInScreen";
 import SignUpScreen from "../screens/SignUpScreen";
+import ProfileScreen from "../screens/ProfileScreen";
 
 import LogOutScreen from "../screens/LogOutScreen";
- 
+
 import { NavigationContainer } from "@react-navigation/native";
 import { StatusBar } from "expo-status-bar";
 
@@ -45,7 +46,9 @@ const CartNavigator = createStackNavigator(
     Home: {
       screen: HomeScreen,
     },
-
+    Profile:{
+      screen: ProfileScreen,
+    },
     //ToBuy List Screen
     ToBuyList: {
       screen: ToBuyListScreen,
