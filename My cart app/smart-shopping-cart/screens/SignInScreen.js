@@ -68,7 +68,7 @@ render(){
                         </View >
 
                         <View style={[{marginTop:50 , paddingHorizontal:20 }]}>
-                            <Button style={{width:300}} color={primary} title="Sign Up" onPress={this._login}
+                            <Button style={{width:300}} color={primary} title="Sign Up"
                             onPress={() => this.props.navigation.navigate("SignUpScreen")}/>
                         </View >
                         
