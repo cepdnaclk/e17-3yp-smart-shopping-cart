@@ -93,11 +93,11 @@ router.post('/login', async (req, res) => {
     const token = jwt.sign({ _id: user._id }, process.env.token_secret, { expiresIn: 86400 });//60});  //expires in 24 hrs
     res.header('auth_token', token).send(token).status(200);
 
-});
+}); 
 
 
 
-//EMAIL VERFICATION ENDPOINT
+//EMAIL VERFICATION ENDPOINT  
 
 
 router.get('/verification/:token', async (req, res) => {
@@ -109,7 +109,7 @@ router.get('/verification/:token', async (req, res) => {
         await userModel.updateOne({ _id: user.id }, { $set: { verified: true } });
 
         res.end(`Email is been successfully verified`);
-        //console.log('pressed mail')
+        console.log('pressed mail')
 
     } catch (error) {
         res.send(error);
