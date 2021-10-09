@@ -1,5 +1,5 @@
 const express = require("express");
-const CartSet =require("../models/cartModel");
+const CartSet =require("../models/CartModel");
 const route=express.Router()
 
 
