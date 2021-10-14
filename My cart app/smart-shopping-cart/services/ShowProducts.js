@@ -1,5 +1,7 @@
 // module is used to get product details from databse
 
+//not used
+
 import React, { Component } from "react";
 import axios from "axios";
 

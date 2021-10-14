@@ -1,46 +1,27 @@
-// import React from "react";
-// import { View, Text, StyleSheet } from "react-native";
 
-// //func for ConnectCart screen
-// const ConnectCartScreen = (props) => {
-//   return (
-//     <View style={styles.screen}>
-//       <Text>ConnectCart Screen</Text>
-//     </View>
-//   );
-// };
-
-// export default ConnectCartScreen;
-
-// //for style
-// const styles = StyleSheet.create({
-//   screen: {
-//     flex: 1,
-//     justifyContent: "center",
-//     alignItems: "center",
-//     backgroundColor: "#f0f8ff",
-//   },
-// });
-// /* eslint-disable prettier/prettier */
-// // 'use strict';
-
-// import React, { Component, useState } from 'react';
-
-// import {
-//   AppRegistry,
-//   StyleSheet,
-//   Text,
-//   TouchableOpacity,
-//   Linking,
-//   Alert,
-// } from 'react-native';
 import React, { useState, useEffect } from 'react';
 import { Text, View, StyleSheet, Button } from 'react-native';
 import { BarCodeScanner } from 'expo-barcode-scanner';
+import axios from 'axios';
+const API_URL = 'http://192.168.8.126:3000/';
 
-export default function App() {
+export default function App(props) {
   const [hasPermission, setHasPermission] = useState(null);
   const [scanned, setScanned] = useState(false);
+  
+  // handel scanned value
+  function findCartName(id){
+    // alert(id);
+    axios.get(API_URL+'cart/'+id)
+    .then(Response=>{
+      alert("connected with cart "+Response.data);
+      props.navigation.navigate("AddedList");
+    })
+    .catch(error=>{
+      console.log(error);
+    })
+  }
+
 
   useEffect(() => {
     (async () => {
@@ -51,7 +32,8 @@ export default function App() {
 
   const handleBarCodeScanned = ({ type, data }) => {
     setScanned(true);
-    alert(`Bar code with type ${type} and data ${data} has been scanned!`);
+    // alert(`Bar code with type ${type} and data ${data} has been scanned!`);
+    findCartName(data);
   };
 
   if (hasPermission === null) {

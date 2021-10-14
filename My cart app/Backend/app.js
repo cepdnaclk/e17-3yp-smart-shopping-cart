@@ -3,14 +3,20 @@ const app = express();
 
 const mongoose = require("mongoose");
 
-const bodyParser = require("body-parser"); //to read json format data
+const bodyParser = require("body-parser"); //to read jason format data
 
 require("dotenv/config");
 
 const authroute = require("./routes/auth");
 const userroute = require("./routes/user");
 
-const productroute = require("./routes/products"); //for product list
+const routeProfile = require("./routes/profile");
+
+const productroute = require("./routes/products");
+
+const payment = require("./routes/payment");
+
+const cartConnection = require("./routes/CartConnection");
 
 /*
 mongoose.connect( process.env.db_connection,
@@ -38,17 +44,22 @@ app.use(bodyParser.json()); //every time there is app call this function will ex
 app.use("/user/all", userroute); //  USER
 app.use("/user", authroute); //  AUTH
 
+app.use("/profile", routeProfile); //profile
+
 app.use("/products", productroute); //products
+
+app.use(payment); // Payment api
+
+app.use(cartConnection); // cart connection
 
 //  HOME
 app.get("/", (req, res) => {
-  res.send("hello home");
+  res.send("hellloooo home");
+  console.log("home");
 });
 
 //LISTEN
-const port = process.env.PORT || 3000;
-app.listen(3000, () => console.log("listening "));
-
-//for product details
+const port = process.env.PORT || 80;
+app.listen(80, () => console.log(`listening on ${port}`));
 
 //const ProductModel = require("./models/ProductModel");

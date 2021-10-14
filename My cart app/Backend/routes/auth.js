@@ -3,8 +3,6 @@ const router = express.Router();
 
 const nodemailer = require("nodemailer"); //TO SEND MAIL
 
-const userModel = require("../models/UserModel"); //COLLECTION NAME
-
 const { regValidation, logValidation } = require("../validation"); //function should have {}
 
 const bcrypt = require("bcryptjs"); //ENCRYPT
@@ -12,8 +10,12 @@ const bcrypt = require("bcryptjs"); //ENCRYPT
 const jwt = require("jsonwebtoken");
 
 const { models } = require("mongoose");
+const { func } = require("@hapi/joi");
 
-//REGISTER
+const { sendMail } = require("./mailVerification");
+
+//REGISTER ENDPOINT
+
 router.post("/register", async (req, res) => {
   //VALIDATE USER
   const result = regValidation(req.body);
@@ -46,7 +48,9 @@ router.post("/register", async (req, res) => {
     );
 
     //SEND MAIL
-    sendMail(req.body.email, emailtoken);
+    sendMail(req.body.email, emailtoken)
+      .then((result) => console.log("mail sent ....", result))
+      .catch((error) => console.log(error.message));
 
     //console .log('herrrrrrre mail');
     //res.send({user:saveuser._id});     //WITHOUT SENDING WHOLE (PASSWORD SENSITIVE) 'USER: .....'
@@ -58,9 +62,11 @@ router.post("/register", async (req, res) => {
   }
 });
 
-//LOGIN
+//LOGIN ENDPOINT
+
 router.post("/login", async (req, res) => {
   console.log("hi login back");
+
   //VALIDATE USER
   const result = logValidation(req.body);
   //console.log(result);
@@ -90,11 +96,12 @@ router.post("/login", async (req, res) => {
   //CREATE AND ASSIGN A TOKEN
   const token = jwt.sign({ _id: user._id }, process.env.token_secret, {
     expiresIn: 86400,
-  }); //expires in 24 hrs
+  }); //60});  //expires in 24 hrs
   res.header("auth_token", token).send(token).status(200);
 });
 
-//EMAIL VERFICATION
+//EMAIL VERFICATION ENDPOINT
+
 router.get("/verification/:token", async (req, res) => {
   try {
     //VERIFY TOKEN
@@ -103,39 +110,12 @@ router.get("/verification/:token", async (req, res) => {
     //UPDATE USER
     await userModel.updateOne({ _id: user.id }, { $set: { verified: true } });
 
-    res.end(`Email has been successfully verified`);
-    //console.log('pressed mail')
+    res.end(`Email is been successfully verified`);
+    console.log("pressed mail");
   } catch (error) {
     res.send(error);
     //console.log(error);
   }
 });
-
-const sendMail = async (email, emailToken) => {
-  const transporter = nodemailer.createTransport({
-    service: "Gmail",
-    auth: {
-      user: process.env.GMAIL_USER,
-      pass: process.env.GMAIL_PASS,
-    },
-  });
-
-  const url = `http://192.168.8.101:3000/user/verification/${emailToken}`;
-
-  var mailOptions = {
-    from: process.env.GMAIL_USER,
-    to: email,
-    subject: "Confirmation Email",
-    html: `Hello, <br> Please Click on the link to verify your email.<br>
-        <a href="${url}">Click here to verify</a><body>`,
-  };
-  transporter.sendMail(mailOptions, function (error, response) {
-    if (error) {
-      console.log(error);
-    } else {
-      console.log("message sent to", email);
-    }
-  });
-};
 
 module.exports = router;
