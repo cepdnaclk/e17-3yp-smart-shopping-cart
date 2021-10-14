@@ -1,5 +1,4 @@
 import { AsyncStorage } from 'react-native';
-
 export default function authHeader(){
     const user = JSON.parse(localStorage.getItem('user'));
 
