@@ -9,14 +9,16 @@ module.exports = async function isAuth (req, res, next){
 
     //IS TOKEN EXIST
     const token = req.header('auth_token'); 
-    console.log(token);  
-    if(!token) return res.status(401).json({success: false, message:'Access denied!'});
+    
+    if(!token) 
+        return res.status(400).json({success: false, message:'Access denied!'});
+
    
     
     try {
         //VERIFIED?
         const verified = jwt.verify(token, process.env.token_secret);  //THIS RETURNS THE ID OF THE USER
-        console.log(token);
+        //console.log(token);
         //req.user = verified;
         //next();
 
@@ -24,25 +26,26 @@ module.exports = async function isAuth (req, res, next){
         const user = await UserModel.findById(verified._id);
 
         //USER DOES NOT EXIST
-        if(!user){
-            return res.status(401).send({success: false, message:'Unauthorized access!'});
-        }
+        if(!user)
+            return res.status(400).send({success: false, message:'Unauthorized access!'});
+        
         req.user = user;
         next();
 
 
-    } catch (error) {
-
+    } catch (error) { 
+//console.log(error);
         //res.status(400).send('Invalid token');
         if(error === 'JsonWebTokenError')
             res.status(400).send({success: false, message:'Unauthorized access!'});
- 
-        else if (isJwtExpired(token)) //EXPIRED TOKEN
-            res.send({expired: true, message:'Session expired try sign in!'}).status(400);
 
+        
  
+         else if (isJwtExpired(token)) //EXPIRED TOKEN
+             res.status(401).send({expired: true, message:'Renew access token!'});
+
+   
         else
             res.status(400).send({success: false, message:'Invalid token!'});
-        
     }
 };

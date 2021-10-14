@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {View, Button, StyleSheet} from 'react-native';
 import { AsyncStorage } from 'react-native';
-
+import userService from '../services/user-service';
 
 
 class LogOutScreen extends Component{
@@ -26,11 +26,19 @@ class LogOutScreen extends Component{
         );
     }
 
-    logout= (props) => {
-        console.log('here');
+    logout= async (props) => {  
         AsyncStorage.removeItem('user');
-        //AsyncStorage.removeItem('isLoggedIn');
+        await userService.logout()
+        .then((res)=>{
+          
+            if(res.data.success){
+                
+            AsyncStorage.removeItem('refresh');
         this.props.navigation.navigate('SplashScreen');
+
+            }
+
+        } ).catch((error)=>console.log(error));
     }
 
 }//class end

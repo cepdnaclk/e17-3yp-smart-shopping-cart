@@ -44,12 +44,12 @@ export default function Profile() {
 
 
     const handleOnSubmit = (oldPassword, newPassword) =>{
-        //console.log(oldPassword, newPassword, 'nooooo');
+        
         userService.changePassword(oldPassword, newPassword)
         .then(res =>{
-    console.log(res);
-            if(res.headers.auth_token)
-                alert('Password is changes successfully');
+            
+            if(res.data.success == true)
+            Alert.alert('Password is changed successfully','',[{text:'Okay'}]);
 
             else 
             Alert.alert(res.data.message, 'Try again!.',[{text:'Okay'}]);

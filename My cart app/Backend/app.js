@@ -60,11 +60,11 @@ app.get('/', (req,res)=>{
     res.send('hellloooo home');
     console.log('home');
 });
-
+ 
 
 
  
 //LISTEN
-const port = process.env.PORT || 80; 
-app.listen(80, ()=>console.log(`listening on ${port}`));
+const port = process.env.PORT || 3000; 
+app.listen(port, ()=>console.log(`listening on ${port}`));
 
