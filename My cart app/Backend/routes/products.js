@@ -2,11 +2,11 @@ const express = require("express");
 
 const route = express.Router();
 
-const userCol = require("../models/UserModel");
+const showProducts = require("../models/ProductModel");
 route.get("/", async (req, res) => {
   try {
-    const userlist = await userCol.find();
-    res.send(userlist);
+    const productList = await showProducts.find();
+    res.send(productList);
   } catch (error) {
     res.send({ message: error });
   }
