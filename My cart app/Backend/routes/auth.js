@@ -15,7 +15,9 @@ const { func } = require('@hapi/joi');
 
 const { sendMail } = require('./mailVerification');
 
+const {isJwtExpired} = require('jwt-check-expiration');
 
+let refreshTokens = [];
 
 //REGISTER ENDPOINT
 
@@ -90,10 +92,58 @@ router.post('/login', async (req, res) => {
     if (!user.verified) return res.send({ email: 'Please confirm your email to login' }).status(400);
 
     //CREATE AND ASSIGN A TOKEN
-    const token = jwt.sign({ _id: user._id }, process.env.token_secret, { expiresIn: 86400 });//60});  //expires in 24 hrs
-    res.header('auth_token', token).send(token).status(200);
+    const access_token = jwt.sign({ _id: user._id }, process.env.token_secret, { expiresIn: '30s' });//60});  //expires in 24 hrs
+    const refresh_token = jwt.sign({ _id: user._id }, process.env.refresh_token_secret);//60});  //expires in 24 hrs
+    refreshTokens.push(refresh_token);
 
-}); 
+    res.header({'auth_token': access_token, 'refresh_token' : refresh_token}).send({access_token, refresh_token}).status(200);
+
+  
+});  
+
+
+ 
+// CREATE NEW ACCESS TOKEN
+router.get('/renewAccessToken' , async (req, res) =>{
+   
+
+    const token = req.header('refresh_token');  
+    if(!token || !refreshTokens.includes(token)) {
+        
+        return res.status(401).json({success: false, message:'Access denied!'});
+    }
+    try {
+        //VERIFIED?
+        const verified = jwt.verify(token, process.env.refresh_token_secret);  //THIS RETURNS THE ID OF THE USER
+
+        //FIND USER
+        const user = await userModel.findById(verified._id);
+
+        //USER DOES NOT EXIST
+        if(!user){
+            console,log('not user');
+            return res.status(400).send({success: false, message:'Unauthorized access!'});
+        }
+        const access_token = jwt.sign({ _id: user._id }, process.env.token_secret, { expiresIn: '20s' });//60});  //expires in 24 hrs
+    
+        return res.header({'auth_token': access_token}).send({access_token, 'token_created':true}).status(200);
+        
+
+
+    } catch (error) {
+
+       
+        if(error === 'JsonWebTokenError')
+            res.status(400).send({success: false, message:'Unauthorized access!'});
+ 
+        else if (isJwtExpired(token)) //EXPIRED TOKEN
+            res.send({expired: true, message:'Session expired try sign in!'}).status(220);
+
+        else
+            res.status(400).send({success: false, message:'Invalid token!'});
+        
+    }
+})
 
 
 
@@ -116,6 +166,82 @@ router.get('/verification/:token', async (req, res) => {
         //console.log(error);
     }
 })
+
+
+//TOKEN VERIFICATION FOR BOTH REFRESH AND ACCESS
+router.get('/verification',  async(req, res)=>{  
+    
+
+    //IS TOKEN EXIST
+    const token = req.header('auth_token'); 
+    const refresh_token = req.header('refresh_token'); 
+
+    console.log(token);  
+    if(!token || !refresh_token || !refreshTokens.includes(refresh_token)) 
+        return res.status(400).json({success: false, message:'Access denied!'});
+
+   
+    
+    try {
+        //VERIFIED?
+        const verified = jwt.verify(token, process.env.token_secret);  //THIS RETURNS THE ID OF THE USER
+        const verified1 = jwt.verify(refresh_token, process.env.refresh_token_secret);  //THIS RETURNS THE ID OF THE USER
+
+        //FIND USER
+        const user = await userModel.findById(verified._id);
+        const user1 = await userModel.findById(verified1._id);
+
+        //USER DOES NOT EXIST
+        if(!user || !user1){console.log('2222222');
+            return res.status(400).send({success: false, message:'Unauthorized access!'});
+        }
+    
+        return res.send({success:true}).status(200); 
+        
+
+
+    } catch (error) { 
+
+        console.log(error);
+        if(error === 'JsonWebTokenError')
+      
+            res.status(400).send({success: false, message:'Unauthorized access!'});
+
+ 
+         else if (isJwtExpired(refresh_token)) //EXPIRED REFRESH TOKEN
+             res.status(401).send({refreshtoken_expired: true, message:'Renew access token!'});
+
+    else if (isJwtExpired(token)) //EXPIRED REFRESH TOKEN
+         res.status(202).send({accesstoken_expired: true, message:'Renew access token!'});
+
+        else 
+            res.status(400).send({success: false, message:'Invalid token!'});
+        
+    }
+});
+
+router.get('/logout',  async(req, res)=>{  
+    refresh_token = req.header('refresh_token');
+    
+    if(!refresh_token)
+    return res.status(400).send({success: false, message:'Unauthorized access!'});
+    
+    else if(!(refreshTokens.includes(refresh_token)))
+    return res.status(400).send({success: false, message:'Unauthorized access!'});
+    
+    else {
+        
+        const index = refreshTokens.indexOf(refresh_token);
+        refreshTokens.splice(index,1);
+        console.log(refreshTokens.includes(refresh_token));
+        return res.status(200).send({success: true});
+    }
+
+
+
+});
+
+
 
 
 

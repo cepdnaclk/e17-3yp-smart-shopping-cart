@@ -270,7 +270,7 @@ class AuthLoadingScreen extends Component{  //loading screen until check for asy
 
       console.log('Need to verify jwt');
 
-      await userService.getJwtVerification().then(res=>{
+      await userService.getJwtVerification().then(async res=>{
         //console.log(res.data);
         if(res.data.success){
 
@@ -278,11 +278,28 @@ class AuthLoadingScreen extends Component{  //loading screen until check for asy
           this.props.navigation.navigate('App'); //navigate
         }
 
-        else if(res.data.expired){
+        else if(res.data.refreshtoken_expired){
 
           console.log('2222');
           Alert.alert('Session expired try sign in!','',[{text:'Okay'}]);
           this.props.navigation.navigate('Auth');
+        }
+
+        else if(res.data.accesstoken_expired){
+         const response =  await userService.renewAccessToken().then(res=>{
+         
+            if(res.headers.auth_token){
+              this.props.navigation.navigate('App'); //navigate
+
+            }
+
+
+          }).catch(error=>{
+            console.log(error);
+          this.props.navigation.navigate('Auth'); //navigate
+
+          });
+          
         }
 
         else{console.log('3333');
@@ -291,11 +308,11 @@ class AuthLoadingScreen extends Component{  //loading screen until check for asy
           alert('Unauthorized access!');
         }
 
-        }).catch(error=>{console.log(error.message);
+        }).catch(error=>{console.log(error.message, 'cart navigator');
 
           console.log('4444');
           this.props.navigation.navigate('Auth');
-          alert(error.message);
+          //alert(error.message);
 
         });
     }
