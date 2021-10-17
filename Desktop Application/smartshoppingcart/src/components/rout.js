@@ -14,6 +14,7 @@ import Widgets from './Widgets';
 import Chart from './Chart';
 import Basic_table from './Basic_table';
 import Signup from './Signup';
+import ShowCartDetails from './ShowCarts details';
 export default function Rout() {
     return (
         <Switch>
@@ -32,6 +33,7 @@ export default function Rout() {
             <Route path="/basic_table" component={Basic_table}></Route>
             <Route path="/signup" component={Signup}></Route>
             <Route path="/userRegistation" path="./Button"></Route>
+            <Route path="/showcarts" component={ShowCartDetails}></Route>
         </Switch>
     )
 }
