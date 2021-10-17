@@ -92,7 +92,7 @@ _login = async(props) =>{
         await Authservice.login(this.state.email, this.state.password)
         .then(res =>{
 
-            console.log(res);
+            //console.log(res);
 
             if(res.message)     //INVALID LOGIN
             Alert.alert('Invalid User!', 'Email or Password is incorrect.',[{text:'Okay'}]); 

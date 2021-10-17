@@ -1,11 +1,12 @@
-import React, {useContext} from 'react';
-import axios from 'axios';
+// import React, {useContext} from 'react';
+// import axios from 'axios';
 import { AsyncStorage } from 'react-native';
 
 
 
-const API_URL = 'http://192.168.1.104:3000/';
+// const API_URL = 'http://192.168.1.104:3000/';
 
+import api from './api';
 
 class AuthService{
 
@@ -14,27 +15,30 @@ class AuthService{
         //const [storedCredentials, setStoredCredentials] = useContext(CredentialContext);
         console.log('function clled');
     
-        return axios.post(API_URL+'user/login', {email, password})
+        return api.post('user/login', {email, password})
         .then(response => {
-            //console.log(response.headers.auth_token);
+           
             if(response.headers.auth_token){
-                AsyncStorage.setItem('user', response.data);
+                AsyncStorage.setItem('user', response.data.access_token);
+                AsyncStorage.setItem('refresh_token', response.data.refresh_token);
+
+
                 //AsyncStorage.setItem('isLoggedIn', '1');
 
-                //this.persistLogin(response.data);
+                //console.log(response.data.access_token);
                 console.log('auth token created');
             } 
             return response.data;
-        });
+        });  
    
     }
 
     register(name, email, password){
         
             console.log('function clled signup');
-        return axios.post(API_URL + 'user/register', {name, email, password})
+        return api.post( 'user/register', {name, email, password})
         .then(response => {
-            //console.log(response.headers.auth_token);
+            
             return response;
         });
 
