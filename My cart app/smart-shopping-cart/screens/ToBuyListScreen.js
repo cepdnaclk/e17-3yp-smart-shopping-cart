@@ -23,7 +23,7 @@ import { useDispatch } from "react-redux";
 const ToBuyListScreen = (props) => {
   const [products, getProducts] = useState([]);
 
-  const API_URL = "http://192.168.8.101:3000/products";
+  const API_URL = "http://192.168.8.101:80/products";
 
   useEffect(() => {
     getAllproducts();
@@ -68,9 +68,7 @@ const ToBuyListScreen = (props) => {
             <Ionicons
               name="add-circle-sharp"
               size={28}
-              style={{
-                marginLeft: 180,
-              }}
+              style={{ marginLeft: 180 }}
               color={colors.secondaryColor}
               onPress={() => {
                 dispatch(ToBuyListActions.addToBuyList(itemData.item)); //calling func used in actions

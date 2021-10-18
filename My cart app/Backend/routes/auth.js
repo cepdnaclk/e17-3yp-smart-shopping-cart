@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 const nodemailer = require("nodemailer"); //TO SEND MAIL
+const UserModel = require("../models/UserModel");
 
 const { regValidation, logValidation } = require("../validation"); //function should have {}
 
@@ -22,7 +23,7 @@ router.post("/register", async (req, res) => {
   if (result) return res.send(result.details[0].message).status(400); //bad req
 
   //CHECK USER ALREADY IN THE DATABASE
-  const emailExist = await userModel.findOne({ email: req.body.email });
+  const emailExist = await UserModel.findOne({ email: req.body.email });
   if (emailExist) return res.send("Email already exists").status(400);
 
   //HASH PASSWORDS -> GENERATE SALT
@@ -30,7 +31,7 @@ router.post("/register", async (req, res) => {
   const hashedPassword = await bcrypt.hash(req.body.password, salt);
 
   //CREATE NEW USER
-  const newUser = new userModel({
+  const newUser = new UserModel({
     name: req.body.name,
     email: req.body.email,
     password: hashedPassword,
@@ -77,7 +78,7 @@ router.post("/login", async (req, res) => {
   } //bad req
 
   //CHECK USER ALREADY IN THE DATABASE
-  const user = await userModel.findOne({ email: req.body.email });
+  const user = await UserModel.findOne({ email: req.body.email });
   if (!user) {
     return res.send({ message: "Email is not found" }).status(400);
     console.log("wrong email");

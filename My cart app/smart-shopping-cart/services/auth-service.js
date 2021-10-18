@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import axios from "axios";
 import { AsyncStorage } from "react-native";
 
-const API_URL = "http://192.168.1.104:3000/";
+const API_URL = "http://192.168.8.101:80/";
 
 class AuthService {
   login(email, password) {

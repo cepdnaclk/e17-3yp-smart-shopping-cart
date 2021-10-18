@@ -97,7 +97,7 @@ class SignInScreen extends Component {
             <View style={[{ marginTop: 50, paddingHorizontal: 20 }]}>
               <Button
                 style={{ width: 300 }}
-                color={primary}
+                color={colors.primaryColor}
                 title="Sign In"
                 onPress={this._login}
               />
@@ -106,7 +106,7 @@ class SignInScreen extends Component {
             <View style={[{ marginTop: 50, paddingHorizontal: 20 }]}>
               <Button
                 style={{ width: 300 }}
-                color={primary}
+                color={colors.primaryColor}
                 title="Sign Up"
                 onPress={() => this.props.navigation.navigate("SignUpScreen")}
               />
