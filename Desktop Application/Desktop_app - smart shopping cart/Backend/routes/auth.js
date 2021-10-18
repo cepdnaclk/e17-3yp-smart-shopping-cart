@@ -19,6 +19,7 @@ const {isJwtExpired} = require('jwt-check-expiration');
 
 let refreshTokens = [];
 
+
 //REGISTER ENDPOINT
 
 router.post('/register', async (req, res) => {
@@ -101,13 +102,15 @@ router.post('/login', async (req, res) => {
 
     if (!user.adminVerified) return res.send({ email: 'Admin not accepted your request yet' }).status(400);
 
-
+ 
     //CREATE AND ASSIGN A TOKEN
-    const access_token = jwt.sign({ _id: user._id }, process.env.token_secret, { expiresIn: '30s' });//60});  //expires in 24 hrs
+    const access_token = jwt.sign({ _id: user._id }, process.env.token_secret, { expiresIn: '1d' });//60});  //expires in 24 hrs
     const refresh_token = jwt.sign({ _id: user._id }, process.env.refresh_token_secret);//60});  //expires in 24 hrs
     refreshTokens.push(refresh_token);
 
-    res.header({'auth_token': access_token, 'refresh_token' : refresh_token}).send({access_token, refresh_token}).status(200);
+    const profile = {name:user.name, address: user.address, nic : user.nic , phoneno:user.phoneno, email:user.email, roles:user.responsibilities }
+
+    res.header({'auth_token': access_token, 'refresh_token' : refresh_token}).send({access_token, refresh_token,profile }).status(200);
 
   
 });  

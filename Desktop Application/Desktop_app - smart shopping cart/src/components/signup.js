@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import authServices from '../services/auth-services';
-
+import Header from './Header';
+import Navigation from './Navigation';
 
 export default function Signup() {
 
@@ -93,6 +94,9 @@ export default function Signup() {
     }
 
     return (
+        <>
+        <Header/>
+        <Navigation/>
         <section id="main-content">
             <form className="login-form" action="/" onChange={handleChange} onSubmit={handleSubmit}>
                 
@@ -158,5 +162,6 @@ export default function Signup() {
                 </div>
             </form>
         </section>
+        </>
     )
 }
