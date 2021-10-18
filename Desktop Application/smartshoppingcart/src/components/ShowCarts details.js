@@ -63,7 +63,7 @@ export default function Basic_table() {
             <section className="wrapper">
                 <div className="row">
                     <div className="col-lg-12">
-                        <h3 className="page-header"><i className="fa fa-table" /> Table</h3>
+                        <h3 className="page-header"><i className="fa fa-table" /> Carts</h3>
                         <ol className="breadcrumb">
                             <li><i className="fa fa-home" /><Link to="/">Home</Link></li>
                             <li><i className="fa fa-table" />Carts</li>
@@ -78,10 +78,10 @@ export default function Basic_table() {
                             <header className="panel-heading">
                                 Cart Details
                             </header>
-                            <button type="button" onClick={()=>document.getElementById('addgroup').style.display='block'}>Add New cart</button>
+                            <button style={{ padding: '10px', margin: '10px', backgroundColor:'#007aff',color:'white'}} type="button" onClick={()=>document.getElementById('addgroup').style.display='block'}>Add New cart</button>
                             <div id="addgroup" style={{display:'none'}}>
-                                <input placeholder="Enter the cart Name" required id="addcartinput"/>
-                                <input type="button" value="submit" onClick={() => addnewcart()}/>
+                                <input style={{ padding: '10px', margin: '10px'}} placeholder="Enter the cart Name" required id="addcartinput"/>
+                                <input style={{ padding: '10px', margin: '10px', backgroundColor: '#007aff', color: 'white' }} type="button" value="submit" onClick={() => addnewcart()}/>
                             </div>
                             <table className="table table-striped table-advance table-hover">
                                 <tbody>
