@@ -74,6 +74,13 @@ export default function Navigation() {
                     <li><Link to='/page404'>404 Error</Link></li>
                 </ul>
                 </li>
+                <li>
+                            <Link to="./showcarts">
+                                <i class="icon_cart_alt"></i>
+
+                                <span>Carts</span>
+                            </Link>
+                </li>
             </ul>
             {/* sidebar menu end*/}
             </div>
