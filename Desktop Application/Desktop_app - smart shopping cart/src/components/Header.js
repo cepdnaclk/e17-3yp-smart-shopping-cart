@@ -1,13 +1,66 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
+import authServices from '../services/auth-services';
+import {useContext, useEffect, useState} from 'react';
+import {userContext} from '../App';
+import Cookies from 'js-cookie';
+
+
+
+
 export default function Header() {
+    const {state, dispatch} = useContext(userContext);
+
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [name, setName] = useState('');
+   
+
+    useEffect(() => {
+        const loginStatus = localStorage.getItem('isLoggedIn');
+        setName(Cookies.get( 'name'  ));
+       
+        if(loginStatus ){ 
+            setIsLoggedIn(true);
+           
+        } 
+    }); 
+
+    const handleLogout = () => {
+        authServices.logout();
+                console.log('logout');
+                localStorage.removeItem('isLoggedIn')
+       
+                 dispatch({type:'USER', payload:false})
+               
+    }  
+    if(!isLoggedIn){
+        return (
+                <>
+            <header className="header dark-bg">
+                <div className="toggle-nav">
+                    <div className="icon-reorder tooltips" data-original-title="Toggle Navigation" data-placement="bottom"><i className="icon_menu" /></div>
+                </div>
+                {/*logo start*/}
+                <Link to='/' className="logo">Smart Shopping <span className="lite">Cart</span></Link>
+                
+               
+                {/*logo end*/}
+                </header>
+                </>
+            )
+            }
+    else{
+        
     return (
+        
     <header className="header dark-bg">
         <div className="toggle-nav">
             <div className="icon-reorder tooltips" data-original-title="Toggle Navigation" data-placement="bottom"><i className="icon_menu" /></div>
         </div>
         {/*logo start*/}
         <Link to='/' className="logo">Smart Shopping <span className="lite">Cart</span></Link>
+        
+       
         {/*logo end*/}
         <div className="nav search-row" id="top_menu">
             {/*  search form start */}
@@ -223,13 +276,13 @@ export default function Header() {
                 <span className="profile-ava">
                     <img alt src="img/avatar1_small.jpg" />
                 </span>
-                <span className="username">Jenifer Smith</span>
+                <span className="username">{name}</span>
                 <b className="caret" />
                 </Link>
                 <ul className="dropdown-menu extended logout">
                 <div className="log-arrow-up" />
                 <li className="eborder-top">
-                    <Link to='/'><i className="icon_profile" /> My Profile</Link>
+                    <Link to='/profile'><i className="icon_profile" /> My Profile</Link>
                 </li>
                 <li>
                     <Link to='/'><i className="icon_mail_alt" /> My Inbox</Link>
@@ -240,8 +293,8 @@ export default function Header() {
                 <li>
                     <Link to='/'><i className="icon_chat_alt" /> Chats</Link>
                 </li>
-                <li>
-                    <Link to='/login'><i className="icon_key_alt" /> Log Out</Link>
+                <li onClick={handleLogout}>
+                    <Link to='/'><i className="icon_key_alt" /> Log Out</Link>
                 </li>
                 <li>
                     <a href="documentation.html"><i className="icon_key_alt" /> Documentation</a>
@@ -254,8 +307,17 @@ export default function Header() {
             {/* user login dropdown end */}
             </ul>
             {/* notificatoin dropdown end*/}
+           
         </div>
-        </header>
 
+        
+       
+        </header>
+         
     )
+    
+        }
+
+ 
 }
+ 
