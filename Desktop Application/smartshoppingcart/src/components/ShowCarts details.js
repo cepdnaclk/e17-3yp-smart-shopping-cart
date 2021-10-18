@@ -1,16 +1,73 @@
-import React from 'react'
+import React, { useEffect, useState} from 'react'
 import { Link } from 'react-router-dom'
+
 export default function Basic_table() {
+    useEffect(() => {
+        cartRetrive();
+    }, [])
+    
+    const [Cart, setCart] = useState([])
+    const cartRetrive=async()=>{
+        const cartData = await fetch("/cart/cartDetails");
+        const Cart= await cartData.json();
+        setCart(Cart);
+        console.log(Cart);
+    }
+    const deleteCart=async(id)=>{
+        var option = window.confirm("do you want delete the cart");
+        if (option===true){
+            fetch('/cart/delete/' + id, {
+                method: 'DELETE',
+            })
+                .then(() => {
+                    alert("cart removed")
+                    window.location.reload();
+                }) // or res.json()
+                .catch((err) => {
+                    console.log(err);
+                })
+        }
+    }
+    const addnewcart = async () => {
+        if(document.getElementById("addcartinput").value===""){
+            alert("Enter cart name!");
+            return;
+        };
+        var option = window.confirm("are you sure to add cart");
+        if (option === true) {
+            fetch('/cart/addnewcart' ,{
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                    // 'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: JSON.stringify({ "cartName": document.getElementById("addcartinput").value})
+            })
+                .then(() => {
+                    alert("cart Added")
+                    window.location.reload();
+                }) // or res.json()
+                .catch((err) => {
+                    console.log(err);
+                })
+        }
+    }
     return (
+        // <section>
+        //     {
+        //         <div>{Cart.name}</div>
+        //     }
+        // </section>
+    
         <section id="main-content">
             <section className="wrapper">
                 <div className="row">
                     <div className="col-lg-12">
-                        <h3 className="page-header"><i className="fa fa-table" /> Table</h3>
+                        <h3 className="page-header"><i className="fa fa-table" /> Carts</h3>
                         <ol className="breadcrumb">
                             <li><i className="fa fa-home" /><Link to="/">Home</Link></li>
-                            <li><i className="fa fa-table" />Table</li>
-                            <li><i className="fa fa-th-list" />Basic Table</li>
+                            <li><i className="fa fa-table" />Carts</li>
+                            <li><i className="fa fa-th-list" />current Status</li>
                         </ol>
                     </div>
                 </div>
@@ -19,158 +76,42 @@ export default function Basic_table() {
                     <div className="col-lg-12">
                         <section className="panel">
                             <header className="panel-heading">
-                                Advanced Table
+                                Cart Details
                             </header>
+                            <button style={{ padding: '10px', margin: '10px', backgroundColor:'#007aff',color:'white'}} type="button" onClick={()=>document.getElementById('addgroup').style.display='block'}>Add New cart</button>
+                            <div id="addgroup" style={{display:'none'}}>
+                                <input style={{ padding: '10px', margin: '10px'}} placeholder="Enter the cart Name" required id="addcartinput"/>
+                                <input style={{ padding: '10px', margin: '10px', backgroundColor: '#007aff', color: 'white' }} type="button" value="submit" onClick={() => addnewcart()}/>
+                            </div>
                             <table className="table table-striped table-advance table-hover">
                                 <tbody>
                                     <tr>
-                                        <th><i className="icon_profile" /> Full Name</th>
+                                        <th><i className="icon_profile" /> ID</th>
                                         <th><i className="icon_calendar" /> Date</th>
-                                        <th><i className="icon_mail_alt" /> Email</th>
-                                        <th><i className="icon_pin_alt" /> City</th>
-                                        <th><i className="icon_mobile" /> Mobile</th>
+                                        <th><i className="icon_mail_alt" /> Name</th>
+                                        <th><i className="icon_pin_alt" /> Status</th>
+                                        <th><i className="icon_mobile" /> user</th>
                                         <th><i className="icon_cogs" /> Action</th>
                                     </tr>
-                                    <tr>
-                                        <td>Angeline Mcclain</td>
-                                        <td>2004-07-06</td>
-                                        <td>dale@chief.info</td>
-                                        <td>Rosser</td>
-                                        <td>176-026-5992</td>
-                                        <td>
-                                            <div className="btn-group">
-                                                <a className="btn btn-primary" href="#"><i className="icon_plus_alt2" /></a>
-                                                <a className="btn btn-success" href="#"><i className="icon_check_alt2" /></a>
-                                                <a className="btn btn-danger" href="#"><i className="icon_close_alt2" /></a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Sung Carlson</td>
-                                        <td>2011-01-10</td>
-                                        <td>ione.gisela@high.org</td>
-                                        <td>Robert Lee</td>
-                                        <td>724-639-4784</td>
-                                        <td>
-                                            <div className="btn-group">
-                                                <a className="btn btn-primary" href="#"><i className="icon_plus_alt2" /></a>
-                                                <a className="btn btn-success" href="#"><i className="icon_check_alt2" /></a>
-                                                <a className="btn btn-danger" href="#"><i className="icon_close_alt2" /></a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Bryon Osborne</td>
-                                        <td>2006-10-29</td>
-                                        <td>sol.raleigh@language.edu</td>
-                                        <td>York</td>
-                                        <td>180-456-0056</td>
-                                        <td>
-                                            <div className="btn-group">
-                                                <a className="btn btn-primary" href="#"><i className="icon_plus_alt2" /></a>
-                                                <a className="btn btn-success" href="#"><i className="icon_check_alt2" /></a>
-                                                <a className="btn btn-danger" href="#"><i className="icon_close_alt2" /></a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Dalia Marquez</td>
-                                        <td>2011-12-15</td>
-                                        <td>angeline.frieda@thick.com</td>
-                                        <td>Alton</td>
-                                        <td>690-601-1922</td>
-                                        <td>
-                                            <div className="btn-group">
-                                                <a className="btn btn-primary" href="#"><i className="icon_plus_alt2" /></a>
-                                                <a className="btn btn-success" href="#"><i className="icon_check_alt2" /></a>
-                                                <a className="btn btn-danger" href="#"><i className="icon_close_alt2" /></a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Selina Fitzgerald</td>
-                                        <td>2003-01-06</td>
-                                        <td>moshe.mikel@parcelpart.info</td>
-                                        <td>Waelder</td>
-                                        <td>922-810-0915</td>
-                                        <td>
-                                            <div className="btn-group">
-                                                <a className="btn btn-primary" href="#"><i className="icon_plus_alt2" /></a>
-                                                <a className="btn btn-success" href="#"><i className="icon_check_alt2" /></a>
-                                                <a className="btn btn-danger" href="#"><i className="icon_close_alt2" /></a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Abraham Avery</td>
-                                        <td>2006-07-14</td>
-                                        <td>harvey.jared@pullpump.org</td>
-                                        <td>Harker Heights</td>
-                                        <td>511-175-7115</td>
-                                        <td>
-                                            <div className="btn-group">
-                                                <a className="btn btn-primary" href="#"><i className="icon_plus_alt2" /></a>
-                                                <a className="btn btn-success" href="#"><i className="icon_check_alt2" /></a>
-                                                <a className="btn btn-danger" href="#"><i className="icon_close_alt2" /></a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Caren Mcdowell</td>
-                                        <td>2002-03-29</td>
-                                        <td>valeria@hookhope.org</td>
-                                        <td>Blackwell</td>
-                                        <td>970-147-5550</td>
-                                        <td>
-                                            <div className="btn-group">
-                                                <a className="btn btn-primary" href="#"><i className="icon_plus_alt2" /></a>
-                                                <a className="btn btn-success" href="#"><i className="icon_check_alt2" /></a>
-                                                <a className="btn btn-danger" href="#"><i className="icon_close_alt2" /></a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Owen Bingham</td>
-                                        <td>2013-04-06</td>
-                                        <td>thomas.christopher@firstfish.info</td>
-                                        <td>Rule</td>
-                                        <td>934-118-6046</td>
-                                        <td>
-                                            <div className="btn-group">
-                                                <a className="btn btn-primary" href="#"><i className="icon_plus_alt2" /></a>
-                                                <a className="btn btn-success" href="#"><i className="icon_check_alt2" /></a>
-                                                <a className="btn btn-danger" href="#"><i className="icon_close_alt2" /></a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Ahmed Dean</td>
-                                        <td>2008-03-19</td>
-                                        <td>lakesha.geri.allene@recordred.com</td>
-                                        <td>Darrouzett</td>
-                                        <td>338-081-8817</td>
-                                        <td>
-                                            <div className="btn-group">
-                                                <a className="btn btn-primary" href="#"><i className="icon_plus_alt2" /></a>
-                                                <a className="btn btn-success" href="#"><i className="icon_check_alt2" /></a>
-                                                <a className="btn btn-danger" href="#"><i className="icon_close_alt2" /></a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Mario Norris</td>
-                                        <td>2010-02-08</td>
-                                        <td>mildred@hour.info</td>
-                                        <td>Amarillo</td>
-                                        <td>945-547-5302</td>
-                                        <td>
-                                            <div className="btn-group">
-                                                <a className="btn btn-primary" href="#"><i className="icon_plus_alt2" /></a>
-                                                <a className="btn btn-success" href="#"><i className="icon_check_alt2" /></a>
-                                                <a className="btn btn-danger" href="#"><i className="icon_close_alt2" /></a>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                    
+                                    {
+                                        Cart.map(singleCart => (
+                                            <tr>
+                                                <td>{singleCart._id}</td>
+                                                <td>{singleCart.date}</td>
+                                                <td>{singleCart.name}</td>
+                                                <td>{singleCart.status}</td>
+                                                <td>{singleCart.user}</td>
+                                                <td>
+                                                    <div className="btn-group">
+                                                        <a className="btn btn-primary" href="#"><i className="icon_plus_alt2" /></a>
+                                                        <a className="btn btn-success" href="#"><i className="icon_check_alt2" /></a>
+                                                        <button className="btn btn-danger" onClick={() => deleteCart(singleCart._id)}><i className="icon_close_alt2" /></button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        ))
+                                    }
                                 </tbody>
                             </table>
                         </section>
@@ -179,6 +120,5 @@ export default function Basic_table() {
                 {/* page end*/}
             </section>
         </section>
-
-    )
+    );
 }

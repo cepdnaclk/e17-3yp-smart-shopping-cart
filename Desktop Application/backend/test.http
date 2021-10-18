@@ -1,11 +1,6 @@
-POST http://localhost:4000/app/signup
+POST http://localhost:4000/cart/addnewcart
 Content-Type: application/json
 
 {
-    "firstname": "Rilwan",
-    "lastname": "Mohamed",
-    "email": "mohammedrilwan356@gmail.com",
-    "address": "Panadura",
-    "phonenumber": "123456789",
-    "password": "Rilwan"
+    "cartName": "cart name 2"
 }
