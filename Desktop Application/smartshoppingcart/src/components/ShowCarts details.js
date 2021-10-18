@@ -8,16 +8,11 @@ export default function Basic_table() {
     
     const [Cart, setCart] = useState([])
     const cartRetrive=async()=>{
-        const cartData = await fetch("/cartDetails");
+        const cartData = await fetch("/cart/cartDetails");
         const Cart= await cartData.json();
         setCart(Cart);
         console.log(Cart);
     }
-    const data = [
-        { id: 1, name: "John Doe" },
-        { id: 2, name: "Victor Wayne" },
-        { id: 3, name: "Jane Doe" },
-    ];
     return (
         // <section>
         //     {
