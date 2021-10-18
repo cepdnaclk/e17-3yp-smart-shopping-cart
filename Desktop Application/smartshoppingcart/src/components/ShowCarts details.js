@@ -13,6 +13,23 @@ export default function Basic_table() {
         setCart(Cart);
         console.log(Cart);
     }
+    const deleteCart=async(id)=>{
+        var option = window.confirm("do you want delete the cart");
+        if (option===true){
+            fetch('/cart/delete/' + id, {
+                method: 'DELETE',
+            })
+                .then(() => {
+                    alert("cart removed")
+                    window.location.reload();
+                }) // or res.json()
+                .catch((err) => {
+                    console.log(err);
+                })
+        }
+        
+
+    }
     return (
         // <section>
         //     {
@@ -62,7 +79,7 @@ export default function Basic_table() {
                                                     <div className="btn-group">
                                                         <a className="btn btn-primary" href="#"><i className="icon_plus_alt2" /></a>
                                                         <a className="btn btn-success" href="#"><i className="icon_check_alt2" /></a>
-                                                        <a className="btn btn-danger" href="#"><i className="icon_close_alt2" /></a>
+                                                        <button className="btn btn-danger" onClick={() => deleteCart(singleCart._id)}><i className="icon_close_alt2" /></button>
                                                     </div>
                                                 </td>
                                             </tr>
