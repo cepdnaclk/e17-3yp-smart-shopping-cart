@@ -27,8 +27,30 @@ export default function Basic_table() {
                     console.log(err);
                 })
         }
-        
-
+    }
+    const addnewcart = async () => {
+        if(document.getElementById("addcartinput").value===""){
+            alert("Enter cart name!");
+            return;
+        };
+        var option = window.confirm("are you sure to add cart");
+        if (option === true) {
+            fetch('/cart/addnewcart' ,{
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                    // 'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: JSON.stringify({ "cartName": document.getElementById("addcartinput").value})
+            })
+                .then(() => {
+                    alert("cart Added")
+                    window.location.reload();
+                }) // or res.json()
+                .catch((err) => {
+                    console.log(err);
+                })
+        }
     }
     return (
         // <section>
@@ -56,6 +78,11 @@ export default function Basic_table() {
                             <header className="panel-heading">
                                 Cart Details
                             </header>
+                            <button type="button" onClick={()=>document.getElementById('addgroup').style.display='block'}>Add New cart</button>
+                            <div id="addgroup" style={{display:'none'}}>
+                                <input placeholder="Enter the cart Name" required id="addcartinput"/>
+                                <input type="button" value="submit" onClick={() => addnewcart()}/>
+                            </div>
                             <table className="table table-striped table-advance table-hover">
                                 <tbody>
                                     <tr>

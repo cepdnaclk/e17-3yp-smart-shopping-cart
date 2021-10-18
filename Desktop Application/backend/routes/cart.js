@@ -9,6 +9,7 @@ route.get("/cart/cartDetails", (req, res) => {
     })
 })
 route.post("/cart/addnewcart", (req, res) => {
+    console.log(req.body);
     var cartName=req.body.cartName;
     var cartUser="NaN";
     var cartAvailable="free";
