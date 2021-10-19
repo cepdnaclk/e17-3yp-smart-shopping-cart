@@ -2,7 +2,7 @@ const express = require('express');
 
 const route = express.Router(); 
 
-const userCol = require('../models/EmployeeModel');  
+const userCol = require('../models/UserModel');  
 
 route.get('/', async(req, res) =>{
     try {

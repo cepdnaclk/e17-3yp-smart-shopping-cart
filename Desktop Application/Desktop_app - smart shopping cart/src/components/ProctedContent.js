@@ -1,12 +1,12 @@
 import React from 'react'
-import Header from './Header';
 import Navigation from './Navigation';
+import Header from './Header';
 
-export default function Content() {
+export default function ProctedContent() {
     return ( 
     <div>
     {/*main content start*/}
-    <>
+     <>
     <Header/>
     <Navigation/>
     <section id="main-content">
