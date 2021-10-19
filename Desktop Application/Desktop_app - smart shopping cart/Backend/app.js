@@ -18,7 +18,8 @@ const itemroute = require('./routes/items');
 
 const payment = require('./routes/payment');
 
-const cartConnection = require('./routes/CartConnection');
+// cart route
+const cart =require("./routes/cart"); 
 
  
 /*
@@ -48,7 +49,7 @@ app.use(bodyParser.json());     //every time there is app call this function wil
  
 
 //ROUTE MIDDLEWARES
-app.use('/user/all', userroute);        //  USER
+app.use('/mobileuser', userroute);        //  USER
 app.use('/user', authroute);            //  AUTH
 
 app.use('/profile', routeProfile);       //profile
@@ -58,7 +59,7 @@ app.use('/items', itemroute);       //profile
 
 app.use(payment);     // Payment api
 
-app.use(cartConnection);                 // cart connection
+app.use(cart);                 // cart connection
 
 //  HOME
 app.get('/', (req,res)=>{
