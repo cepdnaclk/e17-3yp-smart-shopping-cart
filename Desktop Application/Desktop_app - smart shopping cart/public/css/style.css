@@ -2629,6 +2629,10 @@ ul.ft-link li a i {
     border: 5px solid rgba(0, 0, 0, 0.1);
     display: inline-block;
 }
+.follow-avaimg{
+    width:  10;
+    height: 10;
+}
 .timeline-ava {
     border-radius: 50%;
     -webkit-border-radius: 50%;

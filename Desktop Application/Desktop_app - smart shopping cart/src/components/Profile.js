@@ -1,7 +1,119 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
+import Navigation from './Navigation';
+import Header from './Header';
+import Cookies from 'js-cookie';
+import userService from '../services/user-service';
+import ChangePassword from './changePassword';
+import UploadImg from './uploadProfileImage';
+
 
 export default function Profile() {
+
+    const [profile, setProfile] = useState({});
+    const [ userUpdate, setUserUpdate] = useState({});
+    const [error, setErrors] = useState({});
+    const [successUpdate, setSuccessUpdate] = useState({});
+    const [updating, setUpdating] = useState(false);
+
+
+
+    useEffect(()=>{
+        let name = Cookies.get( 'name'  );
+        let address = Cookies.get( 'address' ); 
+        let nic = Cookies.get( 'nic' );
+        let phoneno = Cookies.get( 'phoneno'  );
+        let email = Cookies.get( 'email' );
+        let roles = JSON.parse(Cookies.get( 'roles' ));
+        //let roleLen = profile.roles.length;
+
+        setProfile({name, address, nic, phoneno, email, roles});
+      
+    },[updating, successUpdate, error])
+
+    const handleChange = e => { 
+        setUserUpdate({...userUpdate, [e.target.name]:e.target.value});
+    };
+
+    const handleSubmit = e => {
+        e.preventDefault();
+        setUpdating(true);
+        setErrors(validate(userUpdate));
+        //setSubmit(true);
+        console.log('pressed update')
+    };
+
+    const validate =  (values) => {
+        
+        const errors = {};
+        let no = 0;
+        console.log('update',no)
+        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+        if(!values.name && !values.email && !values.address && !values.nic && !values.phoneno && !values.password){
+        errors.all = 'No inputs given!';
+            no=1
+        }
+        else{
+
+        if(values.name.length < 6){
+            errors.name = 'Name must be 6 characters long.'
+            no = 1;
+        }
+
+  
+        // if(!regex.test(values.email)){
+        //     errors.email = 'This is not a valid email format!';  
+        //     no = 1;
+        // }
+        // if(values.password.length < 6 ){
+        //     errors.password = 'Password must be 6 characters long.';
+        //     no = 1;
+        // }
+        }
+
+        if(no==0){
+
+            userService.updateUser(userUpdate)
+            .then(res => {console.log(res.data)
+               if(res.data.success){
+                userService.getUser();
+               setUpdating(false);
+               setSuccessUpdate({result:true});
+               
+                    setTimeout(() => {
+                        console.log('timeout');
+                        
+                        setSuccessUpdate({result:false });
+                    }, 6000);
+                    
+                }
+    
+                else {
+                     setErrors({message:'Not updated! Try Again', result:true})
+                      setTimeout(() => {
+                        console.log('timeout');
+                        
+                         setErrors({result:false})
+                    }, 6000);
+                    setUpdating(false);
+                    console.log('Not updated! try again')
+                }
+    
+            })
+                
+            .catch(err=>{console.log(err)});
+ 
+        }
+       
+     
+        
+        
+        return errors;
+    }
+
     return (
+        <>
+        <Navigation/>
+        <Header/>
     <div>
     {/*main content start*/}
     <section id="main-content">
@@ -11,7 +123,7 @@ export default function Profile() {
             <h3 className="page-header"><i className="fa fa-user-md" /> Profile</h3>
             <ol className="breadcrumb">
                 <li><i className="fa fa-home" /><a href="index.html">Home</a></li>
-                <li><i className="icon_documents_alt" />Pages</li>
+                {/* <li><i className="icon_documents_alt" />Pages</li> */}
                 <li><i className="fa fa-user-md" />Profile</li>
             </ol>
             </div>
@@ -22,43 +134,23 @@ export default function Profile() {
             <div className="profile-widget profile-widget-info">
                 <div className="panel-body">
                 <div className="col-lg-2 col-sm-2">
-                    <h4>Jenifer Smith</h4>
+                    <h4>{profile.name}</h4>
                     <div className="follow-ava">
                     <img src="img/profile-widget-avatar.jpg" alt />
                     </div>
-                    <h6>Administrator</h6>
+                    <h6>Employee</h6>
                 </div>
                 <div className="col-lg-4 col-sm-4 follow-info">
-                    <p>Hello I’m Jenifer Smith, a leading expert in interactive and creative design.</p>
-                    <p>@jenifersmith</p>
-                    <p><i className="fa fa-twitter">jenifertweet</i></p>
-                    <h6>
+                    {/* <p>Hello I’m Jenifer Smith, a leading expert in interactive and creative design.</p>
+                    <p>@jenifersmith</p> */}
+                    <p><i className="fa fa-mail">{profile.email}</i></p>
+                    {/* <h6>
                     <span><i className="icon_clock_alt" />11:05 AM</span>
                     <span><i className="icon_calendar" />25.10.13</span>
                     <span><i className="icon_pin_alt" />NY</span>
-                    </h6>
+                    </h6> */}
                 </div>
-                <div className="col-lg-2 col-sm-6 follow-info weather-category">
-                    <ul>
-                    <li className="active">
-                        <i className="fa fa-comments fa-2x"> </i><br /> Contrary to popular belief, Lorem Ipsum is not simply
-                    </li>
-                    </ul>
-                </div>
-                <div className="col-lg-2 col-sm-6 follow-info weather-category">
-                    <ul>
-                    <li className="active">
-                        <i className="fa fa-bell fa-2x"> </i><br /> Contrary to popular belief, Lorem Ipsum is not simply
-                    </li>
-                    </ul>
-                </div>
-                <div className="col-lg-2 col-sm-6 follow-info weather-category">
-                    <ul>
-                    <li className="active">
-                        <i className="fa fa-tachometer fa-2x"> </i><br /> Contrary to popular belief, Lorem Ipsum is not simply
-                    </li>
-                    </ul>
-                </div>
+              
                 </div>
             </div>
             </div>
@@ -69,12 +161,7 @@ export default function Profile() {
             <section className="panel">
                 <header className="panel-heading tab-bg-info">
                 <ul className="nav nav-tabs">
-                    <li className="active">
-                    <a data-toggle="tab" href="#recent-activity">
-                        <i className="icon-home" />
-                        Daily Activity
-                    </a>
-                    </li>
+                    
                     <li>
                     <a data-toggle="tab" href="#profile">
                         <i className="icon-user" />
@@ -87,145 +174,60 @@ export default function Profile() {
                         Edit Profile
                     </a>
                     </li>
+                    <li className>
+                    <a data-toggle="tab" href="#change-pass">
+                        <i className="icon-envelope" />
+                        Update Password
+                    </a>
+                    </li>
+                    <li className>
+                    <a data-toggle="tab" href="#change-img">
+                        <i className="icon-user" />
+                       Upload Profile Picture
+                    </a>
+                    </li>  
                 </ul>
                 </header>
                 <div className="panel-body">
                 <div className="tab-content">
-                    <div id="recent-activity" className="tab-pane active">
-                    <div className="profile-activity">
-                        <div className="act-time">
-                        <div className="activity-body act-in">
-                            <span className="arrow" />
-                            <div className="text">
-                            <a href="#" className="activity-img"><img className="avatar" src="img/chat-avatar.jpg" alt /></a>
-                            <p className="attribution"><a href="#">Jonatanh Doe</a> at 4:25pm, 30th Octmber 2014</p>
-                            <p>It is a long established fact that a reader will be distracted layout</p>
-                            </div>
-                        </div>
-                        </div>
-                        <div className="act-time">
-                        <div className="activity-body act-in">
-                            <span className="arrow" />
-                            <div className="text">
-                            <a href="#" className="activity-img"><img className="avatar" src="img/chat-avatar.jpg" alt /></a>
-                            <p className="attribution"><a href="#">Jhon Loves </a> at 5:25am, 30th Octmber 2014</p>
-                            <p>Knowledge speaks, but wisdom listens.</p>
-                            </div>
-                        </div>
-                        </div>
-                        <div className="act-time">
-                        <div className="activity-body act-in">
-                            <span className="arrow" />
-                            <div className="text">
-                            <a href="#" className="activity-img"><img className="avatar" src="img/chat-avatar.jpg" alt /></a>
-                            <p className="attribution"><a href="#">Rose Crack</a> at 5:25am, 30th Octmber 2014</p>
-                            <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
-                            </div>
-                        </div>
-                        </div>
-                        <div className="act-time">
-                        <div className="activity-body act-in">
-                            <span className="arrow" />
-                            <div className="text">
-                            <a href="#" className="activity-img"><img className="avatar" src="img/chat-avatar.jpg" alt /></a>
-                            <p className="attribution"><a href="#">Jimy Smith</a> at 5:25am, 30th Octmber 2014</p>
-                            <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean
-                                ultricies mi vitae est. Mauris placerat eleifend leo.</p>
-                            </div>
-                        </div>
-                        </div>
-                        <div className="act-time">
-                        <div className="activity-body act-in">
-                            <span className="arrow" />
-                            <div className="text">
-                            <a href="#" className="activity-img"><img className="avatar" src="img/chat-avatar.jpg" alt /></a>
-                            <p className="attribution"><a href="#">Maria Willyam</a> at 5:25am, 30th Octmber 2014</p>
-                            <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean
-                                ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt
-                                condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros
-                                eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus</p>
-                            </div>
-                        </div>
-                        </div>
-                        <div className="act-time">
-                        <div className="activity-body act-in">
-                            <span className="arrow" />
-                            <div className="text">
-                            <a href="#" className="activity-img"><img className="avatar" src="img/chat-avatar.jpg" alt /></a>
-                            <p className="attribution"><a href="#">Sarah saw</a> at 5:25am, 30th Octmber 2014</p>
-                            <p>Knowledge speaks, but wisdom listens.</p>
-                            </div>
-                        </div>
-                        </div>
-                        <div className="act-time">
-                        <div className="activity-body act-in">
-                            <span className="arrow" />
-                            <div className="text">
-                            <a href="#" className="activity-img"><img className="avatar" src="img/chat-avatar.jpg" alt /></a>
-                            <p className="attribution"><a href="#">Layla night</a> at 5:25am, 30th Octmber 2014</p>
-                            <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
-                            </div>
-                        </div>
-                        </div>
-                        <div className="act-time">
-                        <div className="activity-body act-in">
-                            <span className="arrow" />
-                            <div className="text">
-                            <a href="#" className="activity-img"><img className="avatar" src="img/chat-avatar.jpg" alt /></a>
-                            <p className="attribution"><a href="#">Andriana lee</a> at 5:25am, 30th Octmber 2014</p>
-                            <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean
-                                ultricies mi vitae est. Mauris placerat eleifend leo.</p>
-                            </div>
-                        </div>
-                        </div>
-                        <div className="act-time">
-                        <div className="activity-body act-in">
-                            <span className="arrow" />
-                            <div className="text">
-                            <a href="#" className="activity-img"><img className="avatar" src="img/chat-avatar.jpg" alt /></a>
-                            <p className="attribution"><a href="#">Maria Willyam</a> at 5:25am, 30th Octmber 2014</p>
-                            <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean
-                                ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt
-                                condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros
-                                eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus</p>
-                            </div>
-                        </div>
-                        </div>
-                    </div>
-                    </div>
+                   
                     {/* profile */}
                     <div id="profile" className="tab-pane">
                     <section className="panel">
-                        <div className="bio-graph-heading">
-                        Hello I’m Jenifer Smith, a leading expert in interactive and creative design specializing in the mobile medium. My graduation from Massey University with a Bachelor of Design majoring in visual communication.
-                        </div>
+                        
                         <div className="panel-body bio-graph-info">
                         <h1>Bio Graph</h1>
                         <div className="row">
                             <div className="bio-row">
-                            <p><span>First Name </span>: Jenifer </p>
+                            <p><span>Name </span>: {profile.name} </p>
                             </div>
-                            <div className="bio-row">
-                            <p><span>Last Name </span>: Smith</p>
-                            </div>
-                            <div className="bio-row">
+                            
+                            {/* <div className="bio-row">
                             <p><span>Birthday</span>: 27 August 1987</p>
+                            </div> */}
+                            <div className="bio-row">
+                            <p><span>NIC </span>: {profile.nic}</p>
                             </div>
                             <div className="bio-row">
-                            <p><span>Country </span>: United</p>
+                            <p><span>Address </span>:  {profile.address}</p>
                             </div>
                             <div className="bio-row">
-                            <p><span>Occupation </span>: UI Designer</p>
+                            <p><span>Email </span>: {profile.email}</p>
                             </div>
                             <div className="bio-row">
-                            <p><span>Email </span>:jenifer@mailname.com</p>
+                            <p><span>Phone </span>:  {profile.phoneno}</p>
                             </div>
-                            <div className="bio-row">
-                            <p><span>Mobile </span>: (+6283) 456 789</p>
-                            </div>
-                            <div className="bio-row">
-                            <p><span>Phone </span>: (+021) 956 789123</p>
-                            </div>
+                            {/* <div className="bio-row">
+                            <p><span>Access </span>:  </p>
+                           
+                            {
+                             (profile.roles).map((role)=>(
+                            <p>{profile.role[role]}</p>)
+                            )
+                          
+                            }
+                            </div> 
+                         */}
                         </div>
                         </div>
                     </section>
@@ -239,80 +241,125 @@ export default function Profile() {
                     <section className="panel">
                         <div className="panel-body bio-graph-info">
                         <h1> Profile Info</h1>
-                        <form className="form-horizontal" role="form">
+                        <div class='form-group has-error'>
+                   
+                        <p className="control-label ">{error.all}</p>
+                    </div>
+
+                     {successUpdate.result ? 
+        <div class='form-group has-success'>
+            <p className="control-label ">Profile has been updated successfully!</p>
+        </div>
+        :null}
+
+        {error.result ? 
+        <div class='form-group has-error'>
+            <p className="control-label ">{error.message}</p>
+        </div>
+        :null}
+                        <form className="form-horizontal" role="form" onChange={handleChange} onSubmit={handleSubmit}>
                             <div className="form-group">
-                            <label className="col-lg-2 control-label">First Name</label>
+                            <label className="col-lg-2 control-label">Name</label>
                             <div className="col-lg-6">
-                                <input type="text" className="form-control" id="f-name" placeholder=" " />
+                                <input name= 'name' type="text" className="form-control"  placeholder={profile.name} />
                             </div>
                             </div>
+                          
+                            {
+                            error.name?
+                            (
+                            <>
+                            <div >
+                            <p  style={{color:'red', fontWeight:'bold'}}>{error.name}</p>
+                            </div>
+                            </>)
+                            :null
+                            }
+                           
+ 
+                            
                             <div className="form-group">
-                            <label className="col-lg-2 control-label">Last Name</label>
+                            <label className="col-lg-2 control-label">Address</label>
                             <div className="col-lg-6">
-                                <input type="text" className="form-control" id="l-name" placeholder=" " />
+                                <input name= 'address' type="text" className="form-control" placeholder={profile.address} />
                             </div>
                             </div>
                             <div className="form-group">
-                            <label className="col-lg-2 control-label">About Me</label>
-                            <div className="col-lg-10">
-                                <textarea name id className="form-control" cols={30} rows={5} defaultValue={""} />
-                            </div>
-                            </div>
-                            <div className="form-group">
-                            <label className="col-lg-2 control-label">Country</label>
+                            <label className="col-lg-2 control-label">NIC</label>
                             <div className="col-lg-6">
-                                <input type="text" className="form-control" id="c-name" placeholder=" " />
+                                <input name='nic' type="text" className="form-control" placeholder={profile.nic} />
                             </div>
                             </div>
                             <div className="form-group">
-                            <label className="col-lg-2 control-label">Birthday</label>
+                            <label className="col-lg-2 control-label">Phone No</label>
                             <div className="col-lg-6">
-                                <input type="text" className="form-control" id="b-day" placeholder=" " />
+                                <input name='phoneno' type="text" className="form-control" placeholder={profile.phoneno} />
                             </div>
                             </div>
-                            <div className="form-group">
-                            <label className="col-lg-2 control-label">Occupation</label>
-                            <div className="col-lg-6">
-                                <input type="text" className="form-control" id="occupation" placeholder=" " />
-                            </div>
-                            </div>
-                            <div className="form-group">
-                            <label className="col-lg-2 control-label">Email</label>
-                            <div className="col-lg-6">
-                                <input type="text" className="form-control" id="email" placeholder=" " />
-                            </div>
-                            </div>
-                            <div className="form-group">
-                            <label className="col-lg-2 control-label">Mobile</label>
-                            <div className="col-lg-6">
-                                <input type="text" className="form-control" id="mobile" placeholder=" " />
-                            </div>
-                            </div>
-                            <div className="form-group">
-                            <label className="col-lg-2 control-label">Website URL</label>
-                            <div className="col-lg-6">
-                                <input type="text" className="form-control" id="url" placeholder="http://www.demowebsite.com " />
-                            </div>
-                            </div>
+                            
+                           
                             <div className="form-group">
                             <div className="col-lg-offset-2 col-lg-10">
-                                <button type="submit" className="btn btn-primary">Save</button>
-                                <button type="button" className="btn btn-danger">Cancel</button>
+                                <button onPress= {handleSubmit} type="submit" className="btn btn-primary">Save</button>
+                                <a href='' type="button" className="btn btn-danger">Cancel</a>
                             </div>
                             </div>
                         </form>
                         </div>
                     </section>
+                   
+
+
+                    <section>
+                        <div className="row">
+                        </div>
+                    </section>
                     </div>
+                  
+
+        <div id="change-pass" className="tab-pane">
+        <section className="panel">
+        <div className="panel-body bio-graph-info">
+                   <ChangePassword/>
+                   </div>
+                   </section>
+
+                   <section>
+                        <div className="row">
+                        </div>
+                    </section>
+                    </div>
+                   
+                
+
+                    <div id="change-img" className="tab-pane">
+        <section className="panel">
+
+                   <UploadImg/>
+                   </section>
+                    </div>
+                
+                
                 </div>
                 </div>
             </section>
             </div>
         </div>
+
+
+        
+        
+                
+
+        
+
+
         {/* page end*/}
         </section>
     </section>
     {/*main content end*/}</div>
+
+    </>
 
     )
 }

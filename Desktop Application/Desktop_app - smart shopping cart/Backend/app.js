@@ -14,6 +14,7 @@ const authroute = require('./routes/auth');
 const userroute = require('./routes/user');
 
 const routeProfile = require('./routes/profile');
+const itemroute = require('./routes/items');
 
 const payment = require('./routes/payment');
 
@@ -51,6 +52,8 @@ app.use('/user/all', userroute);        //  USER
 app.use('/user', authroute);            //  AUTH
 
 app.use('/profile', routeProfile);       //profile
+app.use('/items', itemroute);       //profile
+
   
 
 app.use(payment);     // Payment api

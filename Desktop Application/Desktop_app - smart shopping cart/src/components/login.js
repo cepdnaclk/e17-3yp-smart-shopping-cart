@@ -1,9 +1,18 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import authService from '../services/auth-services';
+import {Redirect, useHistory} from 'react-router-dom';
+import Navigation from './Navigation';
+import Header from './Header';
 
+
+import {userContext} from '../App';
 
 export default function Login() {
 
+    const {state, dispatch} = useContext(userContext);
+
+
+let history = useHistory();
     const [ user, setUser] = useState({});
     const [error, setErrors] = useState({});
     const [submit, setSubmit] = useState(false);
@@ -37,13 +46,17 @@ export default function Login() {
             
 
             else{   //LOGGED IN
-
-            //alert('Logged In');
-            //props.navigation.navigate('mainScreen');
-            errorx.all = 'Success'; 
-
+            localStorage.setItem('isLoggedIn', true);
+            
+            errorx.all = 'Success';
+            console.log(state, 'loggin');
+            dispatch({type:'USER', payload:true});
+            console.log(state, 'loggin');
+           // <Redirect to='/'/>;
+           history.push('/home');
+           
             } 
-    setErrors(errorx);
+    setErrors(errorx); 
             })
                 
             .catch(err=>{console.log(err)});
@@ -124,6 +137,9 @@ export default function Login() {
 
 
     return (
+        <>
+        <Navigation/>
+        <Header/>
         <section id="main-content">
             <form className="login-form" action='' onChange={handleChange} onSubmit={handleSubmit}> 
                 <div className="login-wrap">
@@ -149,5 +165,6 @@ export default function Login() {
                 </div>
             </form>
         </section>
+        </>
     )
 }
