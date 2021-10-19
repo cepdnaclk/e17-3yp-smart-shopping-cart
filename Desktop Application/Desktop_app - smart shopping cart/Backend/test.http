@@ -1,0 +1,6 @@
+POST http://localhost:4000/cart/addnewcart
+Content-Type: application/json
+
+{
+    "cartName": "cart name 2"
+}

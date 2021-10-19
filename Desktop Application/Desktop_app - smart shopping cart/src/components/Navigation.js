@@ -36,6 +36,14 @@ const {state, dispatch} = useContext(userContext);
                     <span>Item Details</span>
                     <span className="menu-arrow arrow_carrot-right" />
                 </Link>
+                </li>
+
+                <li className="sub-menu">
+                <Link className to="showcarts">
+                    <i className="icon_table" />
+                    <span>Cart Details</span>
+                    <span className="menu-arrow arrow_carrot-right" />
+                </Link>
                 </li> 
                 </>
                 
