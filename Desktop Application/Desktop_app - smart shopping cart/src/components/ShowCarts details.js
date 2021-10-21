@@ -11,7 +11,7 @@ export default function Basic_table() {
 
     const [Cart, setCart] = useState([])
     const cartRetrive = async () => {
-        const cartData = await fetch("http://192.168.43.68:5000/cart/cartDetails");
+        const cartData = await fetch("http://192.168.8.126:5000/cart/cartDetails");
         const Cart = await cartData.json();
         setCart(Cart);
         console.log(Cart);
@@ -19,7 +19,7 @@ export default function Basic_table() {
     const deleteCart = async (id) => {
         var option = window.confirm("do you want delete the cart");
         if (option === true) {
-            fetch('http://192.168.43.68:5000/cart/delete/' + id, {
+            fetch('http://192.168.8.126:5000/cart/delete/' + id, {
                 method: 'DELETE',
             })
                 .then(() => {
@@ -38,7 +38,7 @@ export default function Basic_table() {
         };
         var option = window.confirm("are you sure to add cart");
         if (option === true) {
-            fetch('http://192.168.43.68:5000/cart/addnewcart', {
+            fetch('http://192.168.8.126:5000/cart/addnewcart', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
