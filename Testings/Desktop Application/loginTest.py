@@ -1,4 +1,5 @@
 import importlib
+from itemsADD import addItem
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
@@ -19,17 +20,8 @@ email = "piriyaraj1998@gmail.com"
 password = "msEMDVDHCwA2a9e"
 
 
-
-def login():  # function for Signup
-
-    options = webdriver.ChromeOptions()
-    options.add_experimental_option("detach", True)  # help to prevent close automatically
-
-    driver = webdriver.Chrome(
-        options=options, executable_path='chromedriver.exe')  # give chrome driver path
+def login(driver):  # function for Signup
     driver.get(pageUrl)  # open over desktop url
-    driver.maximize_window()
-
     emailInput = driver.find_element_by_xpath("//*[@id='main-content']/form/div/div[2]/input")
     passwordInput = driver.find_element_by_xpath("//*[@id='main-content']/form/div/div[3]/input")
     # repasswordInput=driver.find_element_by_xpath("//*[@id='main-content']/form/div/div[7]/input")
@@ -44,4 +36,11 @@ def login():  # function for Signup
 
 
 if __name__ == "__main__":
-    login()
+    options = webdriver.ChromeOptions()
+    # help to prevent close automatically
+    options.add_experimental_option("detach", True)
+
+    driver = webdriver.Chrome(
+        options=options, executable_path='chromedriver.exe')  # give chrome driver path
+    driver.maximize_window()
+    login(driver)
