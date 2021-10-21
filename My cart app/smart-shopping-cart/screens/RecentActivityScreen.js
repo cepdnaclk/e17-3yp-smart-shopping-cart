@@ -22,7 +22,5 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: colors.secondaryColor,
-    borderTopLeftRadius: 30,
-    borderTopRightRadius: 30,
   },
 });
