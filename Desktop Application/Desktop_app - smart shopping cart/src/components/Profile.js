@@ -136,7 +136,8 @@ export default function Profile() {
                 <div className="col-lg-2 col-sm-2">
                     <h4>{profile.name}</h4>
                     <div className="follow-ava">
-                    <img src="img/profile-widget-avatar.jpg" alt />
+                    <img src="img/profile.png" width="62px" height="62px"/>
+
                     </div>
                     <h6>Employee</h6>
                 </div>
