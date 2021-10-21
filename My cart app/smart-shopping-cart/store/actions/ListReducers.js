@@ -1,4 +1,5 @@
-//actions for add product to to-buy list
+//actions to add items for to-buy list
+
 export const ADD_TOBUY_LIST = "ADD_TOBUY_LIST"; //action identifier for
 //actions to remove items from to-buy list
 export const REMOVE_FROM_CART = "REMOVE_FROM_CART";
