@@ -2,24 +2,26 @@
 import React, { useState, useEffect } from 'react';
 import { Text, View, StyleSheet, Button } from 'react-native';
 import { BarCodeScanner } from 'expo-barcode-scanner';
+import { AsyncStorage } from 'react-native';
 import axios from 'axios';
-const API_URL = 'http://192.168.8.126:3000/';
+const API_URL = 'http://192.168.43.68:3000/';
 
 export default function App(props) {
   const [hasPermission, setHasPermission] = useState(null);
   const [scanned, setScanned] = useState(false);
-  
+
   // handel scanned value
-  function findCartName(id){
+  async function findCartName(id) {
     // alert(id);
-    axios.get(API_URL+'cart/'+id)
-    .then(Response=>{
-      alert("connected with cart "+Response.data);
-      props.navigation.navigate("AddedList");
-    })
-    .catch(error=>{
-      console.log(error);
-    })
+    const user = await AsyncStorage.getItem('user');
+    axios.get(API_URL + 'cart/' + id, { headers: { 'auth_token': user } })
+      .then(Response => {
+        alert("connected with cart " + Response.data);
+        props.navigation.navigate("AddedList");
+      })
+      .catch(error => {
+        console.log(error);
+      })
   }
 
 

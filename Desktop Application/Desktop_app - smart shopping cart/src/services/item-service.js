@@ -2,7 +2,7 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 
 
-const API_URL = 'http://192.168.8.126:5000/';
+const API_URL = 'http://192.168.43.68:5000/';
 
 class ItemService{ 
  
