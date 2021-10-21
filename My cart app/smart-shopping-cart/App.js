@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 //packages for redux
-import { createStore, combineReducers } from "redux";
+import { createStore, combineReducers, applyMiddleware } from "redux";
+
 import { Provider } from "react-redux";
 
 //importing for fonts -->for package install
@@ -15,9 +16,7 @@ import CartNavigator from "./navigation/CartNavigator";
 
 //importing module for to-buy list reducer
 import listReducer from "./store/reducers/ListReducer";
-
-//to debug redux (delete after app was done)
-import { composeWithDevTools } from "redux-devtools-extension";
+import productReducer from "./store/reducers/productReducer";
 
 //combining all reducers in one root reducer
 const rootReducer = combineReducers({
@@ -25,7 +24,7 @@ const rootReducer = combineReducers({
 });
 
 //creating store
-const store = createStore(rootReducer, composeWithDevTools());
+const store = createStore(rootReducer);
 
 //func for fetch fonts (hav to .ttf)
 const fetchFonts = () => {
@@ -58,3 +57,5 @@ export default function App() {
     </Provider>
   );
 }
+
+export { rootReducer };
