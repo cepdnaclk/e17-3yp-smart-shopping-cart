@@ -16,7 +16,7 @@ import Widgets from './Widgets';
 import Chart from './Chart';
 import Basic_table from './Basic_table';
 import Item from './item';
-import ShowCartDetails from './ShowCarts details';
+import ShowCartDetails from './ShowCarts details copy';
 import Protected from '../routes/ProctedRoute';
 import NotProtected from '../routes/AuthRoute';
 
