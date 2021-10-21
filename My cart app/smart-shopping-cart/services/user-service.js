@@ -1,10 +1,13 @@
-import axios from "axios";
-import authHeader from "./auth-header";
+ import axios from "axios";
+// import authHeader from "./auth-header";
 import { AsyncStorage } from "react-native";
 
 const API_URL = "http://192.168.8.101:80/";
 
+import api from './api';
+
 class UserService {
+
   async getProfile() {
     const user = await AsyncStorage.getItem("user");
 
@@ -74,6 +77,7 @@ class UserService {
   getItems() {
     return axios.get(API_URL + "items", { headers: authHeader() });
   }
+
 }
 
 export default new UserService();

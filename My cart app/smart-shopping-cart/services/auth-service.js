@@ -1,3 +1,4 @@
+
 import React, { useContext } from "react";
 import axios from "axios";
 import { AsyncStorage } from "react-native";
@@ -39,6 +40,7 @@ class AuthService {
   }
 
   /*
+
     persistLogin (credentials){
         AsyncStorage.setItem('user', JSON.stringify(credentials))
         .then(()=>{

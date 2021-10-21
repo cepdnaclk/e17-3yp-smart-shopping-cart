@@ -115,6 +115,7 @@ class SignInScreen extends Component {
         </View>
       </View>
     );
+
   }
 
   _login = async (props) => {

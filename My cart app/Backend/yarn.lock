@@ -47,6 +47,7 @@
   dependencies:
     "@hapi/hoek" "^9.0.0"
 
+
 "@isaacs/string-locale-compare@*", "@isaacs/string-locale-compare@^1.0.1":
   "integrity" "sha512-SQ7Kzhh9+D+ZW9MA0zkYv3VXhIDNx+LzM6EJ+/65I3QY+enU6Itte7E5XX7EWrqLW2FN4n06GWzBnPoC3th2aQ=="
   "resolved" "https://registry.npmjs.org/@isaacs/string-locale-compare/-/string-locale-compare-1.1.0.tgz"
@@ -54,8 +55,8 @@
 
 "@npmcli/arborist@*", "@npmcli/arborist@^2.3.0", "@npmcli/arborist@^2.5.0":
   "version" "2.9.0"
+
   dependencies:
-    "@isaacs/string-locale-compare" "^1.0.1"
     "@npmcli/installed-package-contents" "^1.0.7"
     "@npmcli/map-workspaces" "^1.0.2"
     "@npmcli/metavuln-calculator" "^1.1.0"
@@ -1498,9 +1499,11 @@
     "cidr-regex" "^3.1.1"
 
 "is-core-module@^2.5.0":
+
   "integrity" "sha512-ByY+tjCciCr+9nLryBYcSD50EOGWt95c7tIsKTG1J2ixKKXPvF7Ej3AVd+UfDydAJom3biBGDBALaO79ktwgEQ=="
   "resolved" "https://registry.npmjs.org/is-core-module/-/is-core-module-2.7.0.tgz"
   "version" "2.7.0"
+
   dependencies:
     "has" "^1.0.3"
 
@@ -2306,11 +2309,13 @@
   "version" "1.0.1"
 
 "npm@^7.24.1":
+
   "integrity" "sha512-120p116CE8VMMZ+hk8IAb1inCPk4Dj3VZw29/n2g6UI77urJKVYb7FZUDW8hY+EBnfsjI/2yrobBgFyzo7YpVQ=="
   "resolved" "https://registry.npmjs.org/npm/-/npm-7.24.2.tgz"
   "version" "7.24.2"
   dependencies:
     "@isaacs/string-locale-compare" "*"
+
     "@npmcli/arborist" "*"
     "@npmcli/ci-detect" "*"
     "@npmcli/config" "*"
@@ -3039,9 +3044,11 @@
   "version" "2.0.1"
 
 "stripe@^8.178.0":
+
   "integrity" "sha512-yEKT+/a/5OMYqGPhI/4jy/kiKHKeew1n9BvNtHbOA9lQDM8yVIYDx0nbQMj5rMowivAMqY67mejDJeSBlcPASA=="
   "resolved" "https://registry.npmjs.org/stripe/-/stripe-8.181.0.tgz"
   "version" "8.181.0"
+
   dependencies:
     "@types/node" ">=8.1.0"
     "qs" "^6.6.0"

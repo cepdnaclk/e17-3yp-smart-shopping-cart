@@ -58,8 +58,10 @@ app.get("/", (req, res) => {
   console.log("home");
 });
 
+
 //LISTEN
 const port = process.env.PORT || 80;
 app.listen(80, () => console.log(`listening on ${port}`));
+
 
 //const ProductModel = require("./models/ProductModel");
