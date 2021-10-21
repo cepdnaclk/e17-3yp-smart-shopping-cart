@@ -1,5 +1,4 @@
 import React from "react";
-import numeral from "numeral";
 import {
   View,
   Text,
@@ -95,8 +94,7 @@ const FinalAddedListScreen = (props) => {
     <View style={{ flex: 1, backgroundColor: colors.secondaryColor }}>
       <View style={styles.billStyle}>
         <Text style={styles.billText}>
-          Total Amount to be paid is Rs.
-          {numeral(FinalTotalAmount).format("0.00")}
+          Total Amount to be paid is Rs. {FinalTotalAmount.toFixed(2)}
         </Text>
       </View>
       <View>
