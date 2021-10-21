@@ -16,7 +16,7 @@ pageUrl = "http://localhost:3000/login"
 
 email = "piriyaraj1998@gmail.com"
 
-password = "uJerZBMxPXH7Z2D"
+password = "msEMDVDHCwA2a9e"
 
 
 
