@@ -1,4 +1,4 @@
-import React, {Component, useContext} from "react";
+import React, { Component, useContext } from "react";
 import { ActivityIndicator, Text, StyleSheet, View, Alert } from "react-native";
 import { AsyncStorage } from "react-native";
 
@@ -12,18 +12,16 @@ import { createBottomTabNavigator } from "react-navigation-tabs";
 //package for drawer navigation
 import { createDrawerNavigator } from "react-navigation-drawer";
 
-
 //package for icons
 import { Ionicons, FontAwesome, MaterialIcons } from "@expo/vector-icons";
 
-import userService from '../services/user-service';
+import userService from "../services/user-service";
 
 //importing required modules for navigation
 import HomeScreen from "../screens/HomeScreen";
 import ConnectCartScreen from "../screens/ConnectCartScreen";
 import RecentActivityScreen from "../screens/RecentActivityScreen";
 import ToBuyListScreen from "../screens/ToBuyListScreen";
-import NearSuperMarketScreen from "../screens/NearSuperMarket";
 import FinalAddedListScreen from "../screens/FinalAddedList";
 import SplashScreen from "../screens/SplashScreen";
 import SignInScreen from "../screens/SignInScreen";
@@ -37,7 +35,6 @@ import { StatusBar } from "expo-status-bar";
 
 import PaymentScreen from "../screens/PaymentScreen";
 
-
 //func for stack navigation
 const CartNavigator = createStackNavigator(
   //argument 1
@@ -46,7 +43,7 @@ const CartNavigator = createStackNavigator(
     Home: {
       screen: HomeScreen,
     },
-    Profile:{
+    Profile: {
       screen: ProfileScreen,
     },
     //ToBuy List Screen
@@ -75,13 +72,6 @@ const CartNavigator = createStackNavigator(
       screen: PaymentScreen,
       navigationOptions: {
         headerTitle: "Payment",
-      },
-    },
-    //Super Market Screen
-    NearSuperMarket: {
-      screen: NearSuperMarketScreen,
-      navigationOptions: {
-        headerTitle: "Find Near SuperMarket",
       },
     },
   },
@@ -119,7 +109,6 @@ const AddedListStackNavigator = createStackNavigator(
     },
   }
 );
-
 
 //func for bottom tab navigation
 const AddedListTabNavigator = createBottomTabNavigator(
@@ -160,7 +149,6 @@ const AddedListTabNavigator = createBottomTabNavigator(
     },
   }
 );
-
 
 const LogOutNavigator = createBottomTabNavigator(
   //arg1
@@ -216,7 +204,7 @@ const SignUpNavigator = createStackNavigator({
 
 //func for menu drawer navigation
 const MenuNavigator = createDrawerNavigator(
-  { 
+  {
     HomeScreen: {
       screen: AddedListTabNavigator,
       navigationOptions: {
@@ -229,13 +217,12 @@ const MenuNavigator = createDrawerNavigator(
         drawerLabel: "Added To-Buy List",
       },
     },
-    LogOut :{
-      screen : LogOutNavigator    
+    LogOut: {
+      screen: LogOutNavigator,
     },
-    Registration :{
-      screen : SignUpNavigator
-    }
-    
+    Registration: {
+      screen: SignUpNavigator,
+    },
   },
   {
     //arg2
@@ -249,107 +236,95 @@ const MenuNavigator = createDrawerNavigator(
 
 //console.log(AsyncStorage.isLoggedIn);
 
-class AuthLoadingScreen extends Component{  //loading screen until check for asyncstorage
-  constructor(props){
+class AuthLoadingScreen extends Component {
+  //loading screen until check for asyncstorage
+  constructor(props) {
     super(props);
     this._loadingData();
   }
-  render(){
-    return(
+  render() {
+    return (
       <View style={StyleSheet.container}>
-        <ActivityIndicator/>
-        <StatusBar barStyle = 'default'/>
+        <ActivityIndicator />
+        <StatusBar barStyle="default" />
       </View>
     );
   }
 
-  _loadingData = async()=>{
-    
-    const isLoggedIn = await AsyncStorage.getItem('user');    //get isloggedinv val
-    if (isLoggedIn){    //IF USER LOGGED IN THEN WE HAVE TO CHECK VERIFY JWT
+  _loadingData = async () => {
+    const isLoggedIn = await AsyncStorage.getItem("user"); //get isloggedinv val
+    if (isLoggedIn) {
+      //IF USER LOGGED IN THEN WE HAVE TO CHECK VERIFY JWT
 
-      console.log('Need to verify jwt');
+      console.log("Need to verify jwt");
 
-      await userService.getJwtVerification().then(async res=>{
-        //console.log(res.data);
-        if(res.data.success){
+      await userService
+        .getJwtVerification()
+        .then(async (res) => {
+          //console.log(res.data);
+          if (res.data.success) {
+            console.log("1111");
+            this.props.navigation.navigate("App"); //navigate
+          } else if (res.data.refreshtoken_expired) {
+            console.log("2222");
+            Alert.alert("Session expired try sign in!", "", [{ text: "Okay" }]);
+            this.props.navigation.navigate("Auth");
+          } else if (res.data.accesstoken_expired) {
+            const response = await userService
+              .renewAccessToken()
+              .then((res) => {
+                if (res.headers.auth_token) {
+                  this.props.navigation.navigate("App"); //navigate
+                }
+              })
+              .catch((error) => {
+                console.log(error);
+                this.props.navigation.navigate("Auth"); //navigate
+              });
+          } else {
+            console.log("3333");
 
-          console.log('1111');
-          this.props.navigation.navigate('App'); //navigate
-        }
+            this.props.navigation.navigate("Auth");
+            alert("Unauthorized access!");
+          }
+        })
+        .catch((error) => {
+          console.log(error.message, "cart navigator");
 
-        else if(res.data.refreshtoken_expired){
-
-          console.log('2222');
-          Alert.alert('Session expired try sign in!','',[{text:'Okay'}]);
-          this.props.navigation.navigate('Auth');
-        }
-
-        else if(res.data.accesstoken_expired){
-         const response =  await userService.renewAccessToken().then(res=>{
-         
-            if(res.headers.auth_token){
-              this.props.navigation.navigate('App'); //navigate
-
-            }
-
-
-          }).catch(error=>{
-            console.log(error);
-          this.props.navigation.navigate('Auth'); //navigate
-
-          });
-          
-        }
-
-        else{console.log('3333');
-          
-          this.props.navigation.navigate('Auth');
-          alert('Unauthorized access!');
-        }
-
-        }).catch(error=>{console.log(error.message, 'cart navigator');
-
-          console.log('4444');
-          this.props.navigation.navigate('Auth');
+          console.log("4444");
+          this.props.navigation.navigate("Auth");
           //alert(error.message);
-
         });
+    } else {
+      //IF NOT LOGGED IN DIRECTLY TO AUTH
+      console.log("Start");
+      this.props.navigation.navigate("Auth");
     }
-
-    else{     //IF NOT LOGGED IN DIRECTLY TO AUTH
-      console.log('Start')
-      this.props.navigation.navigate('Auth');
-    }
-
-   
-  }
-
+  };
 }
 
-export default createAppContainer(createSwitchNavigator(    //creates container
-  {
-  AuthLoading :AuthLoadingScreen,
-  App : MenuNavigator,
-  Auth : SignUpNavigator
-
-},
-{
-  initialRouteName : 'AuthLoading'
-}));
-
+export default createAppContainer(
+  createSwitchNavigator(
+    //creates container
+    {
+      AuthLoading: AuthLoadingScreen,
+      App: MenuNavigator,
+      Auth: SignUpNavigator,
+    },
+    {
+      initialRouteName: "AuthLoading",
+    }
+  )
+);
 
 const styles = StyleSheet.create({
-  container:{
-    flex : 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#1e90ff'
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#1e90ff",
   },
-  
 });
-
-
 
 /*
  

@@ -5,6 +5,7 @@ import {
   StyleSheet,
   FlatList,
   ImageBackground,
+  Dimensions,
 } from "react-native";
 
 import axios from "axios";
@@ -68,7 +69,7 @@ const ToBuyListScreen = (props) => {
             <Ionicons
               name="add-circle-sharp"
               size={28}
-              style={{ marginLeft: 180 }}
+              style={{ marginLeft: 150 }}
               color={colors.secondaryColor}
               onPress={() => {
                 dispatch(ToBuyListActions.addToBuyList(itemData.item)); //calling func used in actions
@@ -95,11 +96,13 @@ const ToBuyListScreen = (props) => {
 
 export default ToBuyListScreen;
 
+const { height, width } = Dimensions.get("window");
+
 //for style
 const styles = StyleSheet.create({
   gridItems: {
     flexDirection: "row",
-    height: 150,
+    height: height * 0.2,
     margin: 10,
     backgroundColor: colors.primaryColor,
     borderRadius: 10,
@@ -108,10 +111,10 @@ const styles = StyleSheet.create({
   },
 
   itemLeft: {
-    flex: 3,
+    flex: width * 0.4,
   },
   itemRight: {
-    flex: 4,
+    flex: width * 0.6,
   },
   itemDetails: {
     fontFamily: "open-sans-bold",
