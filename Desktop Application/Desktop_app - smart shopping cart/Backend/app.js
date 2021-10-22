@@ -9,7 +9,7 @@ const bodyParser = require('body-parser');      //to read jason format data
 
 require('dotenv/config');
 
-  
+
 const authroute = require('./routes/auth');
 const userroute = require('./routes/user');
 
@@ -19,9 +19,9 @@ const itemroute = require('./routes/items');
 const payment = require('./routes/payment');
 
 // cart route
-const cart =require("./routes/cart"); 
+const cart = require("./routes/cart");
 
- 
+
 /*
 mongoose.connect( process.env.db_connection,
     {useNewUrlParser:true},()=>  
@@ -30,14 +30,14 @@ mongoose.connect( process.env.db_connection,
 
 
 //CONNECT TO DB
-mongoose.connect(process.env.db_connection,{
-    useNewUrlParser:true, 
-    useUnifiedTopology:true
+mongoose.connect(process.env.db_connection, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
 });
 
 const db = mongoose.connection;
-db.on("error",console.error.bind(console, "connection pochu"));
-db.once("open",function() {
+db.on("error", console.error.bind(console, "connection pochu"));
+db.once("open", function () {
     console.log("connected db yaaa");
 });
 
@@ -46,7 +46,7 @@ app.use(cors());
 //MIDDLEWARE
 app.use(bodyParser.json());     //every time there is app call this function will execute
 //this should come before route middlewares 
- 
+
 
 //ROUTE MIDDLEWARES
 app.use('/mobileuser', userroute);        //  USER
@@ -55,22 +55,19 @@ app.use('/user', authroute);            //  AUTH
 app.use('/profile', routeProfile);       //profile
 app.use('/items', itemroute);       //profile
 
-  
+
 
 app.use(payment);     // Payment api
 
 app.use(cart);                 // cart connection
 
 //  HOME
-app.get('/', (req,res)=>{
+app.get('/', (req, res) => {
     res.send('hellloooo home');
     console.log('home');
 });
- 
-   
- 
- 
+
 //LISTEN
 const port = process.env.PORT || 8080;
-app.listen(port, ()=>console.log(`listening on ${port}`));
+app.listen(port, () => console.log(`listening on ${port}`));
 
