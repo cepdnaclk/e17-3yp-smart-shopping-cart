@@ -12,6 +12,9 @@ import { createBottomTabNavigator } from "react-navigation-tabs";
 //package for drawer navigation
 import { createDrawerNavigator } from "react-navigation-drawer";
 
+//for colors
+import { colors } from "../assets/colors";
+
 //package for icons
 import { Ionicons, FontAwesome, MaterialIcons } from "@expo/vector-icons";
 
@@ -81,9 +84,9 @@ const CartNavigator = createStackNavigator(
     //default options for navigation
     defaultNavigationOptions: {
       headerStyle: {
-        backgroundColor: "#4169e1",
+        backgroundColor: colors.primaryColor,
       },
-      headerTintColor: "#e0ffff",
+      headerTintColor: colors.secondaryColor,
       headerTitleAlign: "center",
     },
   }
@@ -102,9 +105,9 @@ const AddedListStackNavigator = createStackNavigator(
     //default options for navigation
     defaultNavigationOptions: {
       headerStyle: {
-        backgroundColor: "#4169e1",
+        backgroundColor: colors.primaryColor,
       },
-      headerTintColor: "#e0ffff",
+      headerTintColor: colors.secondaryColor,
       headerTitleAlign: "center",
     },
   }
@@ -141,9 +144,9 @@ const AddedListTabNavigator = createBottomTabNavigator(
   //arg2 fro default options
   {
     tabBarOptions: {
-      activeTintColor: "#4169e1",
+      activeTintColor: colors.primaryColor,
       style: {
-        backgroundColor: "#f0f8ff",
+        backgroundColor: colors.secondaryColor,
         height: 50,
       },
     },
