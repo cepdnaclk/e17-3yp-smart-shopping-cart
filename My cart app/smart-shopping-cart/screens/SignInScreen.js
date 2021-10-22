@@ -21,6 +21,9 @@ import {
   MaterialIcons,
   Feather,
 } from "@expo/vector-icons";
+
+//for colors
+import { colors } from "../assets/colors";
 //import {NavigationContainer} from '@react-navigation/native';
 //import {createStackNavigator} from '@react-navigation/stack';
 
@@ -95,7 +98,7 @@ class SignInScreen extends Component {
             <View style={[{ marginTop: 50, paddingHorizontal: 20 }]}>
               <Button
                 style={{ width: 300 }}
-                color={primary}
+                color={colors.primaryColor}
                 title="Sign In"
                 onPress={this._login}
               />
@@ -104,7 +107,7 @@ class SignInScreen extends Component {
             <View style={[{ marginTop: 50, paddingHorizontal: 20 }]}>
               <Button
                 style={{ width: 300 }}
-                color={primary}
+                color={colors.primaryColor}
                 title="Sign Up"
                 onPress={() => this.props.navigation.navigate("SignUpScreen")}
               />
@@ -160,7 +163,7 @@ const height_logo = height * 0.28;
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: primary, //'#008080',//#1b1b33',//#009387',
+    backgroundColor: colors.primaryColor, //'#008080',//#1b1b33',//#009387',
     flex: 1,
   },
   header: {

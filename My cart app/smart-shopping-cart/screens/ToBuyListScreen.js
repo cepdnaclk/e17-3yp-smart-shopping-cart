@@ -69,7 +69,7 @@ const ToBuyListScreen = (props) => {
             <Ionicons
               name="add-circle-sharp"
               size={28}
-              style={{ marginLeft: 150 }}
+              style={{ marginLeft: 170, marginBottom: 15 }}
               color={colors.secondaryColor}
               onPress={() => {
                 dispatch(ToBuyListActions.addToBuyList(itemData.item)); //calling func used in actions
