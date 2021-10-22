@@ -1,56 +1,50 @@
-const nodemailer = require( 'nodemailer');  //TO SEND MAIL
+const nodemailer = require("nodemailer"); //TO SEND MAIL
 
-const {google} = require('googleapis');
+const { google } = require("googleapis");
 const OAuth2 = google.auth.OAuth2;
 
+const oauth2Client = new google.auth.OAuth2(
+  process.env.CLIENT_ID,
+  process.env.CLIENT_SECRET,
+  "https://developers.google.com/oauthplayground"
+);
 
+oauth2Client.setCredentials({ refresh_token: process.env.REFRESH_TOKEN });
 
+async function sendMail(email, emailtoken) {
+  try {
+    const accessToken = await oauth2Client.getAccessToken();
+    const url = `http://192.168.8.101:80/user/verification/${emailtoken}`;
+    const transport = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        type: " OAuth2",
+        user: process.env.GMAIL_USER,
+        pass: process.env.GMAIL_PASS,
+        clientId: process.env.CLIENT_ID,
+        clientSecret: process.env.CLIENT_SECRET,
+        refreshToken: process.env.REFRESH_TOKEN,
+        accessToken: accessToken,
+      },
+    });
+    const mailOptions = {
+      from: process.env.GMAIL_USER,
+      to: email,
+      subject: "Confirmation Email",
+      html: `Hello, <br> Please Click on the link to verify yor email.<br>
+    <a href="${url}">Click here to verify</a><body>`,
+    };
 
-const oauth2Client =  new google.auth.OAuth2(
-    process.env.CLIENT_ID, 
-    process.env.CLIENT_SECRET,
-    "https://developers.google.com/oauthplayground" );
-
-oauth2Client.setCredentials({refresh_token: process.env.REFRESH_TOKEN});
-
-async function sendMail(email, emailtoken){
-    try {
-        const accessToken = await oauth2Client.getAccessToken()
-        const url=`http://192.168.1.104:3000/user/verification/${emailtoken}`;
-        const transport = nodemailer.createTransport({
-            service:"gmail",
-            auth : {
-                type :" OAuth2",
-                user : process.env.GMAIL_USER,
-                pass : process.env.GMAIL_PASS,
-                clientId : process.env.CLIENT_ID,
-                clientSecret : process.env.CLIENT_SECRET,
-                refreshToken : process.env.REFRESH_TOKEN,
-                accessToken : accessToken
-        }
-    })
-        const mailOptions = {
-            from:process.env.GMAIL_USER,
-            to:email,
-            subject: 'Confirmation Email',
-            html:`Hello, <br> Please Click on the link to verify yor email.<br>
-    <a href="${url}">Click here to verify</a><body>` ,
-           
-    
-        };
-
-        const result = await transport.sendMail(mailOptions);
-        return result;
-       
-    } catch (error) {
-        return error;
-    }
+    const result = await transport.sendMail(mailOptions);
+    return result;
+  } catch (error) {
+    return error;
+  }
 }
 
 module.exports.sendMail = sendMail;
 
- 
- /*
+/*
 const sendMail = async(email, emailToken)=>{
 
     const transporter = nodemailer.createTransport({
