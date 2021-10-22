@@ -23,7 +23,7 @@ import { useDispatch } from "react-redux";
 const ToBuyListScreen = (props) => {
   const [products, getProducts] = useState([]);
 
-  const API_URL = "http://192.168.8.101:3000/products";
+  const API_URL = "http://192.168.8.100:3000/products";
 
   useEffect(() => {
     getAllproducts();
