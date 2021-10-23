@@ -1,26 +1,45 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
   StyleSheet,
   FlatList,
   ImageBackground,
+  Dimensions,
 } from "react-native";
+
+import axios from "axios";
 
 //for colors
 import { colors } from "../assets/colors";
-
-import { useSelector, useDispatch } from "react-redux";
-//importing actions
-import * as ToBuyListActions from "../store/actions/ListReducers";
 //for adder icon
 import { Ionicons } from "@expo/vector-icons";
 
-//func component for ToBuyList screen
+//importing actions
+import * as ToBuyListActions from "../store/actions/ListReducers";
+
+import { useDispatch } from "react-redux";
+
+//func for RecentActivity screen
 const ToBuyListScreen = (props) => {
-  const listOfItemDetails = useSelector(
-    (state) => state.toBuyListReducer.listItems
-  );
+  const [products, getProducts] = useState([]);
+
+  const API_URL = "http://192.168.8.101:3000/products";
+
+  useEffect(() => {
+    getAllproducts();
+  }, []);
+
+  const getAllproducts = () => {
+    axios
+      .get(API_URL)
+      .then((response) => {
+        const allProducts = response.data;
+        getProducts(allProducts);
+      })
+      .catch((error) => response.send({ message: error }));
+  };
+
   const dispatch = useDispatch();
 
   const RenderItem = (itemData) => {
@@ -29,7 +48,10 @@ const ToBuyListScreen = (props) => {
         {/* this is for image */}
 
         <View style={styles.itemLeft}>
-          <ImageBackground source={itemData.item.img} style={styles.imgBg}>
+          <ImageBackground
+            source={{ uri: itemData.item.imgUrl }}
+            style={styles.imgBg}
+          >
             <Text style={styles.title}>{itemData.item.title}</Text>
           </ImageBackground>
         </View>
@@ -47,9 +69,7 @@ const ToBuyListScreen = (props) => {
             <Ionicons
               name="add-circle-sharp"
               size={28}
-              style={{
-                marginLeft: 180,
-              }}
+              style={{ marginLeft: 170, marginBottom: 15 }}
               color={colors.secondaryColor}
               onPress={() => {
                 dispatch(ToBuyListActions.addToBuyList(itemData.item)); //calling func used in actions
@@ -64,7 +84,8 @@ const ToBuyListScreen = (props) => {
   return (
     <View>
       <FlatList
-        data={listOfItemDetails}
+        keyExtractor={(item) => item.productId}
+        data={products}
         renderItem={RenderItem} //hav to add items to final To-Buy List
         numColumns={1}
         style={{ backgroundColor: colors.secondaryColor }}
@@ -75,11 +96,13 @@ const ToBuyListScreen = (props) => {
 
 export default ToBuyListScreen;
 
+const { height, width } = Dimensions.get("window");
+
 //for style
 const styles = StyleSheet.create({
   gridItems: {
     flexDirection: "row",
-    height: 150,
+    height: height * 0.2,
     margin: 10,
     backgroundColor: colors.primaryColor,
     borderRadius: 10,
@@ -88,10 +111,10 @@ const styles = StyleSheet.create({
   },
 
   itemLeft: {
-    flex: 3,
+    flex: width * 0.4,
   },
   itemRight: {
-    flex: 4,
+    flex: width * 0.6,
   },
   itemDetails: {
     fontFamily: "open-sans-bold",

@@ -1,6 +1,9 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableNativeFeedback } from "react-native";
 
+//for colors
+import { colors } from "../assets/colors";
+
 //to display items in homescreen
 const MenuItem = (props) => {
   return (
@@ -35,7 +38,7 @@ const styles = StyleSheet.create({
     padding: 15,
     justifyContent: "flex-end",
     alignItems: "flex-end",
-    backgroundColor: "#4169e1",
+    backgroundColor: colors.primaryColor,
   },
   title: {
     fontFamily: "special-elite",

@@ -1,10 +1,12 @@
 import React from "react";
+import numeral from "numeral";
 import {
   View,
   Text,
   StyleSheet,
   FlatList,
   ImageBackground,
+  Dimensions,
 } from "react-native";
 
 //for colors
@@ -71,7 +73,7 @@ const FinalAddedListScreen = (props) => {
           <Ionicons
             name="md-trash"
             size={22}
-            style={{ marginLeft: 60 }}
+            style={{ marginLeft: 50 }}
             color="red"
             onPress={() => {
               dispatch(
@@ -94,19 +96,15 @@ const FinalAddedListScreen = (props) => {
     <View style={{ flex: 1, backgroundColor: colors.secondaryColor }}>
       <View style={styles.billStyle}>
         <Text style={styles.billText}>
-          Total Amount to be paid is Rs. {FinalTotalAmount.toFixed(2)}
+          Total Amount to be paid is Rs.
+          {numeral(FinalTotalAmount).format("0.00")}
         </Text>
       </View>
       <View>
-        <Text style={styles.listTitle}>Added To-Buy List</Text>
+        <Text style={styles.listTitle}>Added List of Items</Text>
       </View>
 
-      <View
-        style={{
-          margin: 5,
-          flex: 1,
-        }}
-      >
+      <View style={{}}>
         <FlatList
           data={FinalToBuyList}
           keyExtractor={(item) => item.productId}
@@ -120,18 +118,20 @@ const FinalAddedListScreen = (props) => {
 
 export default FinalAddedListScreen;
 
+const { height, width } = Dimensions.get("window");
+
 //styles
 
 const styles = StyleSheet.create({
   billStyle: {
-    height: 50,
+    height: height * 0.05,
     margin: 20,
     backgroundColor: colors.primaryColor,
     borderRadius: 10,
   },
   billText: {
     fontFamily: "open-sans-bold",
-    fontSize: 18,
+    fontSize: width * 0.04,
     color: colors.secondaryColor,
     paddingVertical: 5,
     paddingHorizontal: 10,
@@ -145,8 +145,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 25,
   },
   gridItems: {
-    height: 150,
-    width: 180,
+    height: height * 0.2,
+    width: width * 0.45,
     margin: 10,
     backgroundColor: colors.primaryColor,
     borderRadius: 10,
