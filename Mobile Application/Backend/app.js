@@ -65,6 +65,6 @@ app.get('/', (req,res)=>{
 
  
 //LISTEN
-const port = process.env.PORT || 80; 
-app.listen(80, ()=>console.log(`listening on ${port}`));
+const port = process.env.PORT || 4000; 
+app.listen(port, ()=>console.log(`listening on ${port}`));
 
