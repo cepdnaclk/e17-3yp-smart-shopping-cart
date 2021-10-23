@@ -51,7 +51,7 @@ app.use(cartConnection); // cart connection
 
 //  HOME
 app.get("/", (req, res) => {
-  res.send("hellloooo home");
+  res.send("mobile application backend home load successfully");
   console.log("home");
 });
 
