@@ -1,8 +1,8 @@
 import axios from 'axios';
 import Cookies from 'js-cookie';
+import { hostAddress } from '../constant';
 
-
-const API_URL = 'http://192.168.43.68:5000/';
+const API_URL = hostAddress;
 
 class ItemService{ 
  
