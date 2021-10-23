@@ -30,10 +30,6 @@ const HomeScreen = (props) => {
       />
 
       <MenuItem
-        goTo={() => props.navigation.navigate({ routeName: "NearSuperMarket" })}
-        title="Find Near Super Market"
-      />
-      <MenuItem
         goTo={() => props.navigation.navigate({ routeName: "Payment" })}
         title="Payment"
       />
@@ -63,7 +59,9 @@ HomeScreen.navigationOptions = (navData) => {
         size={34}
         color={colors.secondaryColor}
         style={{ margin: 20 }}
-        onPress={() => {navData.navigation.navigate({ routeName: "Profile" })}} //go to user page
+        onPress={() => {
+          navData.navigation.navigate({ routeName: "Profile" });
+        }} //go to user page
       />
     ),
   };
@@ -76,7 +74,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: colors.secondaryColor,
   },
-  menus:{
-    backgroundColor:'#fff',
+  menus: {
+    backgroundColor: "#fff",
   },
 });
