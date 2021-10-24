@@ -1908,8 +1908,10 @@ section {
 }
 
 .testingsection {
-    margin-top: 50px;
     background-color: gainsboro;
+    width: 70%;
+    margin: 0 auto;
+    margin-top: 50px;
 }
 
 .testingVideo {
