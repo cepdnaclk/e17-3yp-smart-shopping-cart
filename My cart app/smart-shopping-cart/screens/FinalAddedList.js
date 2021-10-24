@@ -11,6 +11,10 @@ import {
 
 //for colors
 import { colors } from "../assets/colors";
+
+//for colors
+import { color } from "../assets/color";
+import { LinearGradient } from "expo-linear-gradient";
 //package for icons
 import { Ionicons, FontAwesome, MaterialIcons } from "@expo/vector-icons";
 
@@ -73,7 +77,7 @@ const FinalAddedListScreen = (props) => {
           <Ionicons
             name="md-trash"
             size={22}
-            style={{ marginLeft: 50 }}
+            style={{ marginLeft: 45 }}
             color="red"
             onPress={() => {
               dispatch(
@@ -92,26 +96,37 @@ const FinalAddedListScreen = (props) => {
   };
 
   return (
-    //To display Total amount
-    <View style={{ flex: 1, backgroundColor: colors.secondaryColor }}>
-      <View style={styles.billStyle}>
-        <Text style={styles.billText}>
-          Total Amount to be paid is Rs.
-          {numeral(FinalTotalAmount).format("0.00")}
-        </Text>
-      </View>
-      <View>
-        <Text style={styles.listTitle}>Added List of Items</Text>
-      </View>
+    <View style={{ flex: 1 }}>
+      {/* //To display Total amount */}
+      <LinearGradient colors={color.primaryColor}>
+        <View>
+          <View style={styles.billStyle}>
+            <Text style={styles.billText}>
+              Total Amount to be paid is Rs.
+              {numeral(FinalTotalAmount).format("0.00")}
+            </Text>
+          </View>
 
-      <View style={{}}>
-        <FlatList
-          data={FinalToBuyList}
-          keyExtractor={(item) => item.productId}
-          renderItem={RenderItem} //hav to add items to final To-Buy List
-          numColumns={2}
-        />
-      </View>
+          <View>
+            <Text style={styles.listTitle}>Added To-Buy Items</Text>
+          </View>
+
+          {/* <View
+            style={{
+              margin: 5,
+              flex: 1,
+            }}
+          ></View> */}
+        </View>
+        <View>
+          <FlatList
+            data={FinalToBuyList}
+            keyExtractor={(item) => item.productId}
+            renderItem={RenderItem} //hav to add items to final To-Buy List
+            numColumns={2}
+          />
+        </View>
+      </LinearGradient>
     </View>
   );
 };
@@ -124,9 +139,9 @@ const { height, width } = Dimensions.get("window");
 
 const styles = StyleSheet.create({
   billStyle: {
-    height: height * 0.05,
+    height: height * 0.06,
     margin: 20,
-    backgroundColor: colors.primaryColor,
+    backgroundColor: color.fontColor,
     borderRadius: 10,
   },
   billText: {
@@ -136,21 +151,20 @@ const styles = StyleSheet.create({
     paddingVertical: 5,
     paddingHorizontal: 10,
     marginVertical: 5,
-    textAlign: "left",
+    textAlign: "center",
   },
   listTitle: {
     fontFamily: "open-sans-bold",
     fontSize: 18,
-    color: colors.primaryColor,
+    color: color.fontColor,
     paddingHorizontal: 25,
   },
   gridItems: {
-    height: height * 0.2,
-    width: width * 0.45,
+    height: 150,
+    width: width * 0.44,
     margin: 10,
-    backgroundColor: colors.primaryColor,
+    backgroundColor: color.fontColor,
     borderRadius: 10,
-    overflow: "hidden",
   },
 
   itemHeader: {

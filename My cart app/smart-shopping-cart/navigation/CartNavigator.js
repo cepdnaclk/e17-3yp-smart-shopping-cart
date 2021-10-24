@@ -14,6 +14,9 @@ import { createDrawerNavigator } from "react-navigation-drawer";
 
 //for colors
 import { colors } from "../assets/colors";
+//for colors
+import { color } from "../assets/color";
+import { LinearGradient } from "expo-linear-gradient";
 
 //package for icons
 import { Ionicons, FontAwesome, MaterialIcons } from "@expo/vector-icons";
@@ -53,7 +56,7 @@ const CartNavigator = createStackNavigator(
     ToBuyList: {
       screen: ToBuyListScreen,
       navigationOptions: {
-        headerTitle: "Add To-Buy List",
+        headerTitle: "To-Buy List",
       },
     },
     //ConnectCart Screen
@@ -83,10 +86,16 @@ const CartNavigator = createStackNavigator(
 
     //default options for navigation
     defaultNavigationOptions: {
+      headerTransparent: true,
+      padding: 10,
       headerStyle: {
-        backgroundColor: colors.primaryColor,
+        backgroundColor: "transparent",
+
+        // position: "absolute",
+
+        elevation: 0,
       },
-      headerTintColor: colors.secondaryColor,
+      headerTintColor: color.fontColor,
       headerTitleAlign: "center",
     },
   }
@@ -104,10 +113,13 @@ const AddedListStackNavigator = createStackNavigator(
     //arg 2
     //default options for navigation
     defaultNavigationOptions: {
+      headerTitle: "",
+      headerTransparent: true,
       headerStyle: {
-        backgroundColor: colors.primaryColor,
+        backgroundColor: "transparent",
+        elevation: 0,
       },
-      headerTintColor: colors.secondaryColor,
+      headerTintColor: color.fontColor,
       headerTitleAlign: "center",
     },
   }
@@ -134,7 +146,7 @@ const AddedListTabNavigator = createBottomTabNavigator(
       screen: AddedListStackNavigator,
       navigationOptions: {
         headerTitle: "Added To-Buy List",
-        tabBarLabel: "Added List", //give name vissible
+        tabBarLabel: "Added Items", //give name vissible
         tabBarIcon: (tabInfo) => (
           <FontAwesome name="list" size={24} color={tabInfo.tintColor} />
         ),
@@ -144,9 +156,13 @@ const AddedListTabNavigator = createBottomTabNavigator(
   //arg2 fro default options
   {
     tabBarOptions: {
-      activeTintColor: colors.primaryColor,
+      activeTintColor: color.fontColor,
       style: {
-        backgroundColor: colors.secondaryColor,
+        backgroundColor: "transparent",
+        borderTopWidth: 0,
+        position: "absolute",
+        padding: 15,
+        elevation: 0,
         height: 50,
       },
     },
@@ -172,8 +188,8 @@ const LogOutNavigator = createBottomTabNavigator(
     AddedList: {
       screen: AddedListStackNavigator,
       navigationOptions: {
-        headerTitle: "Added To-Buy List",
-        tabBarLabel: "Added List", //give name vissible
+        headerTitle: "",
+        tabBarLabel: "Added Items", //give name vissible
         tabBarIcon: (tabInfo) => (
           <FontAwesome name="list" size={24} color={tabInfo.tintColor} />
         ),
@@ -193,17 +209,32 @@ const LogOutNavigator = createBottomTabNavigator(
 );
 
 //func for splash and signup
-const SignUpNavigator = createStackNavigator({
-  SplashScreen: {
-    screen: SplashScreen,
+const SignUpNavigator = createStackNavigator(
+  {
+    SplashScreen: {
+      screen: SplashScreen,
+    },
+    SignInScreen: {
+      screen: SignInScreen,
+    },
+    SignUpScreen: {
+      screen: SignUpScreen,
+    },
   },
-  SignInScreen: {
-    screen: SignInScreen,
-  },
-  SignUpScreen: {
-    screen: SignUpScreen,
-  },
-});
+  {
+    //arg 2
+    //default options for navigation
+    defaultNavigationOptions: {
+      headerShown: false,
+      headerStyle: {
+        backgroundColor: "transparent",
+        elevation: 0,
+      },
+      headerTintColor: colors.secondaryColor,
+      headerTitleAlign: "center",
+    },
+  }
+);
 
 //func for menu drawer navigation
 const MenuNavigator = createDrawerNavigator(
@@ -247,7 +278,7 @@ class AuthLoadingScreen extends Component {
   }
   render() {
     return (
-      <View style={StyleSheet.container}>
+      <View style={styles.container}>
         <ActivityIndicator />
         <StatusBar barStyle="default" />
       </View>
