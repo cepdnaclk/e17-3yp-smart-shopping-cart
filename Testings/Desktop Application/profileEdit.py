@@ -13,7 +13,7 @@ import timeit
 import traceback
 import loginTest
 
-profileDetails = ["piriyaraj s", "navalarmadam", "12345678900", "0776543210"]
+profileDetails = ["piriyaraj sivagnanasutharam", "jaffna", "12345678900", "0776543210"]
 
 
 def profileEdit(driver, profileDetails):
