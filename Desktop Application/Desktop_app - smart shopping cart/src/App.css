@@ -41,7 +41,6 @@
     /* background: rgb(214, 214, 241); */
     display: none;
     width: fit-content;
-    /* border: 3px solid rgb(154, 185, 252); */
     /* padding: 10px; */
     z-index: 100;
     position: fixed;
@@ -49,4 +48,8 @@
     left: 50%;
     transform: translate(-50%, -50%);
     width: 40%;
+}
+
+#imageqr {
+    /* border: 3px solid rgb(154, 185, 252); */
 }

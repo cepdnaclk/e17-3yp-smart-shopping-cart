@@ -11,7 +11,19 @@ export default function Basic_table() {
     useEffect(() => {
         cartRetrive();
     }, [])
+    function printDiv(divName) {
+        var printContents = document.getElementById(divName).innerHTML;
+        var originalContents = document.body.innerHTML;
+       
+
+        document.body.innerHTML = printContents;
+
+        window.print();
+
+        document.body.innerHTML = originalContents;
+        window.location.reload();
     
+    }
 
     // With async/await
     const generateQR = async text => {
@@ -25,11 +37,11 @@ export default function Basic_table() {
                 light: "#fff"
             }
         }
-
+        var showqr = document.getElementById('showqr');
+        showqr.style.display = "block";
         QRCode.toDataURL(text, opts, function (err, url) {
             if (err) throw err
-            var showqr = document.getElementById('showqr');
-            showqr.style.display="block";
+            
             var img = document.getElementById('image')
             img.src = url
         })
@@ -111,8 +123,11 @@ export default function Basic_table() {
                                     Cart Details
                                 </header>
                                 <div id="showqr">
-                                <img id="image" width="80%"src="" alt="" /><br />
-                                    <button className="btn btn-danger" onClick={() =>document.getElementById("showqr").style.display="none" }><i className="icon_close_alt2" /> close</button>
+                                <div id="imageqr">
+                                        <img id="image" width="80%"src="" alt=""/><br />
+                                    </div>
+                                    <button className="btn btn-danger" onClick={() =>{document.getElementById("showqr").style.display="none"} }><i className="icon_close_alt2" /> close</button>
+                                    <button className="btn btn-primary" href="#" onClick={() => { printDiv('imageqr') }}><i className="icon_plus_alt2" /> Print</button>
 
                                 </div>
                                 <button style={{ padding: '10px', margin: '10px', backgroundColor: '#007aff', color: 'white' }} type="button" onClick={() => document.getElementById('addgroup').style.display = 'block'}>Add New cart</button>
