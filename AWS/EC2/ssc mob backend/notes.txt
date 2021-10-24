@@ -1,0 +1,6 @@
+backend ip with port 4000:http://54.147.0.11:4000/
+backend url with port ;; :http://ec2-54-147-0-11.compute-1.amazonaws.com:4000/
+
+backend url with ssl:https://sscmobile.walinking.link/
+
+Reference:https://dev.to/shadid12/how-to-deploy-your-node-js-app-on-aws-with-nginx-and-ssl-3p5l
