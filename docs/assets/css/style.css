@@ -1911,3 +1911,7 @@ section {
     margin-top: 50px;
     background-color: gainsboro;
 }
+
+.testingVideo {
+    width: -webkit-fill-available;
+}
