@@ -11,13 +11,7 @@ export default function Basic_table() {
     useEffect(() => {
         cartRetrive();
     }, [])
-    QRCode.toDataURL('I am a pony!')
-        .then(url => {
-            console.log(url)
-        })
-        .catch(err => {
-            console.error(err)
-        })
+    
 
     // With async/await
     const generateQR = async text => {
@@ -147,7 +141,7 @@ export default function Basic_table() {
                                                     <td>{singleCart.user}</td>
                                                     <td>
                                                         <div className="btn-group">
-                                                            <button className="btn btn-primary" href="#" onClick={() => generateQR(singleCart._id)}><i className="icon_plus_alt2" /> QR</button>
+                                                            <button className="btn btn-primary" href="#" onClick={() => {generateQR(singleCart._id)}}><i className="icon_plus_alt2" /> QR</button>
                                                             {/* <a className="btn btn-success" href="#"><i className="icon_check_alt2" /></a> */}
                                                             <button className="btn btn-danger" onClick={() => deleteCart(singleCart._id)}><i className="icon_close_alt2" /> Delete</button>
                                                         </div>
