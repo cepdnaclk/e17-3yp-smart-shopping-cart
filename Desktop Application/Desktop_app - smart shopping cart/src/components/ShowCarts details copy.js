@@ -40,7 +40,7 @@ export default function Basic_table() {
         const cartData = await fetch(API_URL+"cart/cartDetails");
         const Cart = await cartData.json();
         setCart(Cart);
-        console.log(Cart);
+        // console.log(Cart);
     }
     const deleteCart = async (id) => {
         var option = window.confirm("do you want delete the cart");
