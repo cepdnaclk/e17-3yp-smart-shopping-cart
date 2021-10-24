@@ -199,9 +199,13 @@ const LogOutNavigator = createBottomTabNavigator(
   //arg2 fro default options
   {
     tabBarOptions: {
-      activeTintColor: "#4169e1",
+      activeTintColor: color.fontColor,
       style: {
-        backgroundColor: "#f0f8ff",
+        backgroundColor: "transparent",
+        borderTopWidth: 0,
+        position: "absolute",
+        padding: 15,
+        elevation: 0,
         height: 50,
       },
     },
@@ -254,9 +258,9 @@ const MenuNavigator = createDrawerNavigator(
     LogOut: {
       screen: LogOutNavigator,
     },
-    Registration: {
-      screen: SignUpNavigator,
-    },
+    // Registration: {
+    //   screen: SignUpNavigator,
+    // },
   },
   {
     //arg2
