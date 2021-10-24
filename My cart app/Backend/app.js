@@ -9,7 +9,7 @@ require("dotenv/config");
 
 const authroute = require("./routes/auth");
 const userroute = require("./routes/user");
-const productroute = require("./routes/products");
+const itemsroute = require("./routes/items");
 
 const routeProfile = require("./routes/profile");
 
@@ -42,7 +42,7 @@ app.use(bodyParser.json()); //every time there is app call this function will ex
 //ROUTE MIDDLEWARES
 app.use("/user/all", userroute); //  USER
 app.use("/user", authroute); //  AUTH
-app.use("/products", productroute); //products
+app.use("/items", itemsroute); //products
 
 app.use("/profile", routeProfile); //profile
 

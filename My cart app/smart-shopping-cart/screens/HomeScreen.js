@@ -4,36 +4,34 @@ import { View, Text, StyleSheet, Button } from "react-native";
 //importing required modules and components
 import MenuItem from "../components/MenuItem";
 
-//for colors
 import { colors } from "../assets/colors";
+//for colors
+import { color } from "../assets/color";
+import { LinearGradient } from "expo-linear-gradient";
 
 //package for icons
 import { Ionicons, FontAwesome, MaterialIcons } from "@expo/vector-icons";
-import { Colors } from "react-native/Libraries/NewAppScreen";
 
 //func for Home screen
 const HomeScreen = (props) => {
   return (
-    <View style={styles.screen}>
-      <MenuItem
-        goTo={() => props.navigation.navigate({ routeName: "ToBuyList" })}
-        title="Add To-Buy List"
-      />
-      <MenuItem
-        goTo={() => props.navigation.navigate({ routeName: "ConnectCart" })}
-        title="Connect Cart"
-      />
+    <LinearGradient colors={color.primaryColor} style={styles.screen}>
+      <View>
+        <MenuItem
+          goTo={() => props.navigation.navigate({ routeName: "ToBuyList" })}
+          title="To-Buy List"
+        />
+        <MenuItem
+          goTo={() => props.navigation.navigate({ routeName: "ConnectCart" })}
+          title="Connect Cart"
+        />
 
-      <MenuItem
-        goTo={() => props.navigation.navigate({ routeName: "RecentActivity" })}
-        title="Recent Activity"
-      />
-
-      <MenuItem
-        goTo={() => props.navigation.navigate({ routeName: "Payment" })}
-        title="Payment"
-      />
-    </View>
+        <MenuItem
+          goTo={() => props.navigation.navigate({ routeName: "Payment" })}
+          title="Payment"
+        />
+      </View>
+    </LinearGradient>
   );
 };
 
@@ -43,11 +41,17 @@ export default HomeScreen;
 HomeScreen.navigationOptions = (navData) => {
   return {
     headerTitle: "Home",
+    // headerTransparent: true,
+    //headerShown: false,
+
+    headerStyle: {
+      backgroundColor: "transparent",
+    },
     headerLeft: () => (
       <Ionicons
         name="ios-menu-sharp"
         size={40}
-        color={colors.secondaryColor}
+        color={color.fontColor}
         style={{ margin: 20 }}
         onPress={() => navData.navigation.toggleDrawer()}
       />
@@ -57,7 +61,7 @@ HomeScreen.navigationOptions = (navData) => {
       <FontAwesome
         name="user-circle-o"
         size={34}
-        color={colors.secondaryColor}
+        color={color.fontColor}
         style={{ margin: 20 }}
         onPress={() => {
           navData.navigation.navigate({ routeName: "Profile" });
@@ -70,11 +74,12 @@ HomeScreen.navigationOptions = (navData) => {
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
+    padding: 40,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: colors.secondaryColor,
+    //backgroundColor: color.primaryColor,
   },
   menus: {
-    backgroundColor: "#fff",
+    //backgroundColor: "#fff",
   },
 });
