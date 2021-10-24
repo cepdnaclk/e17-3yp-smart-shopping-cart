@@ -4,6 +4,9 @@ import { BarCodeScanner } from "expo-barcode-scanner";
 import { AsyncStorage } from "react-native";
 import axios from "axios";
 
+import { color } from "../assets/color";
+import { LinearGradient } from "expo-linear-gradient";
+
 import { backendurl } from "../backendurl";
 const API_URL = backendurl;
 
@@ -48,13 +51,18 @@ export default function App(props) {
 
   return (
     <View style={styles.container}>
-      <BarCodeScanner
-        onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
-        style={StyleSheet.absoluteFillObject}
-      />
-      {scanned && (
-        <Button title={"Tap to Scan Again"} onPress={() => setScanned(false)} />
-      )}
+      <LinearGradient colors={color.primaryColor} style={{ flex: 1 }}>
+        <BarCodeScanner
+          onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
+          style={StyleSheet.absoluteFillObject}
+        />
+        {scanned && (
+          <Button
+            title={"Tap to Scan Again"}
+            onPress={() => setScanned(false)}
+          />
+        )}
+      </LinearGradient>
     </View>
   );
 }
@@ -62,7 +70,5 @@ export default function App(props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: "column",
-    justifyContent: "center",
   },
 });

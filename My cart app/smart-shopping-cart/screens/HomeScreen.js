@@ -77,6 +77,7 @@ const styles = StyleSheet.create({
     padding: 40,
     justifyContent: "center",
     alignItems: "center",
+    overflow: "hidden",
     //backgroundColor: color.primaryColor,
   },
   menus: {

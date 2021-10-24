@@ -173,7 +173,7 @@ class SignUpScreen extends Component {
                     colors={color.secondaryColor}
                     style={styles.newButton}
                   >
-                    <Text style={styles.textSign}>SIGN UP</Text>
+                    <Text style={styles.textSign}>Sign Up</Text>
                   </LinearGradient>
                 </TouchableOpacity>
               </View>
@@ -303,12 +303,15 @@ const styles = StyleSheet.create({
     fontSize: 18,
   },
   newButton: {
-    height: 40,
-    width: 320,
     marginTop: 10,
-    borderRadius: 50,
-    paddingHorizontal: 20,
+    height: 45,
+    flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
+    marginBottom: 20,
+    width: 300,
+    borderRadius: 30,
+    backgroundColor: "#00BFFF",
+    alignSelf: "center",
   },
 });
