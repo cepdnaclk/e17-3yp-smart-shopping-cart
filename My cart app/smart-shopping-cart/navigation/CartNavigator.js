@@ -35,7 +35,6 @@ import SignUpScreen from "../screens/SignUpScreen";
 import ProfileScreen from "../screens/ProfileScreen";
 import ItemsInCartScreen from "../screens/ItemsInCartScreen";
 
-
 import LogOutScreen from "../screens/LogOutScreen";
 
 import { NavigationContainer } from "@react-navigation/native";
@@ -260,11 +259,14 @@ const MenuNavigator = createDrawerNavigator(
     AddedList: {
       screen: AddedListStackNavigator,
       navigationOptions: {
-        drawerLabel: "Added To-Buy List",
+        drawerLabel: "Added Items",
       },
     },
     LogOut: {
       screen: LogOutNavigator,
+      navigationOptions: {
+        drawerLabel: "Log Out",
+      },
     },
     // Registration: {
     //   screen: SignUpNavigator,
@@ -273,10 +275,18 @@ const MenuNavigator = createDrawerNavigator(
   {
     //arg2
     contentOptions: {
+      // drawerBackgroundColor: "black",
       labelStyle: {
         fontFamily: "open-sans-bold",
       },
+      activeTintColor:
+        colors.secondaryColor /* font color for active screen label */,
+      activeBackgroundColor: "#68f" /* bg color for active screen */,
+      inactiveTintColor:
+        colors.secondaryColor /* Font color for inactive screens' labels */,
     },
+
+    drawerBackgroundColor: color.fontColor, //bg color of drawer
   }
 );
 
@@ -389,3 +399,10 @@ const login = () => {
 //export default login;
 
 //const login = AsyncStorage.isLoggedIn ? MenuNavigator : SignUpNavigator;
+
+
+
+
+
+
+
