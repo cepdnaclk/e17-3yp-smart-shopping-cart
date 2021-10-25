@@ -274,7 +274,7 @@ export default function Header() {
             <li className="dropdown">
                 <Link to='#' data-toggle="dropdown" className="dropdown-toggle">
                 <span className="profile-ava">
-                    <img alt src="img/avatar1_small.jpg" />
+                <img src="img/profile.png" width="30px" height="30px"/>
                 </span>
                 <span className="username">{name}</span>
                 <b className="caret" />

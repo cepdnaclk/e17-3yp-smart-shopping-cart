@@ -10,7 +10,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 
-import { colors } from "../assets/colors";
+import { color } from "../assets/color";
 import { LinearGradient } from "expo-linear-gradient";
 //package for icons
 import { Ionicons, FontAwesome, MaterialIcons } from "@expo/vector-icons";
@@ -19,29 +19,35 @@ import { Ionicons, FontAwesome, MaterialIcons } from "@expo/vector-icons";
 const SplashScreen = (props) => {
   return (
     <View style={styles.screen}>
-      <View style={styles.header}>
-        <Image source={require("../assets/cartlogo.png")} style={styles.logo} />
-      </View>
-      <View style={styles.footer}>
-        <Text style={styles.title}>Smart Shopping Cart</Text>
-        <View style={styles.button}>
-          <TouchableOpacity
-            onPress={() => props.navigation.navigate("SignInScreen")}
-          >
-            <LinearGradient
-              colors={[colors.primaryColor, "#0016d2"]}
-              style={styles.signIn}
-            >
-              <Text style={styles.textSign}>Get Started</Text>
-              <MaterialIcons
-                name="navigate-next"
-                color={colors.secondaryColor}
-                size={30}
-              />
-            </LinearGradient>
-          </TouchableOpacity>
+      <LinearGradient colors={color.primaryColor} style={{ flex: 3 }}>
+        <View style={styles.header}>
+          <Image
+            source={require("../assets/cartlogo.png")}
+            style={styles.logo}
+          />
         </View>
-      </View>
+
+        <View style={styles.footer}>
+          <Text style={styles.title}>Smart Shopping Cart</Text>
+          <View style={styles.button}>
+            <TouchableOpacity
+              onPress={() => props.navigation.navigate("SignInScreen")}
+            >
+              <LinearGradient
+                colors={color.secondaryColor}
+                style={styles.signIn}
+              >
+                <Text style={styles.textSign}>Get Started</Text>
+                <MaterialIcons
+                  name="navigate-next"
+                  color={color.fontColor}
+                  size={30}
+                />
+              </LinearGradient>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </LinearGradient>
     </View>
   );
 };
@@ -55,7 +61,7 @@ const height_logo = height * 0.3;
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
-    backgroundColor: colors.primaryColor,
+    //backgroundColor: colors.primaryColor,
   },
   header: {
     flex: 2,
@@ -64,7 +70,7 @@ const styles = StyleSheet.create({
   },
   footer: {
     flex: 1,
-    backgroundColor: colors.secondaryColor,
+    //backgroundColor: colors.secondaryColor,
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
     paddingVertical: 50,
@@ -75,7 +81,7 @@ const styles = StyleSheet.create({
     width: 280,
   },
   title: {
-    color: colors.primaryColor,
+    color: color.fontColor,
     fontSize: 30,
     fontWeight: "bold",
   },
@@ -93,7 +99,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   textSign: {
-    color: colors.secondaryColor,
+    color: color.fontColor,
     fontWeight: "bold",
     fontSize: 18,
   },

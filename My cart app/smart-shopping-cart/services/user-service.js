@@ -2,7 +2,9 @@ import axios from "axios";
 // import authHeader from "./auth-header";
 import { AsyncStorage } from "react-native";
 
-const API_URL = "http:192.168.8.100:3000";
+import { backendurl } from "../backendurl";
+
+const API_URL = backendurl;
 
 import api from "./api";
 

@@ -51,10 +51,11 @@ app.use(cartConnection); // cart connection
 
 //  HOME
 app.get("/", (req, res) => {
-  res.send("hellloooo home");
+  res.send("mobile application backend home load successfully");
   console.log("home");
 });
 
 //LISTEN
-const port = process.env.PORT || 80;
-app.listen(80, () => console.log(`listening on ${port}`));
+const port = process.env.PORT || 4000; 
+app.listen(port, ()=>console.log(`listening on ${port}`));
+

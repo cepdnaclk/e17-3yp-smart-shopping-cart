@@ -12,6 +12,12 @@ import { createBottomTabNavigator } from "react-navigation-tabs";
 //package for drawer navigation
 import { createDrawerNavigator } from "react-navigation-drawer";
 
+//for colors
+import { colors } from "../assets/colors";
+//for colors
+import { color } from "../assets/color";
+import { LinearGradient } from "expo-linear-gradient";
+
 //package for icons
 import { Ionicons, FontAwesome, MaterialIcons } from "@expo/vector-icons";
 
@@ -50,7 +56,7 @@ const CartNavigator = createStackNavigator(
     ToBuyList: {
       screen: ToBuyListScreen,
       navigationOptions: {
-        headerTitle: "Add To-Buy List",
+        headerTitle: "To-Buy List",
       },
     },
     //ConnectCart Screen
@@ -80,10 +86,16 @@ const CartNavigator = createStackNavigator(
 
     //default options for navigation
     defaultNavigationOptions: {
+      headerTransparent: true,
+      padding: 10,
       headerStyle: {
-        backgroundColor: "#4169e1",
+        backgroundColor: "transparent",
+
+        // position: "absolute",
+
+        elevation: 0,
       },
-      headerTintColor: "#e0ffff",
+      headerTintColor: color.fontColor,
       headerTitleAlign: "center",
     },
   }
@@ -101,10 +113,13 @@ const AddedListStackNavigator = createStackNavigator(
     //arg 2
     //default options for navigation
     defaultNavigationOptions: {
+      headerTitle: "",
+      headerTransparent: true,
       headerStyle: {
-        backgroundColor: "#4169e1",
+        backgroundColor: "transparent",
+        elevation: 0,
       },
-      headerTintColor: "#e0ffff",
+      headerTintColor: color.fontColor,
       headerTitleAlign: "center",
     },
   }
@@ -131,7 +146,7 @@ const AddedListTabNavigator = createBottomTabNavigator(
       screen: AddedListStackNavigator,
       navigationOptions: {
         headerTitle: "Added To-Buy List",
-        tabBarLabel: "Added List", //give name vissible
+        tabBarLabel: "Added Items", //give name vissible
         tabBarIcon: (tabInfo) => (
           <FontAwesome name="list" size={24} color={tabInfo.tintColor} />
         ),
@@ -141,9 +156,13 @@ const AddedListTabNavigator = createBottomTabNavigator(
   //arg2 fro default options
   {
     tabBarOptions: {
-      activeTintColor: "#4169e1",
+      activeTintColor: color.fontColor,
       style: {
-        backgroundColor: "#f0f8ff",
+        backgroundColor: "transparent",
+        borderTopWidth: 0,
+        position: "absolute",
+        padding: 15,
+        elevation: 0,
         height: 50,
       },
     },
@@ -169,8 +188,8 @@ const LogOutNavigator = createBottomTabNavigator(
     AddedList: {
       screen: AddedListStackNavigator,
       navigationOptions: {
-        headerTitle: "Added To-Buy List",
-        tabBarLabel: "Added List", //give name vissible
+        headerTitle: "",
+        tabBarLabel: "Added Items", //give name vissible
         tabBarIcon: (tabInfo) => (
           <FontAwesome name="list" size={24} color={tabInfo.tintColor} />
         ),
@@ -180,9 +199,13 @@ const LogOutNavigator = createBottomTabNavigator(
   //arg2 fro default options
   {
     tabBarOptions: {
-      activeTintColor: "#4169e1",
+      activeTintColor: color.fontColor,
       style: {
-        backgroundColor: "#f0f8ff",
+        backgroundColor: "transparent",
+        borderTopWidth: 0,
+        position: "absolute",
+        padding: 15,
+        elevation: 0,
         height: 50,
       },
     },
@@ -190,17 +213,32 @@ const LogOutNavigator = createBottomTabNavigator(
 );
 
 //func for splash and signup
-const SignUpNavigator = createStackNavigator({
-  SplashScreen: {
-    screen: SplashScreen,
+const SignUpNavigator = createStackNavigator(
+  {
+    SplashScreen: {
+      screen: SplashScreen,
+    },
+    SignInScreen: {
+      screen: SignInScreen,
+    },
+    SignUpScreen: {
+      screen: SignUpScreen,
+    },
   },
-  SignInScreen: {
-    screen: SignInScreen,
-  },
-  SignUpScreen: {
-    screen: SignUpScreen,
-  },
-});
+  {
+    //arg 2
+    //default options for navigation
+    defaultNavigationOptions: {
+      headerShown: false,
+      headerStyle: {
+        backgroundColor: "transparent",
+        elevation: 0,
+      },
+      headerTintColor: colors.secondaryColor,
+      headerTitleAlign: "center",
+    },
+  }
+);
 
 //func for menu drawer navigation
 const MenuNavigator = createDrawerNavigator(
@@ -220,9 +258,9 @@ const MenuNavigator = createDrawerNavigator(
     LogOut: {
       screen: LogOutNavigator,
     },
-    Registration: {
-      screen: SignUpNavigator,
-    },
+    // Registration: {
+    //   screen: SignUpNavigator,
+    // },
   },
   {
     //arg2
@@ -244,7 +282,7 @@ class AuthLoadingScreen extends Component {
   }
   render() {
     return (
-      <View style={StyleSheet.container}>
+      <View style={styles.container}>
         <ActivityIndicator />
         <StatusBar barStyle="default" />
       </View>

@@ -15,16 +15,22 @@ import { colors } from "../assets/colors";
 //for adder icon
 import { Ionicons } from "@expo/vector-icons";
 
+//for colors
+import { color } from "../assets/color";
+import { LinearGradient } from "expo-linear-gradient";
+
 //importing actions
 import * as ToBuyListActions from "../store/actions/ListReducers";
 
 import { useDispatch } from "react-redux";
 
+import { backendurl } from "../backendurl";
+
 //func for RecentActivity screen
 const ToBuyListScreen = (props) => {
   const [products, getProducts] = useState([]);
 
-  const API_URL = "http://192.168.8.100:3000/products";
+  const API_URL = backendurl + "items";
 
   useEffect(() => {
     getAllproducts();
@@ -44,15 +50,15 @@ const ToBuyListScreen = (props) => {
 
   const RenderItem = (itemData) => {
     return (
-      <View style={styles.gridItems}>
+      <LinearGradient colors={color.secondaryColor} style={styles.gridItems}>
         {/* this is for image */}
 
         <View style={styles.itemLeft}>
           <ImageBackground
-            source={{ uri: itemData.item.imgUrl }}
+            source={{ uri: itemData.item.image }}
             style={styles.imgBg}
           >
-            <Text style={styles.title}>{itemData.item.title}</Text>
+            <Text style={styles.title}>{itemData.item.name}</Text>
           </ImageBackground>
         </View>
 
@@ -60,7 +66,9 @@ const ToBuyListScreen = (props) => {
         <View style={styles.itemRight}>
           <Text style={styles.itemDetails}>{itemData.item.description}</Text>
 
-          <Text style={styles.itemDetails}>Type : {itemData.item.type}</Text>
+          <Text style={styles.itemDetails}>
+            Category : {itemData.item.category}
+          </Text>
 
           <Text style={styles.itemDetails}>
             Price : Rs.{itemData.item.price}
@@ -69,7 +77,7 @@ const ToBuyListScreen = (props) => {
             <Ionicons
               name="add-circle-sharp"
               size={28}
-              style={{ marginLeft: 150 }}
+              style={{ marginLeft: 170, marginBottom: 15 }}
               color={colors.secondaryColor}
               onPress={() => {
                 dispatch(ToBuyListActions.addToBuyList(itemData.item)); //calling func used in actions
@@ -77,20 +85,25 @@ const ToBuyListScreen = (props) => {
             />
           </View>
         </View>
-      </View>
+      </LinearGradient>
     );
   };
 
   return (
-    <View>
-      <FlatList
-        keyExtractor={(item) => item.productId}
-        data={products}
-        renderItem={RenderItem} //hav to add items to final To-Buy List
-        numColumns={1}
-        style={{ backgroundColor: colors.secondaryColor }}
-      ></FlatList>
-    </View>
+    <LinearGradient
+      colors={color.primaryColor}
+      style={{ flex: 1, paddingTop: 50 }}
+    >
+      <View>
+        <FlatList
+          keyExtractor={(item) => item.productId}
+          data={products}
+          renderItem={RenderItem} //hav to add items to final To-Buy List
+          numColumns={1}
+          //style={{ backgroundColor: colors.secondaryColor }}
+        ></FlatList>
+      </View>
+    </LinearGradient>
   );
 };
 
@@ -104,7 +117,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     height: height * 0.2,
     margin: 10,
-    backgroundColor: colors.primaryColor,
+    //backgroundColor: colors.primaryColor,
     borderRadius: 10,
     overflow: "hidden",
     alignContent: "space-between",
