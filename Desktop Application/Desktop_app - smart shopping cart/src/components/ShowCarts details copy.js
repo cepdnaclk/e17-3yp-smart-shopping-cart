@@ -4,19 +4,55 @@ import { Link } from 'react-router-dom'
 import Navigation from './Navigation';
 import Header from './Header';
 import { hostAddress } from '../constant';
+import QRCode from 'qrcode'
 
 const API_URL = hostAddress;
 export default function Basic_table() {
     useEffect(() => {
         cartRetrive();
     }, [])
+    function printDiv(divName) {
+        var printContents = document.getElementById(divName).innerHTML;
+        var originalContents = document.body.innerHTML;
+       
+
+        document.body.innerHTML = printContents;
+
+        window.print();
+
+        document.body.innerHTML = originalContents;
+        window.location.reload();
+    
+    }
+
+    // With async/await
+    const generateQR = async text => {
+        var opts = {
+            errorCorrectionLevel: 'H',
+            type: 'image/jpeg',
+            quality: 1,
+            margin: 2,
+            color: {
+                dark: "#000",
+                light: "#fff"
+            }
+        }
+        var showqr = document.getElementById('showqr');
+        showqr.style.display = "block";
+        QRCode.toDataURL(text, opts, function (err, url) {
+            if (err) throw err
+            
+            var img = document.getElementById('image')
+            img.src = url
+        })
+    }
 
     const [Cart, setCart] = useState([])
     const cartRetrive = async () => {
         const cartData = await fetch(API_URL+"cart/cartDetails");
         const Cart = await cartData.json();
         setCart(Cart);
-        console.log(Cart);
+        // console.log(Cart);
     }
     const deleteCart = async (id) => {
         var option = window.confirm("do you want delete the cart");
@@ -86,6 +122,14 @@ export default function Basic_table() {
                                 <header className="panel-heading">
                                     Cart Details
                                 </header>
+                                <div id="showqr">
+                                <div id="imageqr">
+                                        <img id="image" width="80%"src="" alt=""/><br />
+                                    </div>
+                                    <button className="btn btn-danger" onClick={() =>{document.getElementById("showqr").style.display="none"} }><i className="icon_close_alt2" /> close</button>
+                                    <button className="btn btn-primary" href="#" onClick={() => { printDiv('imageqr') }}><i className="icon_plus_alt2" /> Print</button>
+
+                                </div>
                                 <button style={{ padding: '10px', margin: '10px', backgroundColor: '#007aff', color: 'white' }} type="button" onClick={() => document.getElementById('addgroup').style.display = 'block'}>Add New cart</button>
                                 <div id="addgroup" style={{ display: 'none' }}>
                                     <input style={{ padding: '10px', margin: '10px' }} placeholder="Enter the cart Name" required id="addcartinput" />
@@ -112,9 +156,9 @@ export default function Basic_table() {
                                                     <td>{singleCart.user}</td>
                                                     <td>
                                                         <div className="btn-group">
-                                                            <a className="btn btn-primary" href="#"><i className="icon_plus_alt2" /></a>
-                                                            <a className="btn btn-success" href="#"><i className="icon_check_alt2" /></a>
-                                                            <button className="btn btn-danger" onClick={() => deleteCart(singleCart._id)}><i className="icon_close_alt2" /></button>
+                                                            <button className="btn btn-primary" href="#" onClick={() => {generateQR(singleCart._id)}}><i className="icon_plus_alt2" /> QR</button>
+                                                            {/* <a className="btn btn-success" href="#"><i className="icon_check_alt2" /></a> */}
+                                                            <button className="btn btn-danger" onClick={() => deleteCart(singleCart._id)}><i className="icon_close_alt2" /> Delete</button>
                                                         </div>
                                                     </td>
                                                 </tr>
