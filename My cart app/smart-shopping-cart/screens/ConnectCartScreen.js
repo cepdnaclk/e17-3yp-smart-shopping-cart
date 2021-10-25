@@ -17,16 +17,17 @@ export default function App(props) {
   // handel scanned value
   async function findCartName(id) {
     // alert(id);
-    const user = await AsyncStorage.getItem("user");
-    axios
-      .get(API_URL + "cart/" + id, { headers: { auth_token: user } })
-      .then((Response) => {
+    const user = await AsyncStorage.getItem('user');
+    axios.get(API_URL + 'cart/' + id, { headers: { 'auth_token': user } })
+      .then(Response => {
         alert("connected with cart " + Response.data);
-        props.navigation.navigate("AddedList");
+        //props.navigation.navigate("AddedList");
+        props.navigation.navigate({ routeName: "ItemsInCart" })
       })
-      .catch((error) => {
+      .catch(error => {
         console.log(error);
-      });
+      })
+
   }
 
   useEffect(() => {
