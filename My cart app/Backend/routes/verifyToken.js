@@ -6,7 +6,7 @@ const UserModel = require('../models/UserModel');
 
 module.exports = async function isAuth(req, res, next) {
     //exports.isAuth = async (req, res, next)=>{
-    console.log('hiii');
+    //console.log('hiii');
     //IS TOKEN EXIST
     const token = req.header('auth_token');
 
