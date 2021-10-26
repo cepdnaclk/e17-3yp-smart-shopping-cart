@@ -242,7 +242,7 @@ const styles = StyleSheet.create({
   },
   text_footer: {
     color: color.fontColor,
-    fontSize: 18,
+    fontSize: 20,
   },
   action: {
     flexDirection: "row",
@@ -279,6 +279,7 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingLeft: 10,
     color: "#05375a",
+    fontSize: 20,
   },
   button: {
     alignItems: "center",

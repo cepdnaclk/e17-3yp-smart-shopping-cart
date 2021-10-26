@@ -227,7 +227,7 @@ const styles = StyleSheet.create({
   },
   text_footer: {
     color: color.fontColor,
-    fontSize: 18,
+    fontSize: 20,
   },
   action: {
     flexDirection: "row",
@@ -240,6 +240,7 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingLeft: 10,
     color: color.fontColor,
+    fontSize: 20,
   },
   button: {
     alignItems: "center",
@@ -264,6 +265,7 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingLeft: 10,
     color: color.fontColor,
+    fontSize: 20,
   },
   button: {
     alignItems: "center",
@@ -280,7 +282,7 @@ const styles = StyleSheet.create({
   textSign: {
     color: color.fontColor,
     fontWeight: "bold",
-    fontSize: 18,
+    fontSize: 20,
   },
   newButton: {
     marginTop: 10,

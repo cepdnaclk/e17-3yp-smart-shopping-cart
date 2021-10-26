@@ -8,8 +8,10 @@ import {
   ImageBackground,
   Dimensions,
   AsyncStorage,
+  TouchableOpacity,
 } from "react-native";
 
+import MenuItem from "../components/MenuItem";
 //for colors
 import { colors } from "../assets/colors";
 
@@ -109,6 +111,16 @@ const ItemsInCartScreen = (props) => {
             );
           })}
         </View>
+        <TouchableOpacity
+          onPress={() => props.navigation.navigate({ routeName: "Payment" })}
+        >
+          <LinearGradient
+            colors={color.secondaryColor}
+            style={styles.buttonContainer}
+          >
+            <Text style={styles.textSign}>Pay</Text>
+          </LinearGradient>
+        </TouchableOpacity>
       </LinearGradient>
     </View>
   );
@@ -156,8 +168,9 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   billStyle: {
-    height: height * 0.1,
+    height: height * 0.08,
     margin: 20,
+    alignItems: "center",
     backgroundColor: color.fontColor,
     borderRadius: 10,
   },
@@ -175,5 +188,23 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: colors.primaryColor,
     paddingHorizontal: 25,
+  },
+  buttonContainer: {
+    marginTop: 10,
+    height: 45,
+    //flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    marginLeft: 80,
+    marginTop: 490,
+    alignContent: "center",
+    width: 200,
+    borderRadius: 30,
+    // backgroundColor: "#00BFFF",
+  },
+  textSign: {
+    color: color.fontColor,
+    fontWeight: "bold",
+    fontSize: 18,
   },
 });
