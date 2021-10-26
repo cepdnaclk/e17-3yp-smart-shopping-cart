@@ -58,7 +58,7 @@ const ToBuyListScreen = (props) => {
             source={{ uri: itemData.item.image }}
             style={styles.imgBg}
           >
-            <Text style={styles.title}>{itemData.item.title}</Text>
+            <Text style={styles.title}>{itemData.item.name}</Text>
           </ImageBackground>
         </View>
 
@@ -66,7 +66,9 @@ const ToBuyListScreen = (props) => {
         <View style={styles.itemRight}>
           <Text style={styles.itemDetails}>{itemData.item.description}</Text>
 
-          <Text style={styles.itemDetails}>Type : {itemData.item.type}</Text>
+          <Text style={styles.itemDetails}>
+            Category : {itemData.item.category}
+          </Text>
 
           <Text style={styles.itemDetails}>
             Price : Rs.{itemData.item.price}

@@ -55,42 +55,44 @@ const FinalAddedListScreen = (props) => {
   //func ro render items
   const RenderItem = (itemData) => {
     return (
-      <View style={styles.gridItems}>
-        {/* this is for image */}
+      <View>
+        <LinearGradient style={styles.gridItems} colors={color.secondaryColor}>
+          {/* this is for image */}
 
-        <View style={styles.itemHeader}>
-          <ImageBackground
-            source={{ uri: itemData.item.productImg }}
-            style={styles.imgBg}
-          >
-            <Text style={styles.title} numberOfLines={2}>
-              {itemData.item.productTitle}
+          <View style={styles.itemHeader}>
+            <ImageBackground
+              source={{ uri: itemData.item.productImg }}
+              style={styles.imgBg}
+            >
+              <Text style={styles.title} numberOfLines={2}>
+                {itemData.item.name}
+              </Text>
+            </ImageBackground>
+          </View>
+
+          {/* diplay price and add icon */}
+          <View style={{ flexDirection: "row", alignContent: "space-between" }}>
+            <Text style={styles.itemDetails}>
+              Quantity: {itemData.item.quantity}
             </Text>
-          </ImageBackground>
-        </View>
-
-        {/* diplay price and add icon */}
-        <View style={{ flexDirection: "row", alignContent: "space-between" }}>
-          <Text style={styles.itemDetails}>
-            Quantity: {itemData.item.quantity}
-          </Text>
-          <Ionicons
-            name="md-trash"
-            size={22}
-            style={{ marginLeft: 45 }}
-            color="red"
-            onPress={() => {
-              dispatch(
-                ToBuyListActions.removeFromList(itemData.item.productId)
-              );
-            }} //hav to delete items to final To-Buy List
-          />
-        </View>
-        <View>
-          <Text style={{ ...styles.itemDetails }}>
-            Price : Rs.{itemData.item.productPrice}
-          </Text>
-        </View>
+            <Ionicons
+              name="md-trash"
+              size={22}
+              style={{ marginLeft: 45 }}
+              color="red"
+              onPress={() => {
+                dispatch(
+                  ToBuyListActions.removeFromList(itemData.item.productId)
+                );
+              }} //hav to delete items to final To-Buy List
+            />
+          </View>
+          <View>
+            <Text style={{ ...styles.itemDetails }}>
+              Price : Rs.{itemData.item.productPrice}
+            </Text>
+          </View>
+        </LinearGradient>
       </View>
     );
   };
@@ -98,7 +100,7 @@ const FinalAddedListScreen = (props) => {
   return (
     <View style={{ flex: 1 }}>
       {/* //To display Total amount */}
-      <LinearGradient colors={color.primaryColor}>
+      <LinearGradient colors={color.primaryColor} style={{ flex: 4 }}>
         <View>
           <View style={styles.billStyle}>
             <Text style={styles.billText}>
@@ -163,7 +165,7 @@ const styles = StyleSheet.create({
     height: 150,
     width: width * 0.44,
     margin: 10,
-    backgroundColor: color.fontColor,
+    // backgroundColor: color.fontColor,
     borderRadius: 10,
   },
 

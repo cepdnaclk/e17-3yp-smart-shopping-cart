@@ -27,8 +27,10 @@ const HomeScreen = (props) => {
         />
 
         <MenuItem
-          goTo={() => props.navigation.navigate({ routeName: "Payment" })}
-          title="Payment"
+          goTo={() =>
+            props.navigation.navigate({ routeName: "RecentActivity" })
+          }
+          title="Recent Activity"
         />
       </View>
     </LinearGradient>
@@ -77,6 +79,7 @@ const styles = StyleSheet.create({
     padding: 40,
     justifyContent: "center",
     alignItems: "center",
+    overflow: "hidden",
     //backgroundColor: color.primaryColor,
   },
   menus: {

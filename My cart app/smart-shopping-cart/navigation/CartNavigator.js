@@ -34,6 +34,10 @@ import SignInScreen from "../screens/SignInScreen";
 import SignUpScreen from "../screens/SignUpScreen";
 import ProfileScreen from "../screens/ProfileScreen";
 
+import ForgotPassword from "../screens/ForgotPassword";
+
+import ItemsInCartScreen from "../screens/ItemsInCartScreen";
+
 import LogOutScreen from "../screens/LogOutScreen";
 
 import { NavigationContainer } from "@react-navigation/native";
@@ -78,6 +82,12 @@ const CartNavigator = createStackNavigator(
       screen: PaymentScreen,
       navigationOptions: {
         headerTitle: "Payment",
+      },
+    },
+    ItemsInCart: {
+      screen: ItemsInCartScreen,
+      navigationOptions: {
+        headerTitle: "Cart connected",
       },
     },
   },
@@ -169,44 +179,48 @@ const AddedListTabNavigator = createBottomTabNavigator(
   }
 );
 
-const LogOutNavigator = createBottomTabNavigator(
-  //arg1
-  {
-    LastScreen: {
-      screen: LogOutScreen, //adding stack navigation here
-      navigationOptions: {
-        tabBarLabel: "Recent Screen", //give name vissible
-        tabBarIcon: (tabInfo) => (
-          <MaterialIcons
-            name="add-to-home-screen"
-            size={24}
-            color={tabInfo.tintColor}
-          />
-        ),
-      },
-    },
-    AddedList: {
-      screen: AddedListStackNavigator,
-      navigationOptions: {
-        headerTitle: "",
-        tabBarLabel: "Added Items", //give name vissible
-        tabBarIcon: (tabInfo) => (
-          <FontAwesome name="list" size={24} color={tabInfo.tintColor} />
-        ),
-      },
-    },
-  },
-  //arg2 fro default options
-  {
-    tabBarOptions: {
-      activeTintColor: "#4169e1",
-      style: {
-        backgroundColor: "#f0f8ff",
-        height: 50,
-      },
-    },
-  }
-);
+// const LogOutNavigator = createBottomTabNavigator(
+//   //arg1
+//   {
+//     LastScreen: {
+//       screen: LogOutScreen, //adding stack navigation here
+//       navigationOptions: {
+//         tabBarLabel: "Recent Screen", //give name vissible
+//         tabBarIcon: (tabInfo) => (
+//           <MaterialIcons
+//             name="add-to-home-screen"
+//             size={24}
+//             color={tabInfo.tintColor}
+//           />
+//         ),
+//       },
+//     },
+//     AddedList: {
+//       screen: AddedListStackNavigator,
+//       navigationOptions: {
+//         headerTitle: "",
+//         tabBarLabel: "Added Items", //give name vissible
+//         tabBarIcon: (tabInfo) => (
+//           <FontAwesome name="list" size={24} color={tabInfo.tintColor} />
+//         ),
+//       },
+//     },
+//   },
+//   //arg2 fro default options
+//   {
+//     tabBarOptions: {
+//       activeTintColor: color.fontColor,
+//       style: {
+//         backgroundColor: "transparent",
+//         borderTopWidth: 0,
+//         position: "absolute",
+//         padding: 15,
+//         elevation: 0,
+//         height: 50,
+//       },
+//     },
+//   }
+// );
 
 //func for splash and signup
 const SignUpNavigator = createStackNavigator(
@@ -219,6 +233,9 @@ const SignUpNavigator = createStackNavigator(
     },
     SignUpScreen: {
       screen: SignUpScreen,
+    },
+    ForgotPassword: {
+      screen: ForgotPassword,
     },
   },
   {
@@ -248,23 +265,34 @@ const MenuNavigator = createDrawerNavigator(
     AddedList: {
       screen: AddedListStackNavigator,
       navigationOptions: {
-        drawerLabel: "Added To-Buy List",
+        drawerLabel: "Added Items",
       },
     },
     LogOut: {
-      screen: LogOutNavigator,
+      screen: LogOutScreen,
+      navigationOptions: {
+        drawerLabel: "Log Out",
+      },
     },
-    Registration: {
-      screen: SignUpNavigator,
-    },
+    // Registration: {
+    //   screen: SignUpNavigator,
+    // },
   },
   {
     //arg2
     contentOptions: {
+      // drawerBackgroundColor: "black",
       labelStyle: {
         fontFamily: "open-sans-bold",
       },
+      activeTintColor:
+        colors.secondaryColor /* font color for active screen label */,
+      activeBackgroundColor: "#68f" /* bg color for active screen */,
+      inactiveTintColor:
+        colors.secondaryColor /* Font color for inactive screens' labels */,
     },
+
+    drawerBackgroundColor: color.fontColor, //bg color of drawer
   }
 );
 
@@ -361,7 +389,7 @@ const styles = StyleSheet.create({
 });
 
 /*
- 
+
 const login = () => {
   const {isLoggedIn} = useLogin();
   return (<CredentialContext>

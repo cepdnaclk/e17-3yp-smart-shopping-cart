@@ -12,6 +12,7 @@ import {
   TextInput,
   Platform,
   TouchableWithoutFeedback,
+  Touchable,
   ScrollView,
   AsyncStorage,
 } from "react-native";
@@ -24,6 +25,8 @@ import {
 
 //for colors
 import { colors } from "../assets/colors";
+
+import ForgotPassword from "./ForgotPassword";
 
 import { color } from "../assets/color";
 import { LinearGradient } from "expo-linear-gradient";
@@ -99,6 +102,32 @@ class SignInScreen extends Component {
                   value={this.state.password}
                 ></TextInput>
               </View>
+              {/* forgotPassword
+              <View>
+                <TouchableOpacity
+                  onPress={() =>
+                    this.props.navigation.navigate("ForgotPassword")
+                  }
+                >
+                  <View
+                    style={{
+                      justifyContent: "center",
+                      alignItems: "flex-end",
+                      marginRght: 10,
+                    }}
+                  >
+                    <Text
+                      style={{
+                        color: colors.secondaryColor,
+                        fontWeight: "bold",
+                        fontSize: 16,
+                      }}
+                    >
+                      Forgot Password
+                    </Text>
+                  </View>
+                </TouchableOpacity>
+              </View> */}
               <View style={[{ marginTop: 25, paddingHorizontal: 20 }]}>
                 {/* <Button
                   style={{ width: 300 }}
@@ -111,7 +140,7 @@ class SignInScreen extends Component {
                     colors={color.secondaryColor}
                     style={styles.newButton}
                   >
-                    <Text style={styles.textSign}>SIGN IN</Text>
+                    <Text style={styles.textSign}>Sign In</Text>
                   </LinearGradient>
                 </TouchableOpacity>
 
@@ -122,7 +151,7 @@ class SignInScreen extends Component {
                     colors={color.secondaryColor}
                     style={styles.newButton}
                   >
-                    <Text style={styles.textSign}>SIGN UP</Text>
+                    <Text style={styles.textSign}>Sign Up</Text>
                   </LinearGradient>
                 </TouchableOpacity>
               </View>
@@ -198,7 +227,7 @@ const styles = StyleSheet.create({
   },
   text_footer: {
     color: color.fontColor,
-    fontSize: 18,
+    fontSize: 20,
   },
   action: {
     flexDirection: "row",
@@ -211,6 +240,7 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingLeft: 10,
     color: color.fontColor,
+    fontSize: 20,
   },
   button: {
     alignItems: "center",
@@ -235,6 +265,7 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingLeft: 10,
     color: color.fontColor,
+    fontSize: 20,
   },
   button: {
     alignItems: "center",
@@ -251,15 +282,18 @@ const styles = StyleSheet.create({
   textSign: {
     color: color.fontColor,
     fontWeight: "bold",
-    fontSize: 18,
+    fontSize: 20,
   },
   newButton: {
-    height: 40,
-    width: 320,
     marginTop: 10,
-    borderRadius: 50,
-    paddingHorizontal: 20,
+    height: 45,
+    flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
+    marginBottom: 20,
+    width: 300,
+    borderRadius: 30,
+    backgroundColor: "#00BFFF",
+    alignSelf: "center",
   },
 });
