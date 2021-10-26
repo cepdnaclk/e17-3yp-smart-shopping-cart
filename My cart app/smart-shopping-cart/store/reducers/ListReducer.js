@@ -22,7 +22,7 @@ const listReducer = (state = initialState, action) => {
       const addedProduct = action.product;
       const productPrice = parseInt(addedProduct.price);
       const productTitle = addedProduct.title;
-      const productImg = addedProduct.imgUrl;
+      const productImg = addedProduct.image;
 
       let updatedOrNewFinalItem;
 

@@ -3,7 +3,9 @@ import TokenService from "./token-servics";
 import { AsyncStorage } from "react-native";
 import { or } from "react-native-reanimated";
 
-const API_URL = "http://192.168.8.101:3000/";
+import { backendurl } from "../backendurl";
+
+const API_URL = backendurl;
 
 const instance = axios.create({
   baseURL: API_URL,
