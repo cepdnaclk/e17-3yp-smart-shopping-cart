@@ -33,7 +33,11 @@ import SplashScreen from "../screens/SplashScreen";
 import SignInScreen from "../screens/SignInScreen";
 import SignUpScreen from "../screens/SignUpScreen";
 import ProfileScreen from "../screens/ProfileScreen";
+
 import ForgotPassword from "../screens/ForgotPassword";
+
+import ItemsInCartScreen from "../screens/ItemsInCartScreen";
+
 import LogOutScreen from "../screens/LogOutScreen";
 
 import { NavigationContainer } from "@react-navigation/native";
@@ -78,6 +82,12 @@ const CartNavigator = createStackNavigator(
       screen: PaymentScreen,
       navigationOptions: {
         headerTitle: "Payment",
+      },
+    },
+    ItemsInCart: {
+      screen: ItemsInCartScreen,
+      navigationOptions: {
+        headerTitle: "Cart connected",
       },
     },
   },
@@ -379,7 +389,7 @@ const styles = StyleSheet.create({
 });
 
 /*
- 
+
 const login = () => {
   const {isLoggedIn} = useLogin();
   return (<CredentialContext>
