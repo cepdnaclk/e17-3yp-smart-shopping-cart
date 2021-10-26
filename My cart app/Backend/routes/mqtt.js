@@ -3,6 +3,7 @@
 var awsIot = require("aws-iot-device-sdk");
 const itemModel = require("../models/ItemModel");
 const UserModel = require("../models/UserModel");
+const CartModel = require('../models/CartModel');
 
 // var aws = require('aws-sdk');
 // aws.config.update({
@@ -44,51 +45,57 @@ const UserModel = require("../models/UserModel");
 // documentation.
 //
 function mqtt(userid) {
-  var device = awsIot.thingShadow({
-    //device({
-    keyPath: "./private.pem.key",
-    certPath: "./certificate.pem.crt",
-    caPath: "./AmazonRootCA1.pem",
-    clientId: "cart-admin",
-    host: "a25thj60akgd3r-ats.iot.us-east-1.amazonaws.com",
-  });
-  device.on("connect", function () {
-    console.log("connect");
-    device.subscribe("cart/+");
-    device.publish("topic_2", JSON.stringify({ test_data_kavi: 1 }));
-  });
 
-  device.on("message", async function (topic, payload) {
-    console.log("message", topic, JSON.parse(payload.toString()));
+  var device = awsIot.thingShadow({//device({
+    keyPath: './private.pem.key',
+    certPath: './certificate.pem.crt',
+    caPath: './AmazonRootCA1.pem',
+    clientId: 'cart-admin',
+    host: 'a25thj60akgd3r-ats.iot.us-east-1.amazonaws.com',
 
-    let data = JSON.parse(payload.toString());
-    console.log(data);
-    if ("barcodeid" in data) {
-      const found = await itemModel.findOne({ barcodeid: data.barcodeid });
-      // console.log(found);
-      device.publish(
-        "cart/weight/" + data.cartid,
-        JSON.stringify({
-          userId: id,
-          itemId: found._id,
-          weight: found.weight,
-          canDirectlyAdd: found.directadd,
-        })
+  });
+  device
+    .on('connect', function () {
+      console.log('connect');
+      device.subscribe('cart/add/+');
+      device.subscribe('cart/remove/+');
+
+      device.subscribe('cart/updatecount/+');
+
+      device.subscribe('cart/newitem/+');
+
+      device.publish('topic_2', JSON.stringify({ test_data_kavi: 1 }));
+    });
+
+  device
+    .on('message', async function (topic, payload) {
+      console.log('message', topic, JSON.parse(payload.toString())
       );
-    }
-    if ("state" in data) {
-      if (data.state === "add") {
-        console.log("yes", data.userid);
+      const topic_array = topic.split('/');
+      console.log(topic_array)
+      const state = topic_array[1];
+      const cartid = topic_array[2];
+      let data = JSON.parse(payload.toString());
+      console.log(data);
 
-        const newValues = {
-          "current_update.itemlist": { item: data.itemid, count: data.count },
-        };
+
+
+      if (state === 'newitem') {
+
+        const found = await itemModel.findOne({ barcodeid: data.barcodeid });
+        device.publish("cart/weight/" + cartid, JSON.stringify({ userId: id, itemId: found._id, weight: found.weight, canDirectlyAdd: found.directadd }));
+      }
+
+      if (state === 'add') {
+        console.log('add', data.userid);
+
+        const newValues = { 'current_update.itemlist': { item: data.itemid, count: data.count } }
 
         try {
-          const x = await UserModel.updateOne(
-            { _id: data.userid },
-            { $addToSet: newValues }
-          );
+
+          const x = await UserModel.updateOne({ _id: data.userid }, { $addToSet: newValues });
+
+
         } catch (error) {
           console.log(error);
         }
@@ -96,40 +103,38 @@ function mqtt(userid) {
         //console.log(x, found, userid);
       }
 
-      if (data.state === "remove") {
-        console.log("yes", data.userid);
+      if (state === 'remove') {
+        console.log('remove', data.userid);
 
-        const newValues = { "current_update.itemlist": { item: data.itemid } };
+        const newValues = { 'current_update.itemlist': { item: data.itemid } }
 
-        const x = await UserModel.updateOne(
-          { _id: data.userid },
-          { $pull: newValues }
-        );
+        const x = await UserModel.updateOne({ _id: data.userid }, { $pull: newValues });
 
         console.log(x);
       }
 
-      if (data.state === "updatecount") {
-        const newValues = { "current_update.itemlist.$.count": data.count };
+      if (state === 'updatecount') {
 
-        const x = await UserModel.updateOne(
-          { _id: data.userid, "current_update.itemlist.item": data.itemid },
-          { $set: newValues }
-        );
+
+        const newValues = { 'current_update.itemlist.$.count': data.count }
+
+        const x = await UserModel.updateOne({ _id: data.userid, 'current_update.itemlist.item': data.itemid }, { $set: newValues });
 
         console.log(x);
       }
-    }
-  });
+
+    });
+
+
 }
 module.exports = mqtt;
 
 // {
-//     "state": "add",
-//     "userid" :"6171715f8356e033f113e7e8", 6171ba553dacfe32689c043b, 616dfaf4372bba97e070ecf1
-//     "itemid": "6174eac0655648f669a5ea90",
-//     "count" : 5
-//     }
+//   "state": "add",
+//   "userid" :"6171715f8356e033f113e7e8", 
+//   "itemid": "6177ea336cc7fd77a01bc6e6", 616dfaf4372bba97e070ecf1
+//   "count" : 1
+//   }
 
 // {
 //     "barcodeeid" : "................",

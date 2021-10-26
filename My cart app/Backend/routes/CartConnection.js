@@ -22,6 +22,9 @@ route.get("/cart/:cardId", verifyToken, async (req, res) => {
 
   try {
     await UserModel.updateOne({ _id: found._id }, { $set: newValues });
+    const x = await CartSet.updateOne({ _id: req.params.cardId }, { $set: { status: 'unavailable' } });
+
+    console.log(x);
 
     res.send(cart.name).status(200);
     let v = mqtt(found._id); //req.params.cardId);
