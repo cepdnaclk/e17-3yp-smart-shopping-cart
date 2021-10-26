@@ -27,8 +27,10 @@ const HomeScreen = (props) => {
         />
 
         <MenuItem
-          goTo={() => props.navigation.navigate({ routeName: "Payment" })}
-          title="Payment"
+          goTo={() =>
+            props.navigation.navigate({ routeName: "RecentActivity" })
+          }
+          title="Recent Activity"
         />
       </View>
     </LinearGradient>

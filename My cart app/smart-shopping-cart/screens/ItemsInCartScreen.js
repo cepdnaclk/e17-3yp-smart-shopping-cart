@@ -12,6 +12,11 @@ import {
 
 //for colors
 import { colors } from "../assets/colors";
+
+//for colors
+import { color } from "../assets/color";
+import { LinearGradient } from "expo-linear-gradient";
+
 //package for icons
 import { Ionicons, FontAwesome, MaterialIcons } from "@expo/vector-icons";
 
@@ -71,34 +76,40 @@ const ItemsInCartScreen = (props) => {
   };
 
   return (
-    <View>
-      <View style={[styles.billStyle, { marginTop: 60 }]}>
-        <Text style={styles.billText}>
-          Cart : {cart}
-          {"\n"}
-          Total Amount to be paid is Rs.
-          {numeral(total).format("0.00")}
-        </Text>
-      </View>
-      <View>
-        {itemData.map(({ id, name, price, count }) => {
-          //console.log(item, count);
-          return (
-            <View style={styles.gridItems}>
-              <View style={styles.itemLeft}>
-                <Text style={styles.title}>{name}</Text>
+    <View style={{ flex: 1 }}>
+      <LinearGradient colors={color.primaryColor} style={{ flex: 4 }}>
+        <View style={[styles.billStyle, { marginTop: 60 }]}>
+          <Text style={styles.billText}>
+            Cart : {cart}
+            {"\n"}
+            Total Amount to be paid is Rs {numeral(total).format("0.00")}
+          </Text>
+        </View>
+        <View>
+          {itemData.map(({ id, name, price, count }) => {
+            //console.log(item, count);
+            return (
+              <View>
+                <LinearGradient
+                  style={styles.gridItems}
+                  colors={color.secondaryColor}
+                >
+                  <View style={styles.itemLeft}>
+                    <Text style={styles.title}>{name}</Text>
+                  </View>
+                  <View style={styles.itemRight}>
+                    <Text style={styles.itemDetails}>Quantity : {count}</Text>
+                    <Text style={styles.itemDetails}>Price : Rs. {price}</Text>
+                    <Text style={styles.itemDetails}>
+                      Total : Rs. {price * count}
+                    </Text>
+                  </View>
+                </LinearGradient>
               </View>
-              <View style={styles.itemRight}>
-                <Text style={styles.itemDetails}>Quantity : {count}</Text>
-                <Text style={styles.itemDetails}>Price : Rs. {price}</Text>
-                <Text style={styles.itemDetails}>
-                  Total : Rs. {price * count}
-                </Text>
-              </View>
-            </View>
-          );
-        })}
-      </View>
+            );
+          })}
+        </View>
+      </LinearGradient>
     </View>
   );
 };
@@ -113,7 +124,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     height: height * 0.15,
     margin: 10,
-    backgroundColor: colors.primaryColor,
+    //backgroundColor: colors.primaryColor,
     borderRadius: 10,
     overflow: "hidden",
     alignContent: "space-between",
@@ -147,7 +158,7 @@ const styles = StyleSheet.create({
   billStyle: {
     height: height * 0.1,
     margin: 20,
-    backgroundColor: colors.primaryColor,
+    backgroundColor: color.fontColor,
     borderRadius: 10,
   },
   billText: {
