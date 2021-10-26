@@ -20,14 +20,14 @@ const multerS3 = require('multer-s3');
 
 router.use(expressFileUpload())
 
-router.get('/', verifyToken, async (req, res) => {
+router.get('/', async (req, res) => {
     const found = await employeeModel.findById(req.user);
 
     return res.send({ name: found.name, email: found.email }).status(200);
 });
 
 
-router.put('/updatePassword', verifyToken, async (req, res) => {
+router.put('/updatePassword', async (req, res) => {
 
     //CHECK USER FROM COLLECTION  
     const found = await employeeModel.findById(req.user);
@@ -53,7 +53,7 @@ router.put('/updatePassword', verifyToken, async (req, res) => {
     res.send({ 'success': true }).status(200);
 });
 
-router.put('/update', verifyToken, async (req, res) => {       //GET ALL ITEMS
+router.put('/update', async (req, res) => {       //GET ALL ITEMS
 
     console.log('update', req.body);
     //CHECK USER FROM COLLECTION
@@ -90,7 +90,7 @@ router.put('/update', verifyToken, async (req, res) => {       //GET ALL ITEMS
     }
 });
 
-router.get('/get', verifyToken, async (req, res) => {
+router.get('/get', async (req, res) => {
 
     const user = await employeeModel.findById(req.user);
 
@@ -123,7 +123,7 @@ const upload = (bucketName) =>
         })
     })
 
-router.post('/uploadImage', verifyToken, async (req, res) => {
+router.post('/uploadImage', async (req, res) => {
     console.log(req.files);
 
 
