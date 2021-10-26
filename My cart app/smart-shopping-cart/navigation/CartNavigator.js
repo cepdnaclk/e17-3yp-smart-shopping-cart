@@ -33,6 +33,9 @@ import SplashScreen from "../screens/SplashScreen";
 import SignInScreen from "../screens/SignInScreen";
 import SignUpScreen from "../screens/SignUpScreen";
 import ProfileScreen from "../screens/ProfileScreen";
+
+import ForgotPassword from "../screens/ForgotPassword";
+
 import ItemsInCartScreen from "../screens/ItemsInCartScreen";
 
 import LogOutScreen from "../screens/LogOutScreen";
@@ -176,48 +179,48 @@ const AddedListTabNavigator = createBottomTabNavigator(
   }
 );
 
-const LogOutNavigator = createBottomTabNavigator(
-  //arg1
-  {
-    LastScreen: {
-      screen: LogOutScreen, //adding stack navigation here
-      navigationOptions: {
-        tabBarLabel: "Recent Screen", //give name vissible
-        tabBarIcon: (tabInfo) => (
-          <MaterialIcons
-            name="add-to-home-screen"
-            size={24}
-            color={tabInfo.tintColor}
-          />
-        ),
-      },
-    },
-    AddedList: {
-      screen: AddedListStackNavigator,
-      navigationOptions: {
-        headerTitle: "",
-        tabBarLabel: "Added Items", //give name vissible
-        tabBarIcon: (tabInfo) => (
-          <FontAwesome name="list" size={24} color={tabInfo.tintColor} />
-        ),
-      },
-    },
-  },
-  //arg2 fro default options
-  {
-    tabBarOptions: {
-      activeTintColor: color.fontColor,
-      style: {
-        backgroundColor: "transparent",
-        borderTopWidth: 0,
-        position: "absolute",
-        padding: 15,
-        elevation: 0,
-        height: 50,
-      },
-    },
-  }
-);
+// const LogOutNavigator = createBottomTabNavigator(
+//   //arg1
+//   {
+//     LastScreen: {
+//       screen: LogOutScreen, //adding stack navigation here
+//       navigationOptions: {
+//         tabBarLabel: "Recent Screen", //give name vissible
+//         tabBarIcon: (tabInfo) => (
+//           <MaterialIcons
+//             name="add-to-home-screen"
+//             size={24}
+//             color={tabInfo.tintColor}
+//           />
+//         ),
+//       },
+//     },
+//     AddedList: {
+//       screen: AddedListStackNavigator,
+//       navigationOptions: {
+//         headerTitle: "",
+//         tabBarLabel: "Added Items", //give name vissible
+//         tabBarIcon: (tabInfo) => (
+//           <FontAwesome name="list" size={24} color={tabInfo.tintColor} />
+//         ),
+//       },
+//     },
+//   },
+//   //arg2 fro default options
+//   {
+//     tabBarOptions: {
+//       activeTintColor: color.fontColor,
+//       style: {
+//         backgroundColor: "transparent",
+//         borderTopWidth: 0,
+//         position: "absolute",
+//         padding: 15,
+//         elevation: 0,
+//         height: 50,
+//       },
+//     },
+//   }
+// );
 
 //func for splash and signup
 const SignUpNavigator = createStackNavigator(
@@ -230,6 +233,9 @@ const SignUpNavigator = createStackNavigator(
     },
     SignUpScreen: {
       screen: SignUpScreen,
+    },
+    ForgotPassword: {
+      screen: ForgotPassword,
     },
   },
   {
@@ -263,7 +269,7 @@ const MenuNavigator = createDrawerNavigator(
       },
     },
     LogOut: {
-      screen: LogOutNavigator,
+      screen: LogOutScreen,
       navigationOptions: {
         drawerLabel: "Log Out",
       },
@@ -399,10 +405,3 @@ const login = () => {
 //export default login;
 
 //const login = AsyncStorage.isLoggedIn ? MenuNavigator : SignUpNavigator;
-
-
-
-
-
-
-

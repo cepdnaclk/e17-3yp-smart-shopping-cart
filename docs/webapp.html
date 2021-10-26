@@ -295,7 +295,15 @@
                 </div>
 
                 <div class="row">
-
+                    <div class="col-lg-12" style="margin-bottom: 50px;">
+                        <div class="member d-flex align-items-start" data-aos="zoom-in" data-aos-delay="100">
+                            <div><img src="assets/img/Desktop Application/indexSample.png" alt="" width="100%"></div>
+                            <div class="member-info">
+                                <h4>Overall</h4>
+                                <p>Full section before login and After login</p>
+                            </div>
+                        </div>
+                    </div>
                     <div class="col-lg-12" style="margin-bottom: 50px;">
                         <div class="member d-flex align-items-start" data-aos="zoom-in" data-aos-delay="100">
                             <div><img src="assets/img/Desktop Application/navigationHead.png" alt="" width="100%"></div>
@@ -335,14 +343,94 @@
                             </div>
                         </div>
                     </div>
-
-
-
+                    <div class="col-lg-12" style="margin-bottom: 50px;">
+                        <div class="member d-flex align-items-start" data-aos="zoom-in" data-aos-delay="100">
+                            <div><img src="assets/img/Desktop Application/cart.png" alt="" width="100%"></div>
+                            <div class="member-info">
+                                <h4>Cart managing section</h4>
+                                <p>Admin can manage all the cart using this section they can add new cart and delete carts also can watch the user who use the cart</p>
+                            </div>
+                        </div>
+                    </div>
+                    div class="col-lg-12" style="margin-bottom: 50px;">
+                    <div class="member d-flex align-items-start" data-aos="zoom-in" data-aos-delay="100">
+                        <div><img src="assets/img/Desktop Application/items.png" alt="" width="100%"></div>
+                        <div class="member-info">
+                            <h4>Items managing section</h4>
+                            <p>Admin can manage all the products using this section they can add new product,update and delete.</p>
+                        </div>
+                    </div>
                 </div>
+
+
+
+            </div>
 
             </div>
         </section>
+
         <!-- End Team Section -->
+
+        <!-- security section -->
+        <section id="services" class="services section-bg">
+            <div class="container" data-aos="fade-up">
+                <div class="section-title">
+                    <h2>security</h2>
+                    <p>for our web application, we have to do some security things forgive secure activity through our application because it maintains all administration things so that the security aspect is most important.</p>
+                </div>
+                <div class="col-lg-12" style="margin-bottom: 50px; background-color: white;">
+                    <div class="member d-flex align-items-start" data-aos="zoom-in" data-aos-delay="100">
+                        <div class="member-info" style="margin-left: 40px;">
+                            <h3 style="margin: 20px; color: rgb(70, 26, 26);">User signup</h3>
+                            <p>when staff tries to sign up to the maintenance system they have to give their basic details to authenticate. so in this step staff should give the email address. After the signup, staff gets a verification mail(<b>two-step verification</b>)
+                                with a specific token.</p>
+
+                            <img src="./assets/img/Desktop Application/security/staffMail.png" style="margin-left: 30px;" alt="" srcset="" />
+                            <p> when the staff clicks the links in the email the signup process is completed. same time the admin of the shopping mall gets the mail for this signup activity so the admin has an option to give some permission to access the
+                                specific functioality. after the admin give permission staff can do their work.</p>
+                            <img src="./assets/img/Desktop Application/security/adminmail.png" style="margin-left: 30px;" alt="" srcset="" />
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12" style="margin-bottom: 50px; background-color: white;">
+                    <div class="member d-flex align-items-start" data-aos="zoom-in" data-aos-delay="100">
+                        <div class="member-info" style="margin-left: 40px;">
+                            <h3 style="margin: 20px; color: rgb(70, 26, 26);">Staff Login</h3>
+                            <p>After staff successfully log in they have some permission to do some activity. so do the work they have to log in. To log in they should give their credential. in the login process, the mail address is checked initially with
+                                the database if the mail address has in the database then the given password is checked with hasted password in the database for doing this thing we are using&nbsp;<b>bcrypt&nbsp;</b>module&nbsp;system. it compares the
+                                password and gives return the status for the comparison wrt staff can log in</p>
+                            <p>
+                                <div>In the login process, the <b>JWT&nbsp; </b>token is created the token is the key to access all the functions it has time out section staff have only one-day valid access with this token after the token expires they have
+                                    to login again. all the activities check the valid token for doing that. otherwise, they don't have access to anythings.</div>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12" style="margin-bottom: 50px; background-color: white;">
+                    <div class="member d-flex align-items-start" data-aos="zoom-in" data-aos-delay="100">
+                        <div class="member-info" style="margin-left: 40px;">
+                            <h3 style="margin: 20px; color: rgb(70, 26, 26);">Deployment Frond-end and back-end</h3>
+                            <p>
+                                <div>We are using <b>nodejs</b> system to develop our web application front end and backend. So we have to deploy our backend and front end. To deploy the front end we are using <b>AWS AMPLIFY </b>web hosting. it gives
+                                    <b>SSL </b>certificated domain for access to the fronted end. <b><a href="https://main.dop7knvbwr6pf.amplifyapp.com/" target="_blank">Web Application</a></b></div>
+                                <div><br /></div>
+                                <div>And deploy backend we use an&nbsp;<b>EC2 </b>instance. after the deploy it gives the IP and port for the backend api with a non-https URL. so that get an SSL certificate and main URL without port number we use <b>Nginx </b>technology</div>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+        <section id="services" class="services section-bg">
+            <div class="container" data-aos="fade-up">
+                <div class="section-title">
+                    <h2>Web Application Testing</h2>
+                    <p>our web application have some functionality to do the admin and staff activity. In the testing we are checking these things using python and selenium for more information about the testing visit the testing section <br><a href="testing.html">Visit</a></p>
+                </div>
+            </div>
+        </section>
 
 
     </main>
@@ -351,56 +439,6 @@
     <!-- ======= Footer ======= -->
     <footer id="footer">
 
-        <!-- <div class="footer-top">
-            <div class="container">
-                <div class="row">
-
-                    <div class="col-lg-3 col-md-6 footer-contact">
-                        <h3>Arsha</h3>
-                        <p>
-                            A108 Adam Street <br> New York, NY 535022<br> United States <br><br>
-                            <strong>Phone:</strong> +1 5589 55488 55<br>
-                            <strong>Email:</strong> info@example.com<br>
-                        </p>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6 footer-links">
-                        <h4>Useful Links</h4>
-                        <ul>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6 footer-links">
-                        <h4>Our Services</h4>
-                        <ul>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Web Design</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Web Development</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Product Management</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Marketing</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Graphic Design</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6 footer-links">
-                        <h4>Our Social Networks</h4>
-                        <p>Cras fermentum odio eu feugiat lide par naso tierra videa magna derita valies</p>
-                        <div class="social-links mt-3">
-                            <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-                            <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-                            <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-                            <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
-                            <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div> -->
 
         <div class="container footer-bottom clearfix">
             <div class="copyright">

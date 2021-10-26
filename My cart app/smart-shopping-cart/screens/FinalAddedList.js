@@ -65,7 +65,7 @@ const FinalAddedListScreen = (props) => {
               style={styles.imgBg}
             >
               <Text style={styles.title} numberOfLines={2}>
-                {itemData.item.productTitle}
+                {itemData.item.name}
               </Text>
             </ImageBackground>
           </View>

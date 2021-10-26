@@ -12,6 +12,11 @@ import {
 
 //for colors
 import { colors } from "../assets/colors";
+
+//for colors
+import { color } from "../assets/color";
+import { LinearGradient } from "expo-linear-gradient";
+
 //package for icons
 import { Ionicons, FontAwesome, MaterialIcons } from "@expo/vector-icons";
 
@@ -19,8 +24,7 @@ import { useSelector, useDispatch } from "react-redux";
 //importing actions
 import * as ToBuyListActions from "../store/actions/ListReducers";
 
-import itemService from '../services/item-service';
-
+import itemService from "../services/item-service";
 
 function useInterval(callback, delay) {
   const savedCallback = useRef();
@@ -40,94 +44,77 @@ function useInterval(callback, delay) {
         clearInterval(id);
       };
     }
-  }, [callback, delay])
+  }, [callback, delay]);
 }
 
-
-
 //func component for Added To Buy lsit screen
-const FinalAddedListScreen = (props) => {
-
-
+const ItemsInCartScreen = (props) => {
   const [itemData, setItemData] = useState([]);
   const [total, setTotal] = useState(0);
-  const [cart, setCart] = useState('');
-
+  const [cart, setCart] = useState("");
 
   useInterval(async () => {
-
-
-    itemService.getCurrentUpdate().then(res => {
-      //console.log(res.data, 'dataaaaaaaa');
-      setItemData(res.data.items);
-      setCart(res.data.cart);
-      totalcalc();
-
-    }).catch(error => { console.log(error, 'errorrrrrrr') })
-  }, 2000)
+    itemService
+      .getCurrentUpdate()
+      .then((res) => {
+        //console.log(res.data, 'dataaaaaaaa');
+        setItemData(res.data.items);
+        setCart(res.data.cart);
+        totalcalc();
+      })
+      .catch((error) => {
+        console.log(error, "errorrrrrrr");
+      });
+  }, 2000);
 
   const totalcalc = () => {
     let Tot = 0;
     itemData.map(({ id, name, price, count }) => {
       Tot = Tot + price * count;
-    })
+    });
     setTotal(Tot);
-  }
-
-
-
+  };
 
   return (
-    <View>
-      <View style={[styles.billStyle, { marginTop: 60 }]}>
-        <Text style={styles.billText}>
-          Cart : {cart}
-          {'\n'}
-          Total Amount to be paid is Rs.
-          {numeral(total).format("0.00")}
-        </Text>
-      </View>
-      <View>
-        {
-
-
-          itemData.map(({ id, name, price, count }) => {
+    <View style={{ flex: 1 }}>
+      <LinearGradient colors={color.primaryColor} style={{ flex: 4 }}>
+        <View style={[styles.billStyle, { marginTop: 60 }]}>
+          <Text style={styles.billText}>
+            Cart : {cart}
+            {"\n"}
+            Total Amount to be paid is Rs {numeral(total).format("0.00")}
+          </Text>
+        </View>
+        <View>
+          {itemData.map(({ id, name, price, count }) => {
             //console.log(item, count);
             return (
-
-
-              <View style={styles.gridItems}>
-                <View style={styles.itemLeft}>
-                  <Text style={styles.title}>{name}</Text>
-                </View>
-                <View style={styles.itemRight}>
-                  <Text style={styles.itemDetails}>Quantity : {count}</Text>
-                  <Text style={styles.itemDetails}>
-                    Price : Rs. {price}
-                  </Text>
-                  <Text style={styles.itemDetails}>
-                    Total : Rs. {price * count}
-                  </Text>
-                </View>
+              <View>
+                <LinearGradient
+                  style={styles.gridItems}
+                  colors={color.secondaryColor}
+                >
+                  <View style={styles.itemLeft}>
+                    <Text style={styles.title}>{name}</Text>
+                  </View>
+                  <View style={styles.itemRight}>
+                    <Text style={styles.itemDetails}>Quantity : {count}</Text>
+                    <Text style={styles.itemDetails}>Price : Rs. {price}</Text>
+                    <Text style={styles.itemDetails}>
+                      Total : Rs. {price * count}
+                    </Text>
+                  </View>
+                </LinearGradient>
               </View>
             );
-          })
-
-        }
-
-
-
-      </View>
+          })}
+        </View>
+      </LinearGradient>
     </View>
-
-
-
-  )
-
-
+  );
 };
 
-export default FinalAddedListScreen;
+export default ItemsInCartScreen;
 
 const { height, width } = Dimensions.get("window");
 
@@ -137,7 +124,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     height: height * 0.15,
     margin: 10,
-    backgroundColor: colors.primaryColor,
+    //backgroundColor: colors.primaryColor,
     borderRadius: 10,
     overflow: "hidden",
     alignContent: "space-between",
@@ -171,7 +158,7 @@ const styles = StyleSheet.create({
   billStyle: {
     height: height * 0.1,
     margin: 20,
-    backgroundColor: colors.primaryColor,
+    backgroundColor: color.fontColor,
     borderRadius: 10,
   },
   billText: {
