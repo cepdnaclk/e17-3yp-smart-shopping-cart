@@ -12,6 +12,7 @@ import {
   TextInput,
   Platform,
   TouchableWithoutFeedback,
+  Touchable,
   ScrollView,
   AsyncStorage,
 } from "react-native";
@@ -24,6 +25,8 @@ import {
 
 //for colors
 import { colors } from "../assets/colors";
+
+import ForgotPassword from "./ForgotPassword";
 
 import { color } from "../assets/color";
 import { LinearGradient } from "expo-linear-gradient";
@@ -99,6 +102,32 @@ class SignInScreen extends Component {
                   value={this.state.password}
                 ></TextInput>
               </View>
+              {/* forgotPassword
+              <View>
+                <TouchableOpacity
+                  onPress={() =>
+                    this.props.navigation.navigate("ForgotPassword")
+                  }
+                >
+                  <View
+                    style={{
+                      justifyContent: "center",
+                      alignItems: "flex-end",
+                      marginRght: 10,
+                    }}
+                  >
+                    <Text
+                      style={{
+                        color: colors.secondaryColor,
+                        fontWeight: "bold",
+                        fontSize: 16,
+                      }}
+                    >
+                      Forgot Password
+                    </Text>
+                  </View>
+                </TouchableOpacity>
+              </View> */}
               <View style={[{ marginTop: 25, paddingHorizontal: 20 }]}>
                 {/* <Button
                   style={{ width: 300 }}
