@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Text, View, StyleSheet, Button } from "react-native";
+import { Text, View, StyleSheet, Button, TouchableOpacity } from "react-native";
 import { BarCodeScanner } from "expo-barcode-scanner";
 import { AsyncStorage } from "react-native";
 import axios from "axios";
+
+import { color } from "../assets/color";
+import { LinearGradient } from "expo-linear-gradient";
 
 import { backendurl } from "../backendurl";
 const API_URL = backendurl;
@@ -19,7 +22,8 @@ export default function App(props) {
       .get(API_URL + "cart/" + id, { headers: { auth_token: user } })
       .then((Response) => {
         alert("connected with cart " + Response.data);
-        props.navigation.navigate("AddedList");
+        //props.navigation.navigate("AddedList");
+        props.navigation.navigate({ routeName: "ItemsInCart" });
       })
       .catch((error) => {
         console.log(error);
@@ -48,13 +52,26 @@ export default function App(props) {
 
   return (
     <View style={styles.container}>
-      <BarCodeScanner
-        onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
-        style={StyleSheet.absoluteFillObject}
-      />
-      {scanned && (
-        <Button title={"Tap to Scan Again"} onPress={() => setScanned(false)} />
-      )}
+      <LinearGradient colors={color.primaryColor} style={{ flex: 1 }}>
+        <BarCodeScanner
+          onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
+          style={StyleSheet.absoluteFillObject}
+        />
+        {scanned && (
+          <TouchableOpacity onPress={() => setScanned(false)}>
+            <LinearGradient
+              colors={color.secondaryColor}
+              style={styles.newButton}
+            >
+              <Text style={styles.textSign}>Tap to Scan Again</Text>
+            </LinearGradient>
+          </TouchableOpacity>
+          // <Button
+          //   title={"Tap to Scan Again"}
+          //   onPress={() => setScanned(false)}
+          // />
+        )}
+      </LinearGradient>
     </View>
   );
 }
@@ -62,7 +79,23 @@ export default function App(props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: "column",
+  },
+  textSign: {
+    color: color.fontColor,
+    fontWeight: "bold",
+    fontSize: 18,
+  },
+  newButton: {
+    marginTop: 70,
+    height: 45,
+    flexDirection: "row",
     justifyContent: "center",
+    alignItems: "center",
+    alignContent: "center",
+    marginBottom: 20,
+    width: 300,
+    borderRadius: 30,
+    backgroundColor: "#00BFFF",
+    alignSelf: "center",
   },
 });
