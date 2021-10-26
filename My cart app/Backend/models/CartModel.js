@@ -1,8 +1,18 @@
 const mongoose = require('mongoose');
 
 const cartSchema = mongoose.Schema({
-    name:{
-        type:String},
+    name: {
+        type: String
+    },
+    date: {
+        type: Date
+    },
+    status: {
+        type: String
+    },
+    user: {
+        type: String
+    },
 });
 
 CartSet = mongoose.model('CartSet', cartSchema);
