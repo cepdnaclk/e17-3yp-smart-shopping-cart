@@ -11,29 +11,28 @@ import { ADD_TOBUY_LIST, REMOVE_FROM_CART } from "../actions/ListReducers";
 
 //initial state for to-buy list
 const initialState = {
-  listItems: ITEMDETAILS,
+  //for addToBuyList
   finalToBuyList: {}, //final to-buy list
   totalBill: 0,
 };
-
 //func for reducers
 const listReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_TOBUY_LIST:
       const addedProduct = action.product;
-      const productPrice = addedProduct.price;
+      const productPrice = parseInt(addedProduct.price);
       const productTitle = addedProduct.title;
-      const productImg = addedProduct.img;
+      const productImg = addedProduct.image;
 
       let updatedOrNewFinalItem;
 
-      if (state.finalToBuyList[addedProduct.id]) {
+      if (state.finalToBuyList[addedProduct.productId]) {
         //already has the item then update existing one
         updatedOrNewFinalItem = new FinalItem(
-          state.finalToBuyList[addedProduct.id].quantity + 1,
+          state.finalToBuyList[addedProduct.productId].quantity + 1,
           productPrice,
           productTitle,
-          state.finalToBuyList[addedProduct.id].sum + productPrice,
+          state.finalToBuyList[addedProduct.productId].sum + productPrice,
           productImg
         );
       } else {
@@ -49,7 +48,7 @@ const listReducer = (state = initialState, action) => {
         ...state, //copying  of old state
         finalToBuyList: {
           ...state.finalToBuyList,
-          [addedProduct.id]: updatedOrNewFinalItem,
+          [addedProduct.productId]: updatedOrNewFinalItem,
         }, // merging old state with new state
         totalBill: state.totalBill + productPrice, //updating bill
       };

@@ -19,6 +19,7 @@ import Item from './item';
 import ShowCartDetails from './ShowCarts details copy';
 import Protected from '../routes/ProctedRoute';
 import NotProtected from '../routes/AuthRoute';
+import staffwork from './staffWork';
 
 export default function Rout() {
     return (
@@ -38,6 +39,8 @@ export default function Rout() {
             <Route path="/showcarts" component={ShowCartDetails}></Route>
             <Route path="/userRegistation" path="./Button"></Route>
             <Route path="/showcarts" component={ShowCartDetails}></Route>
+            <Route path="/staffwork" component={staffwork}></Route>
+
             
 
 

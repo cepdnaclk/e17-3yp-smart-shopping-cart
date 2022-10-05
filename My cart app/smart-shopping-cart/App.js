@@ -19,6 +19,10 @@ import listReducer from "./store/reducers/ListReducer";
 //to debug redux (delete after app was done)
 import { composeWithDevTools } from "redux-devtools-extension";
 
+//for colors
+import { color } from "./assets/color";
+import { LinearGradient } from "expo-linear-gradient";
+
 //combining all reducers in one root reducer
 const rootReducer = combineReducers({
   toBuyListReducer: listReducer, //key to display selected items for to-buy list

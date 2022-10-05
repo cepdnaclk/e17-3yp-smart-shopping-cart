@@ -1,15 +1,23 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 
+import { LinearGradient } from "expo-linear-gradient";
 //for colors
-import { colors } from "../assets/colors";
+import { color } from "../assets/color";
 
 //func for RecentActivity screen
 const RecentActivityScreen = (props) => {
   return (
-    <View style={styles.screen}>
+    <LinearGradient
+      colors={color.primaryColor}
+      style={{
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
       <Text>RecentActivity Screen</Text>
-    </View>
+    </LinearGradient>
   );
 };
 
@@ -21,6 +29,5 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: colors.secondaryColor,
   },
 });

@@ -1,70 +1,61 @@
-const express = require('express');
+const express = require("express");
 const app = express();
 
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
-const bodyParser = require('body-parser');      //to read jason format data
+const bodyParser = require("body-parser"); //to read jason format data
 
-require('dotenv/config');
+require("dotenv/config");
 
-  
-const authroute = require('./routes/auth');
-const userroute = require('./routes/user');
+const authroute = require("./routes/auth");
+const userroute = require("./routes/user");
 
-const routeProfile = require('./routes/profile');
+const routeProfile = require("./routes/profile");
+const productroute = require("./routes/products");
+const payment = require("./routes/payment");
 
-const payment = require('./routes/payment');
+const cartConnection = require("./routes/CartConnection");
 
-const cartConnection = require('./routes/CartConnection');
-
- 
 /*
 mongoose.connect( process.env.db_connection,
     {useNewUrlParser:true},()=>  
     console.log('connected to db') );   
 /*/
 
-
 //CONNECT TO DB
-mongoose.connect(process.env.db_connection,{
-    useNewUrlParser:true, 
-    useUnifiedTopology:true
+mongoose.connect(process.env.db_connection, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
 });
 
 const db = mongoose.connection;
-db.on("error",console.error.bind(console, "connection pochu"));
-db.once("open",function() {
-    console.log("connected db yaaa");
+db.on("error", console.error.bind(console, "connection pochu"));
+db.once("open", function () {
+  console.log("connected db yaaa");
 });
-
-
 
 //MIDDLEWARE
-app.use(bodyParser.json());     //every time there is app call this function will execute
-//this should come before route middlewares 
- 
+app.use(bodyParser.json()); //every time there is app call this function will execute
+//this should come before route middlewares
 
 //ROUTE MIDDLEWARES
-app.use('/user/all', userroute);        //  USER
-app.use('/user', authroute);            //  AUTH
+app.use("/user/all", userroute); //  USER
+app.use("/user", authroute); //  AUTH
 
-app.use('/profile', routeProfile);       //profile
-  
+app.use("/profile", routeProfile); //profile
+app.use("/products", productroute); //products
 
-app.use(payment);     // Payment api
+app.use(payment); // Payment api
 
-app.use(cartConnection);                 // cart connection
+app.use(cartConnection); // cart connection
 
 //  HOME
-app.get('/', (req,res)=>{
-    res.send('hellloooo home');
-    console.log('home');
+app.get("/", (req, res) => {
+  res.send("mobile application backend home load successfully");
+  console.log("home");
 });
 
-
-
- 
 //LISTEN
-const port = process.env.PORT || 80; 
-app.listen(80, ()=>console.log(`listening on ${port}`));
+const port = process.env.PORT || 4000; 
+app.listen(port, ()=>console.log(`listening on ${port}`));
 

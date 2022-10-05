@@ -6,7 +6,7 @@ const verifyToken = require('./verifyToken');
 
 const itemCol = require('../models/ItemModel');  
 
-route.get('/all', verifyToken,async(req, res) =>{       //GET ALL ITEMS
+route.get('/all',async(req, res) =>{       //GET ALL ITEMS
     try {
        const itemlist = await itemCol.find();
      
@@ -17,7 +17,7 @@ route.get('/all', verifyToken,async(req, res) =>{       //GET ALL ITEMS
 });
 
 
-route.post('/add', verifyToken,async(req, res) =>{       //GET ALL ITEMS
+route.post('/add',async(req, res) =>{       //GET ALL ITEMS
    const newItem = new itemCol({
         name: req.body.name,
         price: req.body.price,
@@ -40,7 +40,7 @@ route.post('/add', verifyToken,async(req, res) =>{       //GET ALL ITEMS
     }
 });
  
-route.delete('/delete/:id', verifyToken,async(req, res) =>{       //GET ALL ITEMS
+route.delete('/delete/:id',async(req, res) =>{       //GET ALL ITEMS
 console.log(req.params.id);
 const Id = req.params.id;
     try {
@@ -53,7 +53,7 @@ const Id = req.params.id;
     }
 });
 
-route.put('/update/:id', verifyToken,async(req, res) =>{       //GET ALL ITEMS
+route.put('/update/:id',async(req, res) =>{       //GET ALL ITEMS
 
 const Id = req.params.id; 
 const newValues={}
