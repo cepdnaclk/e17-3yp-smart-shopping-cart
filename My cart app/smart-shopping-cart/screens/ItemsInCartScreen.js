@@ -111,16 +111,24 @@ const ItemsInCartScreen = (props) => {
             );
           })}
         </View>
-        <TouchableOpacity
-          onPress={() => props.navigation.navigate({ routeName: "Payment" })}
+        <View
+          styles={{
+            justifyContent: "center",
+            alignItems: "center",
+            marginBottom: 15,
+          }}
         >
-          <LinearGradient
-            colors={color.secondaryColor}
-            style={styles.buttonContainer}
+          <TouchableOpacity
+            onPress={() => props.navigation.navigate({ routeName: "Payment" })}
           >
-            <Text style={styles.textSign}>Pay</Text>
-          </LinearGradient>
-        </TouchableOpacity>
+            <LinearGradient
+              colors={color.secondaryColor}
+              style={styles.buttonContainer}
+            >
+              <Text style={styles.textSign}>Pay</Text>
+            </LinearGradient>
+          </TouchableOpacity>
+        </View>
       </LinearGradient>
     </View>
   );
@@ -192,15 +200,15 @@ const styles = StyleSheet.create({
   buttonContainer: {
     marginTop: 10,
     height: 45,
-    //flexDirection: "row",
+    flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    marginLeft: 80,
-    marginTop: 490,
-    alignContent: "center",
-    width: 200,
+    marginTop: height - 250,
+    marginBottom: 20,
+    width: width * 0.45,
     borderRadius: 30,
-    // backgroundColor: "#00BFFF",
+    //backgroundColor: "#00BFFF",
+    alignSelf: "center",
   },
   textSign: {
     color: color.fontColor,
