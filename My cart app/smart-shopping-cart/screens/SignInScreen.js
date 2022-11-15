@@ -280,7 +280,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   textSign: {
-    color: color.fontColor,
+    color: color.secondFontColor,
     fontWeight: "bold",
     fontSize: 20,
   },

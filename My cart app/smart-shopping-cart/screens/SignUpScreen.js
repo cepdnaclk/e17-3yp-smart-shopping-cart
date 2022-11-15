@@ -299,7 +299,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
   textSign: {
-    color: color.fontColor,
+    color: color.secondFontColor,
     fontWeight: "bold",
     fontSize: 18,
   },
