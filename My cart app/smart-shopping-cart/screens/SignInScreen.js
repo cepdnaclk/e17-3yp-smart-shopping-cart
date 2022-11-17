@@ -14,8 +14,9 @@ import {
   TouchableWithoutFeedback,
   Touchable,
   ScrollView,
-  AsyncStorage,
+  // AsyncStorage,
 } from "react-native";
+import { AsyncStorage } from "react-native";
 import {
   Ionicons,
   FontAwesome,

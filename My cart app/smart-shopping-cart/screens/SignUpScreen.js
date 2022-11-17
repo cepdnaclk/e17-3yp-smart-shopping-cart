@@ -201,7 +201,8 @@ class SignUpScreen extends Component {
           if (res.data.email) {
             //error
 
-            alert("Please confirm your email to login");
+            alert("Please login to continue");
+            this.props.navigation.navigate("SignInScreen");
           } else {
             alert(res.data);
 
