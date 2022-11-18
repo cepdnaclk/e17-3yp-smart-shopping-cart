@@ -3,11 +3,11 @@ import threading
 import time
 import queue
 from unittest import result
-from kaviController.LCD import LCDDisplay
-from kaviController.loadCell import loadCellReading
-from kaviController.mongo import find_item, find_user, findCartUsingUser
+from LCD import LCDDisplay
+from loadCell import loadCellReading
+from mongo import find_item, find_user, findCartUsingUser
 
-from kaviController.ultrasonic import ultrasonicReading
+from ultrasonic import ultrasonicReading
 # from mongo import *
 
 queueForBarcode = queue.Queue()
