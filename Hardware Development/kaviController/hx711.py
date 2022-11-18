@@ -16,8 +16,10 @@ class HX711:
         # Mutex for reading from the HX711, in case multiple threads in client
         # software try to access get values from the class at the same time.
         self.readLock = threading.Lock()
-        
-        GPIO.setmode(GPIO.BCM)
+        try:
+            GPIO.setmode(GPIO.BCM)
+        except:
+            pass
         GPIO.setup(self.PD_SCK, GPIO.OUT)
         GPIO.setup(self.DOUT, GPIO.IN)
 
