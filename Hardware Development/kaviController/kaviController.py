@@ -65,6 +65,7 @@ def main():
     global uss1stInterruptFlag,uss2ndInterruptFlag
     userId=waitForUserConnection()
     user=find_user(userId)
+    print(user['name'])
     LCDDisplay("Welcome to "+str(user['name']))
 
     barCodeThread = threading.Thread(target=threadBarcode, args=(1,))  
@@ -73,11 +74,12 @@ def main():
         while(not(uss1stInterruptFlag)):
             uss1stInterruptFlag=Check1stUltraSonicInterrupt()
             pass
-
+        print("passed uss1stInterruptFlag")
         while(not(uss2ndInterruptFlag)):
             uss2ndInterruptFlag=Check2ndUltraSonicInterrupt()
             pass
-
+        print("passed uss2ndInterruptFlag")
+        
         # ToDo : capture image here
 
         barcodeFlag = queueForBarcode.get()
