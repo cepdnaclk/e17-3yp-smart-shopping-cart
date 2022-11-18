@@ -41,6 +41,7 @@ def Check1stUltraSonicInterrupt():
 
 # after items add
 def Check2ndUltraSonicInterrupt():
+    return True
     result=False
     u1Reading,u2Reading=ultrasonicReading()
     if(u1Reading>uss2ndInterruptThreshold and u2Reading>uss2ndInterruptThreshold):

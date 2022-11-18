@@ -7,8 +7,8 @@ from RPLCD.gpio import CharLCD
 GPIO.setwarnings(False)
 #to ignore the warnings
 
-lcd = CharLCD(pin_rs = 15, pin_rw=18, pin_e=16, pins_data= [21,22,23,24],
-numbering_mode = GPIO.BOARD, cols=16, rows=2, dotsize=8)
+lcd = CharLCD(pin_rs = 22, pin_rw=24, pin_e=23, pins_data= [9,25,11,8],
+numbering_mode = GPIO.BCM, cols=16, rows=2, dotsize=8)
 #declare the LCD pins with GPIO pins of Raspberry Pi 4
 
 
