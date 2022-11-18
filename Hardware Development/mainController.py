@@ -7,6 +7,9 @@ barCodeScanFlag=False
 photoTakeFlag=False
 barCodeData=[]
 loadBalanceValue=0
+uss1stInterruptFlag=False
+uss2ndInterruptFlag=False
+
 def ultrasonicData()->list:
     pass
 

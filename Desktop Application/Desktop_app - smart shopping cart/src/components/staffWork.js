@@ -12,6 +12,7 @@ var JsBarcode = require('jsbarcode');
 const API_URL = hostAddress;
 export default function Basic_table() {
     const [items, setItems] = useState([]);
+    const [selected,setSelected]=useState({});
 
     useEffect(() => {
         
@@ -21,7 +22,7 @@ export default function Basic_table() {
                 //console.log(res);
 
                 setItems(res.data)
-                
+                setSelected(res.data[0])
                 // console.log(res.data, 'stet')
 
 
@@ -97,7 +98,7 @@ export default function Basic_table() {
                                     <button className="btn btn-danger" onClick={() => { document.getElementById("showqr").style.display = "none" }}><i className="icon_close_alt2" /> close</button>
 
                                 </div>
-                                <button style={{ padding: '10px', width: '40px', margin: '10px', backgroundColor: '#007aff', color: 'white', paddingLeft: "10px", paddingRight: "10px", }} type="button" onClick={() => { document.getElementById('addgroup').style.display = 'block'; setitemdropdown();}} >  sell  </button>
+                                <button style={{ padding: '10px', width: '40px', margin: '10px', backgroundColor: '#007aff', color: 'white', paddingLeft: "10px", paddingRight: "10px", }} type="button" onClick={() => { document.getElementById('addgroup').style.display = 'block';}} >  sell  </button>
                                 <div id="addgroup" style={{ display: 'none' }}>
                                     <section >
                                         {/* <div class='form-group has-error'>
@@ -114,12 +115,16 @@ export default function Basic_table() {
                                                 </thead>
                                                 <tbody>
                                                     <td>
-                                                        <select name="items" id="items" style={{ width: "-webkit-fill-available"}}>
-                                                            
+                                                    <select name="items" id="items" onChange={(e) => { setSelected(items[e.target.value]);console.log(e.target.value)}} style={{ width: "-webkit-fill-available"}}>
+                                                        {
+                                                            items.map(item => (
+                                                                <option value={items.indexOf(item)}>{item.name}</option>
+                                                            ))
+                                                        }
                                                         </select>
                                                     </td>
                                                     <td>
-                                                        <input type="text" name="price" className="form-control " />
+                                                        <input type="text" value={selected.price} name="price" className="form-control " />
                                                     </td>
                                                     <td><input type="text" name="quantity" className="form-control " /></td>
                                                     

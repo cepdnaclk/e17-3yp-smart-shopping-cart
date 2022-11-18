@@ -10,7 +10,7 @@ const API_URL = hostAddress;
 export default function Basic_table() {
     useEffect(() => {
         cartRetrive();
-    }, [])
+    },[])
     function printDiv(divName) {
         var printContents = document.getElementById(divName).innerHTML;
         var originalContents = document.body.innerHTML;
@@ -62,7 +62,9 @@ export default function Basic_table() {
             })
                 .then(() => {
                     alert("cart removed")
-                    window.location.reload();
+                    // window.location.reload();
+                    cartRetrive()
+
                 }) // or res.json()
                 .catch((err) => {
                     console.log(err);
@@ -86,7 +88,10 @@ export default function Basic_table() {
             })
                 .then(() => {
                     alert("cart Added")
-                    window.location.reload();
+                    cartRetrive()
+                    document.getElementById('addgroup').style.display = 'none'
+                    document.getElementById("addcartinput").value=""
+                    // window.location.reload();
                 }) // or res.json()
                 .catch((err) => {
                     console.log(err);
