@@ -66,7 +66,7 @@ def main():
     userId=waitForUserConnection()
     user=find_user(userId)
     print(user['name'])
-    LCDDisplay("Welcome to "+str(user['name']))
+    LCDDisplay("Welcome "+str(user['name']))
 
     barCodeThread = threading.Thread(target=threadBarcode, args=(1,))  
     barCodeThread.start()
@@ -92,8 +92,13 @@ def main():
             item = find_item(barcode)
             print(item)
             # weight change from weight sensor 
-
+            weightChange=checkWeightChange()
+            print("weight Change: ",weightChange)
+            weightCheckFlag=False
+            if(weightChange==item['weight']):
+                weightCheckFlag=True
+            print("weight check Flag: ",weightCheckFlag)
             # capture image ,send to python server & get output from their
-
+            cameraCheckFlag=False
 if __name__=="__main__":
     main()
