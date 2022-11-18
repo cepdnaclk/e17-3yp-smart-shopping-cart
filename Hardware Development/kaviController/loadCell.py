@@ -92,6 +92,7 @@ def calibrate():
         val = hx.get_weight(5)
         hx.power_down()
         hx.power_up()
+        print(val)
         time.sleep(0.1)
 
 if __name__=="__main__":
