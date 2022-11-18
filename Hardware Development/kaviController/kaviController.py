@@ -57,7 +57,6 @@ def waitForUserConnection():
     userId='NaN'
     while (userId=='NaN'):
         userId=findCartUsingUser("63765442a4f0984ed548ac10")
-        print(userId)
         time.sleep(1)
     return userId
 
@@ -65,7 +64,7 @@ def main():
     global uss1stInterruptFlag,uss2ndInterruptFlag
     userId=waitForUserConnection()
     user=find_user(userId)
-    print(user['name'])
+    print("connected user: ",user['name'])
     LCDDisplay("Welcome "+str(user['name']))
 
     barCodeThread = threading.Thread(target=threadBarcode, args=(1,))  
@@ -84,13 +83,14 @@ def main():
 
         barcodeFlag = queueForBarcode.get()
         barcode=queueForBarcode.get()
-        print(barcodeFlag)
+        print("barcode Flag: ",barcodeFlag)
 
         if(barcodeFlag):
             pass
             # get item details from database --> we need weight change & its name 
             item = find_item(barcode)
-            print(item)
+            LCDDisplay("Scanned :"+str(item['name']))
+
             # weight change from weight sensor 
             weightChange=checkWeightChange()
             print("weight Change: ",weightChange)
