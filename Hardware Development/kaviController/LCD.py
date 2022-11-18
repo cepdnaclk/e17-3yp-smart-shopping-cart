@@ -16,5 +16,10 @@ numbering_mode = GPIO.BCM, cols=16, rows=2, dotsize=8)
 
 def LCDDisplay(message):
     lcd.clear()
-    lcd.write_string("Welcome to SSC")
+    lcd.write_string(message)
+
+def LCDClear():
     lcd.clear()
+
+if __name__=="__main__":
+    LCDDisplay("Hello PJ")

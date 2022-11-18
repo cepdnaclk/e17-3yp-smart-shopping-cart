@@ -93,3 +93,5 @@ def main():
 
             # capture image ,send to python server & get output from their
 
+if __name__=="__main__":
+    main()
