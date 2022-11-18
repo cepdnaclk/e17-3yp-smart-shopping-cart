@@ -1,7 +1,7 @@
 import RPi.GPIO as GPIO
 #import the RPi.GPIO library
 
-from gpio import CharLCD
+from RPLCD.gpio import CharLCD
 #import the CharLCD library from RPLCD.gpio
 
 GPIO.setwarnings(False)
