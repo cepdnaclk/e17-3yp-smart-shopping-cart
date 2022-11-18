@@ -62,7 +62,7 @@ def waitForUserConnection():
     return userId
 
 def main():
-    # global barcodeFlag
+    global uss1stInterruptFlag,uss2ndInterruptFlag
     userId=waitForUserConnection()
     user=find_user(userId)
     LCDDisplay("Welcome to "+str(user['name']))
