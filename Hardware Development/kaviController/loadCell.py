@@ -11,9 +11,9 @@ referenceUnit = 1
 
 if not EMULATE_HX711:
     import RPi.GPIO as GPIO
-    from hx711py.hx711 import HX711
+    from hx711 import HX711
 else:
-    from hx711py.emulated_hx711 import HX711
+    from emulated_hx711 import HX711
 
 def cleanAndExit():
     print("Cleaning...")
