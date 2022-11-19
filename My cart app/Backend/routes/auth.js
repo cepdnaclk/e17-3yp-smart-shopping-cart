@@ -52,9 +52,9 @@ router.post("/register", async (req, res) => {
     );
 
     //SEND MAIL
-    sendMail(req.body.email, emailtoken)
-      .then((result) => console.log("mail sent ....", result))
-      .catch((error) => console.log(error.message));
+    // sendMail(req.body.email, emailtoken)
+    //   .then((result) => console.log("mail sent ....", result))
+    //   .catch((error) => console.log(error.message));
 
     //console .log('herrrrrrre mail');
     //res.send({user:saveuser._id});     //WITHOUT SENDING WHOLE (PASSWORD SENSITIVE) 'USER: .....'
@@ -92,10 +92,10 @@ router.post("/login", async (req, res) => {
   if (!validPass) return res.send({ message: "Invalid password" }).status(400);
 
   //IF EMAIL IS NOT VERIFIED
-  if (!user.verified)
-    return res
-      .send({ email: "Please confirm your email to login" })
-      .status(400);
+  // if (!user.verified)
+  //   return res
+  //     .send({ email: "Please confirm your email to login" })
+  //     .status(400);
 
   //CREATE AND ASSIGN A TOKEN
   const access_token = jwt.sign({ _id: user._id }, process.env.token_secret, {

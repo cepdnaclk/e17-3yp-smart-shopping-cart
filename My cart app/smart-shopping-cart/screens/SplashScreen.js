@@ -40,7 +40,7 @@ const SplashScreen = (props) => {
                 <Text style={styles.textSign}>Get Started</Text>
                 <MaterialIcons
                   name="navigate-next"
-                  color={color.fontColor}
+                  color={color.secondFontColor}
                   size={30}
                 />
               </LinearGradient>
@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   textSign: {
-    color: color.fontColor,
+    color: color.secondFontColor,
     fontWeight: "bold",
     fontSize: 18,
   },
