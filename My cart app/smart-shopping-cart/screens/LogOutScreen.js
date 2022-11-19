@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { View, Button, StyleSheet, TouchableOpacity, Text } from "react-native";
-import { AsyncStorage } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import userService from "../services/user-service";
 
 import { color } from "../assets/color";

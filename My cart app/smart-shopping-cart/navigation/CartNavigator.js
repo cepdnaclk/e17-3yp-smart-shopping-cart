@@ -1,6 +1,6 @@
 import React, { Component, useContext } from "react";
 import { ActivityIndicator, Text, StyleSheet, View, Alert } from "react-native";
-import { AsyncStorage } from "react-native";
+import {} from "react-native";
 
 //stack navigation (npm install react-navigation-stack)
 import { createStackNavigator } from "react-navigation-stack";
@@ -296,10 +296,10 @@ const MenuNavigator = createDrawerNavigator(
   }
 );
 
-//console.log(AsyncStorage.isLoggedIn);
+//console.log(.isLoggedIn);
 
 class AuthLoadingScreen extends Component {
-  //loading screen until check for asyncstorage
+  //loading screen until check for
   constructor(props) {
     super(props);
     this._loadingData();
@@ -404,4 +404,4 @@ const login = () => {
 //coverts to react component to render in app.js
 //export default login;
 
-//const login = AsyncStorage.isLoggedIn ? MenuNavigator : SignUpNavigator;
+//const login = .isLoggedIn ? MenuNavigator : SignUpNavigator;
