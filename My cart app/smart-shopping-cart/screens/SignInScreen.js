@@ -14,9 +14,8 @@ import {
   TouchableWithoutFeedback,
   Touchable,
   ScrollView,
-  // AsyncStorage,
 } from "react-native";
-import { AsyncStorage } from "react-native";
+import  from "@react-native-async-storage/async-storage";
 import {
   Ionicons,
   FontAwesome,
@@ -191,7 +190,7 @@ class SignInScreen extends Component {
             //props.navigation.navigate('mainScreen');
 
             this.props.navigation.navigate("HomeScreen");
-            AsyncStorage.setItem("isLoggedIn", "1");
+            .setItem("isLoggedIn", "1");
           }
         })
         .catch((error) => {

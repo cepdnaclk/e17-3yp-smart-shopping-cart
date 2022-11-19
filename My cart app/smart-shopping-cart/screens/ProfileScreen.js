@@ -11,7 +11,7 @@ import {
 import { color } from "../assets/color";
 import { LinearGradient } from "expo-linear-gradient";
 
-import { AsyncStorage } from "react-native";
+import {} from "react-native";
 import DialogInput from "react-native-dialog-input";
 import userService from "../services/user-service";
 //import Modal from 'react-native-modalbox';

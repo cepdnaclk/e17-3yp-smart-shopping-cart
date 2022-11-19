@@ -7,7 +7,7 @@ import {
   FlatList,
   ImageBackground,
   Dimensions,
-  AsyncStorage,
+  ,
   TouchableOpacity,
 } from "react-native";
 

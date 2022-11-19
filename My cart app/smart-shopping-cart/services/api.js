@@ -1,6 +1,6 @@
 import axios from "axios";
 import TokenService from "./token-servics";
-import { AsyncStorage } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { or } from "react-native-reanimated";
 
 const API_URL = "http://192.168.43.206:80/";
