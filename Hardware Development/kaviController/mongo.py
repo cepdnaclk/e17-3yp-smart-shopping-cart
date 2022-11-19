@@ -13,6 +13,7 @@ db = client.get_database("smart_shopping_cart")
 items = db.items
 users = db.users
 carts = db.cartsets
+temp = db.temp
 userid = '6374c661fe53a34b6aab34f4'
 
 def find_user(userid)->dict:
@@ -20,6 +21,10 @@ def find_user(userid)->dict:
 
 def find_item(barcodeid) -> dict:
     item = items.find_one({'barcodeid':int(barcodeid)})
+    return item
+
+def find_item_temp(barcodeid) -> dict:
+    item = temp.find_one({'barcodeid':int(barcodeid)})
     return item
 
 def add_new(itemid, count):

@@ -89,6 +89,9 @@ def main():
             pass
             # get item details from database --> we need weight change & its name 
             item = find_item(barcode)
+            if item is None:
+                item = find_item_temp(barcode)
+
             LCDDisplay("Scanned :"+str(item['name']))
 
             # weight change from weight sensor 
