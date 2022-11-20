@@ -72,10 +72,12 @@ def main():
         while(not(uss1stInterruptFlag)):
             uss1stInterruptFlag=Check1stUltraSonicInterrupt()
             pass
+        uss1stInterruptFlag=False
         print("passed uss1stInterruptFlag")
         while(not(uss2ndInterruptFlag)):
             uss2ndInterruptFlag=Check2ndUltraSonicInterrupt()
             pass
+        uss2ndInterruptFlag=False
         print("passed uss2ndInterruptFlag")
         
         # ToDo : capture image here
