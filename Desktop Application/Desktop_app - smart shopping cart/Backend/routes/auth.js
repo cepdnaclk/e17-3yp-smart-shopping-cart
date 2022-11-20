@@ -57,11 +57,11 @@ router.post('/register', async (req, res) => {
         const emailtoken = jwt.sign({ id: saveuser._id }, process.env.EMAIL_SECRET, { expiresIn: '1d' });
 
         //SEND MAIL
-        sendMailToUser(req.body.email, emailtoken).then((result) => console.log('mail sent ....', result))
-            .catch((error) => console.log(error.message));
+        // sendMailToUser(req.body.email, emailtoken).then((result) => console.log('mail sent ....', result))
+        //     .catch((error) => console.log(error.message));
 
-        sendMailToAdmin(req.body.email, emailtoken, newUser).then((result) => console.log('mail sent ....', result))
-            .catch((error) => console.log(error.message));
+        // sendMailToAdmin(req.body.email, emailtoken, newUser).then((result) => console.log('mail sent ....', result))
+        //     .catch((error) => console.log(error.message));
 
         //console .log('herrrrrrre mail');
         //res.send({user:saveuser._id});     //WITHOUT SENDING WHOLE (PASSWORD SENSITIVE) 'USER: .....'
@@ -98,9 +98,9 @@ router.post('/login', async (req, res) => {
     if (!validPass) return res.send({ message: 'Invalid password' }).status(400);
 
     //IF EMAIL IS NOT VERIFIED
-    if (!user.mailVerified) return res.send({ email: 'Please confirm your email to login' }).status(400);
+    // if (!user.mailVerified) return res.send({ email: 'Please confirm your email to login' }).status(400);
 
-    if (!user.adminVerified) return res.send({ email: 'Admin not accepted your request yet' }).status(400);
+    // if (!user.adminVerified) return res.send({ email: 'Admin not accepted your request yet' }).status(400);
 
  
     //CREATE AND ASSIGN A TOKEN

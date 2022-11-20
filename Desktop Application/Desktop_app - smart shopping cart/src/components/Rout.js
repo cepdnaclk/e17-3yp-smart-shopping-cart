@@ -16,7 +16,7 @@ import Widgets from './Widgets';
 import Chart from './Chart';
 import Basic_table from './Basic_table';
 import Item from './item';
-import ShowCartDetails from './ShowCarts details copy';
+import ShowCartDetails from './ShowCarts';
 import Protected from '../routes/ProctedRoute';
 import NotProtected from '../routes/AuthRoute';
 import staffwork from './staffWork';
@@ -49,7 +49,7 @@ export default function Rout() {
             <Route path="/login"><NotProtected Cmp={login}/></Route>
             <Route path="/signup"> <NotProtected Cmp={signup}/></Route>
 
-             <Route path='/home' ><Protected Cmp={ProctedContent}/></Route>
+            <Route path='/home' ><Protected Cmp={ProctedContent}/></Route>
             <Route path="/item"> <Protected Cmp={Item}/></Route>
             
         </Switch>
