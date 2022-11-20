@@ -50,7 +50,6 @@
 "@npmcli/arborist@*", "@npmcli/arborist@^2.3.0", "@npmcli/arborist@^2.5.0":
   "version" "2.8.3"
   dependencies:
-    "@isaacs/string-locale-compare" "^1.0.1"
     "@npmcli/installed-package-contents" "^1.0.7"
     "@npmcli/map-workspaces" "^1.0.2"
     "@npmcli/metavuln-calculator" "^1.1.0"

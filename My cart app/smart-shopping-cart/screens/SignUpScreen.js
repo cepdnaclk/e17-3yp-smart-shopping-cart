@@ -201,7 +201,8 @@ class SignUpScreen extends Component {
           if (res.data.email) {
             //error
 
-            alert("Please confirm your email to login");
+            alert("Please login to continue");
+            this.props.navigation.navigate("SignInScreen");
           } else {
             alert(res.data);
 
@@ -299,7 +300,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
   textSign: {
-    color: color.fontColor,
+    color: color.secondFontColor,
     fontWeight: "bold",
     fontSize: 18,
   },
