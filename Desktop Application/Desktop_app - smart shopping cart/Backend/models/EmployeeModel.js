@@ -45,11 +45,11 @@ const employeeSchema = mongoose.Schema({
     },
     mailVerified: {
         type : Boolean,
-        defaultValue : false
+        defaultValue : true
     },
     adminVerified : {
         type : Boolean,
-        defaultValue : false
+        defaultValue : true
     },
 
 })

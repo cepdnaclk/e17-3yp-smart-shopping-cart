@@ -20,6 +20,7 @@ const payment = require('./routes/payment');
 
 // cart route
 const cart = require("./routes/cart");
+const tempitems = require("./routes/tempitems");
 
 
 /*
@@ -55,7 +56,7 @@ app.use('/user', authroute);            //  AUTH
 app.use('/profile', routeProfile);       //profile
 app.use('/items', itemroute);       //profile
 
-
+app.use("/tempitems", tempitems);
 
 app.use(payment);     // Payment api
 

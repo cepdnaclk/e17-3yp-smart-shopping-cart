@@ -1,0 +1,2 @@
+LCD: https://linuxhint.com/interface-lcd-raspberry-pi-4/
+KeyPad: https://peppe8o.com/connect-raspberry-pi-with-matrix-keypad-to-get-user-codes-input/
