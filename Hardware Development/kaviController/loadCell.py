@@ -63,7 +63,13 @@ def loadCellReading():
             hx.set_reference_unit(referenceUnit)
             val = max(0, int(hx.get_weight(5)))
             weightList.append(val)
+            # print(val)
 
+            # To get weight from both channels (if you have load cells hooked up 
+            # to both channel A and B), do something like this
+            #val_A = hx.get_weight_A(5)
+            #val_B = hx.get_weight_B(5)
+            #print "A: %s  B: %s" % ( val_A, val_B )
 
             hx.power_down()
             hx.power_up()
@@ -82,4 +88,6 @@ def calibrate():
         time.sleep(0.1)
 
 if __name__=="__main__":
-    calibrate()
+    #calibrate()
+    while True:
+        print("reading:",loadCellReading())
