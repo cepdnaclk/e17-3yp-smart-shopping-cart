@@ -7,7 +7,7 @@ from unittest import result
 from LCD import LCDClear, LCDDisplay
 from buzzer import turnOnBuzzer
 from camera import takeImage
-from dlForImage import checkProductsUsingIP
+from dlForImage import checkProductsUsingDL
 from led import turnOnLED
 from loadCell import loadCellReading
 from mongo import find_item, find_item_temp, find_user, findCartUsingUser
@@ -95,7 +95,7 @@ def main():
         print("barcode Flag: ",barcodeFlag)
 
         image=takeImage()
-        resultItemsInCart=checkProductsUsingIP(image)
+        resultItemsInCart=checkProductsUsingDL(image)
         isItemsChanged=resultItemsInCart!=currentProductsInCart
         if(isItemsChanged):
             isItemsRemoved=sum(resultItemsInCart.values())<sum(currentProductsInCart.values())
