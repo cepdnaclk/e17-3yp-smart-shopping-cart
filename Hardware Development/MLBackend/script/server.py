@@ -23,7 +23,7 @@ def upload_video():
         return 'No image selected for uploading'
     else:
         filename = file.filename
-        file.save("cartRecordVideo/"+filename)
+        file.save("media/"+filename)
         print('upload_video filename: ' + filename)
         itemsList=getItemsList(filename)
         return jsonify({'items': itemsList})
