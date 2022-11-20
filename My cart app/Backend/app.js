@@ -46,7 +46,7 @@ app.use("/items", itemsroute); //products
 
 app.use("/profile", routeProfile); //profile
 
-app.use(payment); // Payment api
+app.use(payment); // Payment ap
 
 app.use(cartConnection); // cart connection
 
