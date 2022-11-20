@@ -3,7 +3,7 @@ import threading
 import time
 import queue
 from unittest import result
-from LCD import LCDDisplay
+from LCD import LCDClear, LCDDisplay
 from loadCell import loadCellReading
 from mongo import find_item, find_user, findCartUsingUser
 
@@ -64,6 +64,7 @@ def main():
     userId=waitForUserConnection()
     user=find_user(userId)
     print("connected user: ",user['name'])
+    LCDClear()
     LCDDisplay("Welcome "+str(user['name']))
 
     barCodeThread = threading.Thread(target=threadBarcode, args=(1,))  
@@ -92,7 +93,7 @@ def main():
             item = find_item(barcode)
             if item is None:
                 item = find_item_temp(barcode)
-
+            LCDClear()
             LCDDisplay("Scanned :"+str(item['name']))
 
             # weight change from weight sensor 
@@ -104,5 +105,8 @@ def main():
             print("weight check Flag: ",weightCheckFlag)
             # capture image ,send to python server & get output from their
             cameraCheckFlag=False
+        else:
+            # Todo check form flow chart
+            pass
 if __name__=="__main__":
     main()
