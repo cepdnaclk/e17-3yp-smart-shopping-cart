@@ -15,10 +15,10 @@ barcodeFlag=False
 barcode=""
 
 uss1stInterruptFlag=False
-uss1stInterruptThreshold=20
+uss1stInterruptThreshold=45
 
 uss2ndInterruptFlag=False
-uss2ndInterruptThreshold=20
+uss2ndInterruptThreshold=45
 
 currentCartWeight=0
 
@@ -41,7 +41,6 @@ def Check1stUltraSonicInterrupt():
 
 # after items add
 def Check2ndUltraSonicInterrupt():
-    return True
     result=False
     u1Reading,u2Reading=ultrasonicReading()
     if(u1Reading>uss2ndInterruptThreshold and u2Reading>uss2ndInterruptThreshold):
