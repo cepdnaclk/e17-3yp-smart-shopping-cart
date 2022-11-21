@@ -65,7 +65,7 @@ app.use(cart);                 // cart connection
 //  HOME
 app.get('/', (req, res) => {
     res.send('hellloooo home');
-    console.log('home');
+    console.log('home');mmmmmmmmmmmmmmmmmm
 });
 
 //LISTEN
