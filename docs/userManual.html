@@ -1,1 +1,1028 @@
 
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>Smart Shopping Cart</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link href="assets/img/favicon.png" rel="icon">
+    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Jost:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+    <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="assets/css/style.css" rel="stylesheet">
+
+    <!-- =======================================================
+  * Template Name: Arsha - v4.3.0
+  * Template URL: https://bootstrapmade.com/arsha-free-bootstrap-html-template-corporate/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+
+    <!-- ======= Header ======= -->
+    <header id="header" class="fixed-top ">
+        <div class="container d-flex align-items-center">
+
+            <h1 class="logo me-auto"><a href="index.html">Smart Shopping Cart</a></h1>
+            <!-- Uncomment below if you prefer to use an image logo -->
+            <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
+            <nav id="navbar" class="navbar">
+                <ul>
+                    <li><a class="nav-link scrollto active" href="/">Home</a></li>
+                </ul>
+                <i class="bi bi-list mobile-nav-toggle"></i>
+            </nav>
+            <!-- .navbar -->
+
+        </div>
+    </header>
+    <!-- End Header -->
+
+    <!-- ======= Hero Section ======= -->
+
+    <!-- End Hero -->
+
+    <main id="main">
+
+
+        <!-- ======= About Us Section ======= -->
+        <section id="services" class="services section-bg">
+            <div class="container" data-aos="fade-up">
+                    <br/><br/>
+                    <br/><br/>
+                    <br/><br/>
+                <div class="row">
+
+    <p class="c23"><span >Introduction</span></p>
+    <p class="c23">
+      <span class="c1"
+        >Payment methods typically used in retail environments require a lot of
+        work and effort. New progress in deep learning technology has led to the
+        creation of unmanned stores that provide a unique kind of shopping
+        experience. A good example of an unmanned store is Amazon Go. In Amazon
+        Go, there is no need to wait in line to perform a calculation. Because
+        they provide a user experience that significantly reduces computing
+        time, unmanned storage is essential. As a result, interest in this is
+        increasing both nationally and internationally.</span
+      >
+    </p>
+    <p class="c23">
+      <span class="c1"
+        >Hundreds of cameras, microphones, and pressure sensors follow consumers
+        in real time at &quot;Amazon Go,&quot; which is portrayed as an example
+        of an unmanned store, to determine when they come into touch with goods.
+        A consumer enters a store and scans his smartphone on a device placed at
+        the entrance; the system then displays the customer as a 3D target.
+        However, due to issues with AI reading, Amazon Go has a significant flaw
+        that prevents it from accommodating more than 100 customers. A lot of
+        data is gathered because Amazon Go also monitors and analyzes every
+        user&#39;s movement patterns. It is therefore challenging to apply it to
+        extensive distribution networks.</span
+      >
+    </p>
+    <p class="c7"><span class="c1"></span></p>
+    <p class="c7"><span class="c1"></span></p>
+    <p class="c7"><span class="c1"></span></p>
+    <p class="c23">
+      <span class="c1">Design requirements for smart shopping cart</span>
+    </p>
+    <p class="c23">
+      <span class="c1"
+        >When designing smart shopping carts, the following requirements were
+        considered.</span
+      >
+    </p>
+    <ul class="c12 lst-kix_i02rez631ai8-0 start">
+      <li class="c11 c8 li-bullet-0">
+        <span class="c1"
+          >For convenience of shopping, it should be operated with a wireless
+          battery.
+        </span>
+      </li>
+      <li class="c11 c8 li-bullet-0">
+        <span class="c1">Only minimal power should be consumed. </span>
+      </li>
+      <li class="c11 c8 li-bullet-0">
+        <span class="c1"
+          >It must be recognizable even if several products are simultaneously
+          in or out of the cart.</span
+        >
+      </li>
+      <li class="c11 c8 li-bullet-0">
+        <span class="c1"
+          >It should be separated whether a product is added or removed.</span
+        >
+      </li>
+      <li class="c11 c8 li-bullet-0">
+        <span class="c1">Need a way to add items like sugar, flour etc.</span>
+      </li>
+      <li class="c11 c8 li-bullet-0">
+        <span class="c1"
+          >It must detect all the unusual activities of users.</span
+        >
+      </li>
+      <li class="c11 c8 li-bullet-0">
+        <span class="c1"
+          >In each add or remove it must ensure only expected items placed
+          inside the cart.</span
+        >
+      </li>
+    </ul>
+    <p class="c7 c8"><span class="c1"></span></p>
+    <p class="c23">
+      <span class="c9">The order of operation of smart shopping cart</span>
+    </p>
+    <p class="c23">
+      <span class="c1"
+        >Shopping begins when the user connects the shopping cart with his
+        smart-phone. User can login to his account then scan the QR code
+        attached with the cart and connect to a cart.
+      </span>
+    </p>
+    <p class="c23"><span class="c1">After the connection is complete,</span></p>
+    <p class="c23">
+      <span class="c27">If the user wants to add an item:</span
+      ><span class="c1">&nbsp;</span>
+    </p>
+    <ul class="c12 lst-kix_qmcww2fxrrru-0 start">
+      <li class="c11 c8 li-bullet-0">
+        <span class="c1"
+          >Users can scan the barcode in the item and then they can add that
+          item to the cart.
+        </span>
+      </li>
+      <li class="c11 c8 li-bullet-0">
+        <span class="c1"
+          >The ultrasonic sensor in the shopping cart recognizes the product
+          when the user puts or pulls out the product and the camera attached to
+          the cart in the Raspberry Pi will capture images.
+        </span>
+      </li>
+      <li class="c11 c8 li-bullet-0">
+        <span class="c1"
+          >Then, it sends images to the python server over the http network. The
+          python server reads the images from the raspberry pi and then uses
+          deep learning to determine (the type, quantity, and entry or exit of
+          the product) and passes this information to the raspberry pi.</span
+        >
+      </li>
+      <li class="c11 c8 li-bullet-0">
+        <span class="c1"
+          >Also pi gets item details from the database by the barcode id and it
+          compares the weight change with the expected weight.
+        </span>
+      </li>
+      <li class="c11 c8 li-bullet-0">
+        <span class="c25">If </span
+        ><span class="c27 c29"
+          >weight change is equal to expected weight change</span
+        ><span class="c25">&nbsp; and </span
+        ><span class="c27 c29"
+          >expected items list received from the python server</span
+        ><span class="c1"
+          >&nbsp;the app adds product data in the virtual shopping cart.
+        </span>
+      </li>
+    </ul>
+    <p class="c23">
+      <span class="c27">If the user wants to remove an item</span
+      ><span class="c27 c32">: </span>
+    </p>
+    <ul class="c12 lst-kix_gwzh48rn1srj-0 start">
+      <li class="c11 c8 li-bullet-0">
+        <span class="c25"
+          >Rpi will detect an interrupt in ultrasonic sensor and </span
+        ><span class="c25 c29">if weight is decreased</span
+        ><span class="c25">&nbsp;and </span
+        ><span class="c27 c29"
+          >python server detects that an item is removed</span
+        ><span class="c1"
+          >&nbsp;then rpi will lead that user to scan the barcode of removed
+          item and if that is similar item removed then app removes product data
+          in virtual shopping cart.</span
+        >
+      </li>
+    </ul>
+    <p class="c23">
+      <span class="c27"
+        >If the user wants to add an item that does not have a fixed shape</span
+      ><span class="c32 c27">: </span>
+    </p>
+    <ul class="c12 lst-kix_fyzxeaquts6-0 start">
+      <li class="c11 c8 li-bullet-0">
+        <span class="c1"
+          >Supermarket workers can generate a barcode based on item id and
+          quantity. This will be stored in a temporary collection in the
+          database. Users can scan this barcode and add this item to the cart.
+        </span>
+      </li>
+      <li class="c11 c8 li-bullet-0">
+        <span class="c1"
+          >System will check weight change &nbsp;whether it is similar to
+          expected weight change or not and send images to the python server to
+          detect any products added without scanning.
+        </span>
+      </li>
+      <li class="c11 c8 li-bullet-0">
+        <span class="c1"
+          >If all conditions are satisfied then items will be added to the
+          virtual shopping cart.</span
+        >
+      </li>
+    </ul>
+    <p class="c7"><span class="c1"></span></p>
+    <p class="c23">
+      <span class="c9">To detect unusual activities of users:</span>
+    </p>
+    <p class="c23"><span class="c1">Activities we considered:</span></p>
+    <ul class="c12 lst-kix_3k3fgz1m1bm-0 start">
+      <li class="c11 c8 li-bullet-0">
+        <span class="c1">Adding an item without scanning</span>
+      </li>
+      <li class="c11 c8 li-bullet-0">
+        <span class="c1"
+          >Scan one item (Anchor) &nbsp;and add another item in the cart
+          (Ratthi).</span
+        >
+      </li>
+      <li class="c11 c8 li-bullet-0">
+        <span class="c1">Scan one product and add more than one of it.</span>
+      </li>
+      <li class="c11 c8 li-bullet-0">
+        <span class="c1">Scanned item not added to the cart.</span>
+      </li>
+      <li class="c11 c8 li-bullet-0">
+        <span class="c1">Hiding an item under another item.</span>
+      </li>
+      <li class="c11 c8 li-bullet-0">
+        <span class="c1"
+          >Add items that are not selled in the supermarket (Ex: Water bottle,
+          umbrella).</span
+        >
+      </li>
+    </ul>
+    <p class="c23"><span class="c1">To detect these:</span></p>
+    <p class="c23">
+      <span class="c1"
+        >Each time an ultrasonic sensor senses an interrupt,
+      </span>
+    </p>
+    <ul class="c12 lst-kix_kkymuyel8812-0 start">
+      <li class="c11 c8 li-bullet-0">
+        <span class="c1"
+          >The pi cam will capture images, and this video will be processed by
+          the python server to detect if any item is removed or added without
+          scanning.</span
+        >
+      </li>
+      <li class="c11 c8 li-bullet-0">
+        <span class="c1"
+          >Controller will check the weight change and compare it with the
+          expected weight.</span
+        >
+      </li>
+      <li class="c11 c8 li-bullet-0">
+        <span class="c1"
+          >If an item is added without scanning, the cart will be freezed and
+          the buzzer will be turned on.</span
+        >
+      </li>
+      <li class="c11 c8 li-bullet-0">
+        <span class="c1"
+          >We used two cameras(placed in 90 degrees) to capture images in all
+          angles and cameras will start to capture when it finds an
+          interrupt.</span
+        >
+      </li>
+      <li class="c11 c8 li-bullet-0">
+        <span class="c1"
+          >If they add items that are not selled in the supermarket system will
+          give an instruction to remove that item.</span
+        >
+      </li>
+    </ul>
+    <p class="c23">
+      <span class="c1"
+        >Based on these requirements we developed a controller (RPI)
+        workflow.</span
+      >
+    </p>
+    <p class="c7"><span class="c1"></span></p>
+    <p class="c7"><span class="c1"></span></p>
+    <p class="c7"><span class="c1"></span></p>
+    <p class="c6">
+      <span
+        style="
+          overflow: hidden;
+          display: inline-block;
+          margin: 0px 0px;
+          border: 0px solid #000000;
+          transform: rotate(0rad) translateZ(0px);
+          -webkit-transform: rotate(0rad) translateZ(0px);
+          width: 711.33px;
+          height: 533.5px;
+        "
+        ><img
+          alt=""
+          src="images/image4.png"
+          style="
+            width: 711.33px;
+            height: 533.5px;
+            margin-left: 0px;
+            margin-top: 0px;
+            transform: rotate(0rad) translateZ(0px);
+            -webkit-transform: rotate(0rad) translateZ(0px);
+          "
+          title=""
+      /></span>
+    </p>
+    <p class="c7"><span class="c1"></span></p>
+    <p class="c7"><span class="c1"></span></p>
+    <p class="c7"><span class="c1"></span></p>
+    <p class="c7"><span class="c1"></span></p>
+    <p class="c7"><span class="c1"></span></p>
+    <p class="c7"><span class="c1"></span></p>
+    <p class="c7"><span class="c1"></span></p>
+    <p class="c7"><span class="c1"></span></p>
+    <p class="c7"><span class="c1"></span></p>
+    <p class="c7"><span class="c1"></span></p>
+    <p class="c23">
+      <span class="c27 c37"
+        >Detailed implementation of smart shopping cart systems</span
+      >
+    </p>
+    <p class="c23"><span class="c22">Hardware</span></p>
+    <a id="t.8159c566d64ca50abe1961c336d6a4b07f0d19f1"></a><a id="t.0"></a>
+    <table class="c19">
+      <tr class="c2">
+        <td class="c18 c31" colspan="1" rowspan="1">
+          <p class="c17"><span class="c1">Components</span></p>
+        </td>
+        <td class="c16 c31" colspan="1" rowspan="1">
+          <p class="c17"><span class="c1">Functionalities</span></p>
+        </td>
+        <td class="c13 c31" colspan="1" rowspan="1">
+          <p class="c17"><span class="c1">Model</span></p>
+        </td>
+      </tr>
+      <tr class="c2">
+        <td class="c18" colspan="1" rowspan="1">
+          <p class="c17"><span class="c1">Raspberry Pi</span></p>
+        </td>
+        <td class="c16" colspan="1" rowspan="1">
+          <p class="c17"><span class="c1">Controller</span></p>
+        </td>
+        <td class="c13" colspan="1" rowspan="1">
+          <p class="c17"><span class="c1">Raspberry Pi 3b+</span></p>
+        </td>
+      </tr>
+      <tr class="c36">
+        <td class="c18" colspan="1" rowspan="1">
+          <p class="c17"><span class="c1">Ultrasonic sensor</span></p>
+        </td>
+        <td class="c16" colspan="1" rowspan="1">
+          <p class="c17">
+            <span class="c1"
+              >Detects that the product is being put into the cart</span
+            >
+          </p>
+        </td>
+        <td class="c13" colspan="1" rowspan="1">
+          <p class="c17"><span class="c1">HC-SR04</span></p>
+        </td>
+      </tr>
+      <tr class="c2">
+        <td class="c18" colspan="1" rowspan="1">
+          <p class="c6"><span class="c1">&nbsp;PiCamera</span></p>
+        </td>
+        <td class="c16" colspan="1" rowspan="1">
+          <p class="c6">
+            <span class="c1"
+              >&nbsp;Recognizes the product, a raspberry pie that controls the
+              entire system and performs network communication</span
+            >
+          </p>
+          <p class="c17 c24"><span class="c1"></span></p>
+        </td>
+        <td class="c13" colspan="1" rowspan="1">
+          <p class="c17"><span class="c1">PiCamera v2</span></p>
+        </td>
+      </tr>
+      <tr class="c2">
+        <td class="c18" colspan="1" rowspan="1">
+          <p class="c20"><span class="c1">Weight sensor</span></p>
+          <p class="c17 c24"><span class="c1"></span></p>
+        </td>
+        <td class="c16" colspan="1" rowspan="1">
+          <p class="c20">
+            <span class="c1"
+              >Measures the weight of the products placed in the shopping
+              cart</span
+            >
+          </p>
+        </td>
+        <td class="c13" colspan="1" rowspan="1">
+          <p class="c17"><span class="c1">Loadcell HX711</span></p>
+        </td>
+      </tr>
+      <tr class="c2">
+        <td class="c18" colspan="1" rowspan="1">
+          <p class="c20"><span class="c1">Barcode scanner</span></p>
+        </td>
+        <td class="c16" colspan="1" rowspan="1">
+          <p class="c20"><span class="c1">To detect </span></p>
+        </td>
+        <td class="c13" colspan="1" rowspan="1">
+          <p class="c17 c24"><span class="c1"></span></p>
+        </td>
+      </tr>
+      <tr class="c2">
+        <td class="c18" colspan="1" rowspan="1">
+          <p class="c20"><span class="c1">Battery</span></p>
+        </td>
+        <td class="c16" colspan="1" rowspan="1">
+          <p class="c20 c24"><span class="c1"></span></p>
+        </td>
+        <td class="c13" colspan="1" rowspan="1">
+          <p class="c17 c24"><span class="c1"></span></p>
+        </td>
+      </tr>
+    </table>
+    <p class="c21 c24 c8"><span class="c1"></span></p>
+    <ul class="c12 lst-kix_f73abrly96p4-0 start">
+      <li class="c21 c15 c8 li-bullet-0">
+        <span class="c1"
+          >This system attaches an ultrasonic sensor to the top of the cart and
+          uses it as a trigger for image streaming. In other words, the image
+          streaming was implemented as an asynchronous transmission that would
+          require the python server to be notified only when the products were
+          put in or taken out of the cart without continuing to be transmitted
+          during shopping hours.</span
+        >
+      </li>
+      <li class="c21 c15 c8 li-bullet-0">
+        <span class="c1"
+          >Since ultrasonic sensors have a narrow detection range compared to
+          the area of shopping carts, the prototype uses two sensors to
+          compensate for this point to increase accuracy.</span
+        >
+      </li>
+      <li class="c21 c15 c8 li-bullet-0">
+        <span class="c1">We used two cameras to </span>
+      </li>
+      <li class="c21 c15 c8 li-bullet-0">
+        <span class="c1"
+          >Weight sensors were used as a way to determine whether a product
+          enters or goes out of a shopping cart.The weight sensor is installed
+          on the bottom of the shopping cart and the current weight compared to
+          the previous weight to determine whether to increase or decrease.
+        </span>
+      </li>
+      <li class="c21 c15 c8 li-bullet-0">
+        <span class="c1">Calibration? Small weight?</span>
+      </li>
+      <li class="c15 c8 c21 li-bullet-0">
+        <span class="c1">Circuit diagram</span>
+      </li>
+    </ul>
+    <p class="c7"><span class="c22"></span></p>
+    <p class="c7"><span class="c22"></span></p>
+    <p class="c7"><span class="c22"></span></p>
+    <p class="c7"><span class="c22"></span></p>
+    <p class="c7"><span class="c22"></span></p>
+    <p class="c23"><span class="c22">Mobile Application</span></p>
+    <ul class="c12 lst-kix_e2dtby7hfvjw-0 start">
+      <li class="c11 c8 li-bullet-0">
+        <span class="c1">Developed for customers</span>
+      </li>
+    </ul>
+    <p class="c6"><span class="c1">Technologies &nbsp;</span></p>
+    <p class="c26 c24"><span class="c1"></span></p>
+    <a id="t.dd2eac1484ce186b5e5ec8d09a1d7767d5c6f43b"></a><a id="t.1"></a>
+    <table class="c0">
+      <tr class="c2">
+        <td class="c34" colspan="1" rowspan="1">
+          <p class="c10"><span class="c1">Frontend</span></p>
+        </td>
+        <td class="c28" colspan="1" rowspan="1">
+          <p class="c10"><span class="c1">react-native</span></p>
+        </td>
+      </tr>
+      <tr class="c2">
+        <td class="c34" colspan="1" rowspan="1">
+          <p class="c10"><span class="c1">Backend</span></p>
+        </td>
+        <td class="c28" colspan="1" rowspan="1">
+          <p class="c10"><span class="c1">nodeJS</span></p>
+        </td>
+      </tr>
+      <tr class="c2">
+        <td class="c34" colspan="1" rowspan="1">
+          <p class="c10"><span class="c1">Database</span></p>
+        </td>
+        <td class="c28" colspan="1" rowspan="1">
+          <p class="c10"><span class="c1">MongoDB</span></p>
+        </td>
+      </tr>
+    </table>
+    <p class="c4"><span class="c1"></span></p>
+    <p class="c6"><span class="c1">Main functionalities:</span></p>
+    <ul class="c12 lst-kix_jbevsy7h19z9-0 start">
+      <li class="c6 c15 c8 li-bullet-0">
+        <span class="c1">Users must create an account.</span>
+      </li>
+      <li class="c6 c15 c8 li-bullet-0">
+        <span class="c1"
+          >To connect with the cart they can scan the QR code attached to a cart
+          and start shopping.</span
+        >
+      </li>
+      <li class="c6 c15 c8 li-bullet-0">
+        <span class="c1"
+          >Shows a list of products that is added to the cart.</span
+        >
+      </li>
+      <li class="c6 c15 c8 li-bullet-0">
+        <span class="c1">Make payment</span>
+      </li>
+    </ul>
+    <p class="c4"><span class="c1"></span></p>
+    <p class="c6"><span class="c1">Additional functionalities:</span></p>
+    <ul class="c12 lst-kix_f1u1udmx2he0-0 start">
+      <li class="c6 c15 c8 li-bullet-0">
+        <span class="c1">Users can make to buy list</span>
+      </li>
+      <li class="c6 c15 c8 li-bullet-0">
+        <span class="c1">Offer details will be shown </span>
+      </li>
+    </ul>
+    <p class="c4"><span class="c1"></span></p>
+    <p class="c6">
+      <span class="c1"
+        >App is connected to the database via http. Raspberry pi will directly
+        update the items added to the cart in the database.
+      </span>
+    </p>
+    <p class="c4"><span class="c1"></span></p>
+    <p class="c6">
+      <span class="c1"
+        >Frontend
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Backend
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Database&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RPI
+      </span>
+    </p>
+    <p class="c4"><span class="c1"></span></p>
+    <p class="c4 c14"><span class="c1"></span></p>
+    <p class="c4 c14"><span class="c1"></span></p>
+    <p class="c6"><span class="c1">Security : </span></p>
+    <ul class="c12 lst-kix_z9qdryo8gmkf-0 start">
+      <li class="c6 c15 c8 li-bullet-0">
+        <span class="c1">Hashed passwords will be stored in the database.</span>
+      </li>
+      <li class="c6 c15 c8 li-bullet-0">
+        <span class="c1">Access token and Refresh token is used. </span>
+      </li>
+      <li class="c6 c15 c8 li-bullet-0">
+        <span class="c1">Email verification system</span>
+      </li>
+    </ul>
+    <p class="c4 c14"><span class="c1"></span></p>
+    <p class="c4"><span class="c1"></span></p>
+    <p class="c4"><span class="c1"></span></p>
+    <p class="c4"><span class="c1"></span></p>
+    <p class="c4"><span class="c1"></span></p>
+    <p class="c4"><span class="c1"></span></p>
+    <p class="c4"><span class="c1"></span></p>
+    <p class="c4"><span class="c1"></span></p>
+    <p class="c4"><span class="c1"></span></p>
+    <p class="c4"><span class="c1"></span></p>
+    <p class="c4"><span class="c1"></span></p>
+    <p class="c4"><span class="c1"></span></p>
+    <p class="c6"><span class="c22">Web application</span></p>
+    <p class="c4"><span class="c22"></span></p>
+    <ul class="c12 lst-kix_y3zxkkwlteul-0 start">
+      <li class="c6 c8 c15 li-bullet-0">
+        <span class="c1">Can be used by supermarket administrators.</span>
+      </li>
+    </ul>
+    <p class="c4"><span class="c1"></span></p>
+    <p class="c6"><span class="c1">Technologies:</span></p>
+    <p class="c24 c26"><span class="c1"></span></p>
+    <a id="t.bd71724236a56dbe7fa31ff1db5e17354c32c2d5"></a><a id="t.2"></a>
+    <table class="c0">
+      <tr class="c2">
+        <td class="c34" colspan="1" rowspan="1">
+          <p class="c10"><span class="c1">Frontend</span></p>
+        </td>
+        <td class="c28" colspan="1" rowspan="1">
+          <p class="c10"><span class="c1">reactJS</span></p>
+        </td>
+      </tr>
+      <tr class="c2">
+        <td class="c34" colspan="1" rowspan="1">
+          <p class="c10"><span class="c1">Backend</span></p>
+        </td>
+        <td class="c28" colspan="1" rowspan="1">
+          <p class="c10"><span class="c1">nodeJS</span></p>
+        </td>
+      </tr>
+      <tr class="c2">
+        <td class="c34" colspan="1" rowspan="1">
+          <p class="c10"><span class="c1">Database</span></p>
+        </td>
+        <td class="c28" colspan="1" rowspan="1">
+          <p class="c10"><span class="c1">MongoDB</span></p>
+        </td>
+      </tr>
+    </table>
+    <p class="c4"><span class="c1"></span></p>
+    <p class="c4 c8"><span class="c1"></span></p>
+    <p class="c6"><span class="c1">Main features:</span></p>
+    <ul class="c12 lst-kix_gathv212rh5i-0 start">
+      <li class="c6 c15 c8 li-bullet-0">
+        <span class="c1"
+          >Employees can create an account and login to the application.</span
+        >
+      </li>
+      <li class="c6 c15 c8 li-bullet-0">
+        <span class="c1">Add and update &nbsp;product details.</span>
+      </li>
+      <li class="c6 c15 c8 li-bullet-0">
+        <span class="c1"
+          >Generate barcode for products like sugar, flour, etc.</span
+        >
+      </li>
+      <li class="c6 c15 c8 li-bullet-0">
+        <span class="c1">Insert and update cart details.</span>
+      </li>
+    </ul>
+    <p class="c4 c8"><span class="c1"></span></p>
+    <p class="c6"><span class="c1">Security : </span></p>
+    <ul class="c12 lst-kix_z9qdryo8gmkf-0">
+      <li class="c6 c15 c8 li-bullet-0">
+        <span class="c1">Hashed passwords will be stored in the database.</span>
+      </li>
+      <li class="c6 c15 c8 li-bullet-0">
+        <span class="c1">Access token and Refresh token is used. </span>
+      </li>
+      <li class="c6 c15 c8 li-bullet-0">
+        <span class="c1">Email verification system</span>
+      </li>
+      <li class="c6 c15 c8 li-bullet-0">
+        <span class="c1"
+          >Admin must verify the account to let employees login to the
+          application.</span
+        >
+      </li>
+    </ul>
+    <p class="c7"><span class="c1"></span></p>
+    <p class="c7"><span class="c1"></span></p>
+    <p class="c7"><span class="c1"></span></p>
+    <p class="c7"><span class="c1"></span></p>
+    <p class="c7"><span class="c1"></span></p>
+    <p class="c7"><span class="c1"></span></p>
+    <p class="c7"><span class="c1"></span></p>
+    <p class="c7"><span class="c1"></span></p>
+    <p class="c7"><span class="c1"></span></p>
+    <p class="c7"><span class="c1"></span></p>
+    <p class="c7"><span class="c1"></span></p>
+    <p class="c7"><span class="c1"></span></p>
+    <p class="c7"><span class="c1"></span></p>
+    <p class="c7"><span class="c1"></span></p>
+    <p class="c7"><span class="c1"></span></p>
+    <p class="c7"><span class="c1"></span></p>
+    <p class="c23"><span class="c1">Python server</span></p>
+    <p class="c23">
+      <span class="c1"
+        >In a smart shopping cart, it is a very important task to accurately
+        recognize the products added to the cart. After receiving the image
+        through the camera, the shopping cart should detect the object in the
+        image. The smart cart system &nbsp;uses a YOLO library (You Only Look
+        Once), which provides grid-based object detection, one of the deep
+        learning technologies.
+      </span>
+    </p>
+    <p class="c23">
+      <span class="c1"
+        >Python server will receive images from the RPI and it will perform a
+        pre-trained object detection algorithm and send back the detected
+        products to RPI.
+      </span>
+    </p>
+    <p class="c7"><span class="c1"></span></p>
+    <p class="c23"><span class="c1">Image processing : </span></p>
+    <p class="c23">
+      <span class="c1"
+        >YOLO is an open source library that implements not only a classifier
+        but also location algorithms, enabling multiple objects to be detected
+        within one image YOLO is an open-source library that provides better
+        performance than previous object detection neural networks, and is a
+        powerful real-time object detection system that supports real-time
+        detection of videos via webcam as well as file format video data.
+        Because YOLO is based on CNN, it provides a convolution-based
+        architecture that gradually down samples the size of the input image,
+        such as going through the convolutional layer and subsampling</span
+      >
+    </p>
+    <p class="c7"><span class="c1"></span></p>
+    <p class="c23">
+      <span class="c1"
+        >We captured and collected some products and we labeled all the images.
+        Then we trained our model using YOLO library.</span
+      >
+    </p>
+    <p class="c23">
+      <span
+        style="
+          overflow: hidden;
+          display: inline-block;
+          margin: 0px 0px;
+          border: 0px solid #000000;
+          transform: rotate(0rad) translateZ(0px);
+          -webkit-transform: rotate(0rad) translateZ(0px);
+          width: 624px;
+          height: 234.67px;
+        "
+        ><img
+          alt=""
+          src="images/image2.jpg"
+          style="
+            width: 624px;
+            height: 234.67px;
+            margin-left: 0px;
+            margin-top: 0px;
+            transform: rotate(0rad) translateZ(0px);
+            -webkit-transform: rotate(0rad) translateZ(0px);
+          "
+          title=""
+      /></span>
+    </p>
+    <p class="c7"><span class="c1"></span></p>
+    <p class="c7"><span class="c1"></span></p>
+    <p class="c23">
+      <span
+        style="
+          overflow: hidden;
+          display: inline-block;
+          margin: 0px 0px;
+          border: 0px solid #000000;
+          transform: rotate(0rad) translateZ(0px);
+          -webkit-transform: rotate(0rad) translateZ(0px);
+          width: 463.5px;
+          height: 537.86px;
+        "
+        ><img
+          alt=""
+          src="images/image3.jpg"
+          style="
+            width: 773.33px;
+            height: 579.99px;
+            margin-left: 0px;
+            margin-top: 0px;
+            transform: rotate(0rad) translateZ(0px);
+            -webkit-transform: rotate(0rad) translateZ(0px);
+          "
+          title=""
+      /></span>
+    </p>
+    <p class="c23"><span class="c1">Possible scenarios:</span></p>
+    <ul class="c12 lst-kix_oyq393hr71ze-0 start">
+      <li class="c11 c8 li-bullet-0">
+        <span class="c1">Item is added without scanning</span>
+      </li>
+    </ul>
+    <p class="c23 c30"><span class="c35 c25">Ex: Anchor, umbrella</span></p>
+    <ul class="c12 lst-kix_qnaehxdx3igh-0 start">
+      <li class="c11 c8 li-bullet-0">
+        <span class="c1">One item is scanned different item is added</span>
+      </li>
+    </ul>
+    <p class="c23 c30">
+      <span class="c35 c25">Ex: Scanned - anchor &amp; added - ratthi</span>
+    </p>
+    <ul class="c12 lst-kix_xt33jyw9lrzq-0 start">
+      <li class="c11 c8 li-bullet-0">
+        <span class="c1"
+          >One item is added with that another item is added</span
+        >
+      </li>
+    </ul>
+    <p class="c23 c30">
+      <span class="c35 c25"
+        >Ex: Scanned - anchor &amp; added - anchor + ratthi</span
+      >
+    </p>
+    <ul class="c12 lst-kix_aq4gqnrulroj-0 start">
+      <li class="c11 c8 li-bullet-0">
+        <span class="c1"
+          >Small items that cannot be detected by weight sensor</span
+        >
+      </li>
+    </ul>
+    <p class="c23 c30"><span class="c25 c35">Ex: pen, mixture packet</span></p>
+    <ul class="c12 lst-kix_id3h0o5hl77c-0 start">
+      <li class="c11 c8 li-bullet-0">
+        <span class="c1">Scanned and item is not added to the cart</span>
+      </li>
+      <li class="c11 c8 li-bullet-0">
+        <span class="c1"
+          >Items like : sugar , with this also all above scenarios possible
+        </span>
+      </li>
+    </ul>
+    <ul class="c12 lst-kix_mp2dacviwzo6-0 start">
+      <li class="c11 c8 li-bullet-0">
+        <span class="c1">If put item inside their bag</span>
+      </li>
+      <li class="c11 c8 li-bullet-0">
+        <span class="c1">One item is behind another</span>
+      </li>
+      <li class="c11 c8 li-bullet-0">
+        <span class="c1">Need to add more than 2 items</span>
+      </li>
+    </ul>
+    <p class="c7"><span class="c1"></span></p>
+    <p class="c23"><span class="c1">Need to be completed</span></p>
+    <ul class="c12 lst-kix_li2567qhkrvc-0 start">
+      <li class="c11 c8 li-bullet-0"><span class="c1">Rpi </span></li>
+      <li class="c11 c8 li-bullet-0">
+        <span class="c25 c33">&nbsp;</span
+        ><span class="c1">insert 10 items in the database</span>
+      </li>
+      <li class="c11 c8 li-bullet-0">
+        <span class="c1">Generate barcodes</span>
+      </li>
+      <li class="c8 c11 li-bullet-0"><span class="c1">Collect images</span></li>
+      <li class="c11 c8 li-bullet-0">
+        <span class="c1">Image processing</span>
+      </li>
+      <li class="c11 c8 li-bullet-0"><span class="c25">Ui</span></li>
+      <li class="c11 c8 li-bullet-0"><span class="c1">Document</span></li>
+      <li class="c11 c8 li-bullet-0"><span class="c1">User manual </span></li>
+      <li class="c11 c8 li-bullet-0">
+        <span class="c1">Sensor calibration</span>
+      </li>
+      <li class="c11 c8 li-bullet-0"><span class="c1">PCB</span></li>
+    </ul>
+    <p class="c6"><span class="c1">User manual :</span></p>
+    <p class="c4"><span class="c1"></span></p>
+    <p class="c4"><span class="c1"></span></p>
+    <p class="c6">
+      <span class="c1"
+        >If user scanned a item they should add that item to the cart before
+        scanning or removing another item to cart</span
+      >
+    </p>
+    <p class="c6">
+      <span class="c1"
+        >Should not add any unnecessary items : Umbrella, baby</span
+      >
+    </p>
+    <p class="c6"><span class="c1">They can connect two carts</span></p>
+    <p class="c6"><span class="c1">Power failure</span></p>
+    <p class="c4"><span class="c1"></span></p>
+    <p class="c6">
+      <span
+        style="
+          overflow: hidden;
+          display: inline-block;
+          margin: 0px 0px;
+          border: 0px solid #000000;
+          transform: rotate(0rad) translateZ(0px);
+          -webkit-transform: rotate(0rad) translateZ(0px);
+          width: 624px;
+          height: 468px;
+        "
+        ><img
+          alt=""
+          src="images/image1.png"
+          style="
+            width: 624px;
+            height: 468px;
+            margin-left: 0px;
+            margin-top: 0px;
+            transform: rotate(0rad) translateZ(0px);
+            -webkit-transform: rotate(0rad) translateZ(0px);
+          "
+          title=""
+      />
+                    
+                </div>
+            </div>
+        </section>
+        <!-- End About Us Section -->
+
+
+    </main>
+    <!-- End #main -->
+
+    <!-- ======= Footer ======= -->
+    <footer id="footer">
+
+        <!-- <div class="footer-top">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-lg-3 col-md-6 footer-contact">
+                        <h3>Arsha</h3>
+                        <p>
+                            A108 Adam Street <br> New York, NY 535022<br> United States <br><br>
+                            <strong>Phone:</strong> +1 5589 55488 55<br>
+                            <strong>Email:</strong> info@example.com<br>
+                        </p>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 footer-links">
+                        <h4>Useful Links</h4>
+                        <ul>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 footer-links">
+                        <h4>Our Services</h4>
+                        <ul>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Web Design</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Web Development</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Product Management</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Marketing</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Graphic Design</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 footer-links">
+                        <h4>Our Social Networks</h4>
+                        <p>Cras fermentum odio eu feugiat lide par naso tierra videa magna derita valies</p>
+                        <div class="social-links mt-3">
+                            <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+                            <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+                            <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+                            <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+                            <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div> -->
+
+        <div class="container footer-bottom clearfix">
+            <div class="copyright">
+                &copy; Copyright <strong><span>SMART SHOPPING CART</span></strong>. All Rights Reserved
+            </div>
+            <div class="credits">
+                <!-- All the links in the footer should remain intact. -->
+                <!-- You can delete the links only if you purchased the pro version. -->
+                <!-- Licensing information: https://bootstrapmade.com/license/ -->
+                <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/arsha-free-bootstrap-html-template-corporate/ -->
+                Designed by
+                <a href="/">KRP ROCKERS</a>
+            </div>
+        </div>
+    </footer>
+    <!-- End Footer -->
+
+    <div id="preloader"></div>
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+    <!-- Vendor JS Files -->
+    <script src="assets/vendor/aos/aos.js"></script>
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="assets/vendor/php-email-form/validate.js"></script>
+    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="assets/js/main.js"></script>
+
+
+</body>
+
+</html>
